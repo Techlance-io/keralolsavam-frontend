@@ -1,12 +1,9 @@
 .carousel_container {
   padding-top: 6rem;
-  padding-left: auto;
-  padding-right: auto;
   padding-bottom: 2rem;
-  column-gap: 8rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  padding-left: 4rem;
+  padding-right: 4rem;
   align-items: center;
   justify-content: center;
   background: linear-gradient(
@@ -20,9 +17,9 @@
 }
 .carousel_img {
   max-height: 60vh;
+  width: 100%;
   height: auto;
   border-radius: 10px;
-  width: 90%;
 }
 
 @-webkit-keyframes ticker {
@@ -65,6 +62,9 @@
   font-weight: 700;
   font-size: 1rem;
 }
+.ticker_heading_1 {
+  display: none;
+}
 .ticker_wrap .ticker_item:before {
   content: "";
   height: 11px;
@@ -96,6 +96,7 @@
   padding-left: 100%;
   box-sizing: content-box;
 }
+
 .ticker_wrap .ticker:hover {
   -webkit-animation-play-state: paused;
   -moz-animation-play-state: paused;
@@ -132,4 +133,33 @@
   width: 30%;
   border: 1px solid #ec9f05;
   border-radius: 10px;
+}
+@media (max-width: 768px) {
+  .ticker_heading {
+    display: none;
+  }
+  .ticker_heading_1 {
+    position: absolute;
+    background: red;
+    display: block;
+    left: 0;
+    top: 0;
+    height: 2.5rem;
+    padding: 11px 20px;
+    z-index: 2;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .ticker_heading_1::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 11px solid red;
+    position: absolute;
+    margin-left: 20px;
+  }
 }

@@ -1,10 +1,111 @@
-.navbar
-{
-    height:4rem;
+.navbar {
+    display: flex;
+    background-color: #622308;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 1.5rem;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%;
+    z-index: 100;
+    align-items: center;
+  }
+  .navbar_item {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .navbar_item_active {
+    background: #F5BB00;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+  }
+  .hamburger {
+    font-size: 1.5rem;
+    color: white;
+  }
+  .nav__mob {
+    display: none;
     width: 100%;
     position: fixed;
-    top:0;
-    left: 0;
-    right: 0;
+  }
+  .nav__mob_container {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .nav__drawer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 300px;
+    padding: 1.5rem;
     background-color: #622308;
-}
+  }
+  
+  .nav__drawer_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .navbar_items_mob {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding-top: 3rem;
+    z-index: 9;
+  }
+  
+  .nav_item_mob {
+    cursor: pointer;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 400;
+  }
+  .nav_btn {
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 40px;
+    z-index: 999;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #622308;;
+    box-shadow: -2px -2px 4px rgba(189, 130, 22, 0.6), 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding-left: auto;
+  }
+  
+  @media (max-width: 942px) {
+    .navbar {
+      display: none;
+    }
+    .navbar_offset {
+      display: none;
+    }
+    .nav__mob {
+      display: block;
+      z-index: 14;
+    }
+  }

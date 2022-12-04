@@ -1,6 +1,10 @@
 import {
   Autocomplete,
   createTheme,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
   ThemeProvider,
 } from "@mui/material";
@@ -11,6 +15,12 @@ import placeData from "../data/placeData";
 import sportsData from "../data/sportsData";
 import styles from "../styles/RegisterParticipant.module.css";
 import axios from "axios";
+import Navbar from "../components/Navbar/Navbar";
+import footer from "../assets/png/footer.png";
+import Image from "next/image";
+import left from "../assets/png/left.png";
+import right from "../assets/png/right.png";
+import top from "../assets/png/top.png";
 
 function RegisterParticipant() {
   const router = useRouter();
@@ -20,10 +30,11 @@ function RegisterParticipant() {
   const [address, setAddress] = useState("");
   const [sex, setSex] = useState("");
   const [place, setPlace] = useState("");
-  const [lsgi, setLsgi] = useState(lsgitypes[0]);
+  const [lsgi, setLsgi] = useState();
   const [artEvents, setArtEvents] = useState([]);
   const [sportsEvents, setSportsEvents] = useState([]);
   const [localbody, setLocalbody] = useState("");
+
   const theme = createTheme({
     components: {
       MuiOutlinedInput: {
@@ -31,18 +42,18 @@ function RegisterParticipant() {
           root: {
             "&:hover .MuiOutlinedInput-notchedOutline": {
               color: "#9E0000",
-              border: "3px solid #bf3100",
-              borderRadius: "10px",
+              border: "2px solid #BF3100",
+              borderRadius: "20px",
             },
             "& .MuiOutlinedInput-notchedOutline": {
               color: "#9E0000",
-              border: "3px solid #bf3100",
-              borderRadius: "10px",
+              border: "2px solid #BF3100",
+              borderRadius: "20px",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
               color: "#9E0000",
-              border: "3px solid #bf3100",
-              borderRadius: "10px",
+              border: "2px solid #BF3100",
+              borderRadius: "20px",
             },
             minHeight: "150%",
           },
@@ -74,7 +85,7 @@ function RegisterParticipant() {
     return list;
   }
   function getPlaceList(lsgi) {
-    let placelist = ["Select Place"];
+    let placelist = [];
     placeData.forEach((item) => {
       if (item.type == lsgi) placelist.push(item.name);
     });
@@ -91,117 +102,162 @@ function RegisterParticipant() {
     sportsEvents,
   };
   console.log(user);
-  async function handleSubmit()
-  {
-    await axios.post("http://localhost:5000/api/auth/signup",user)
-    .then((res)=>{
-      console.log(res.data);
-     })
-    .catch((err)=>{
-      console.log(err);
-    })
+  async function handleSubmit() {
+    await axios
+      .post("http://localhost:5000/api/auth/signup", user)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <>
-      <form className={styles.container}>
-        <div className={styles.heading}>Particpant Registration</div>
-        <div className={styles.inputs}>
-          <input
-            type="text"
-            placeholder="Name"
-            className={styles.input}
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Address"
-            multiple
-            className={styles.input}
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Place"
-            className={styles.input}
-            value={place}
-            onChange={(e) => {
-              setPlace(e.target.value);
-            }}
-          />
-          <div className={styles.gender_1}>
-            <div>LSGI Type</div>
-            <select
-              name="lsgi"
-              id="lsgi"
-              value={lsgi}
-              onChange={(e) => {
-                setLsgi(e.target.value);
-              }}
-            >
-              {lsgitypes.map((lsgitype, index) => {
-                return (
-                  <option value={lsgitype} key={index}>
-                    {lsgitype}
-                  </option>
-                );
-              })}
-            </select>
+      <Navbar />
+      <div className={styles.container}>
+        <div className={styles.heading}>Participant Registration</div>
+        <Image src={right} alt="" className={styles.image_top} />
+        <div className={styles.content}>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
+              <TextField
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  },
+                }}
+                id="outlined-basic"
+                className={`${theme.root} ${styles.textfield}`}
+                label="Name"
+                variant="outlined"
+              />
+            </ThemeProvider>
+            <ThemeProvider theme={theme}>
+              <FormControl className={`${theme.root} ${styles.textfield}`}>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  className={theme.root}
+                  style={{
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                >
+                  LSGI
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="LSGI"
+                  value={lsgi}
+                  onChange={(e) => {
+                    setLsgi(e.target.value);
+                  }}
+                >
+                  {lsgitypes.map((lsgitype, index) => {
+                    return (
+                      <MenuItem value={lsgitype} key={index}>
+                        {lsgitype}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </ThemeProvider>
           </div>
-          <div className={styles.gender_1}>
-            <div>Local Body</div>
-            <select
-              name="localbody"
-              id="localbody"
-              value={localbody}
-              onChange={(e) => {
-                setLocalbody(e.target.value);
-              }}
-            >
-              {getPlaceList(lsgi).map((place, index) => {
-                return (
-                  <option value={place} key={index}>
-                    {place}
-                  </option>
-                );
-              })}
-            </select>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
+              <TextField
+                value={address}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  },
+                }}
+                id="outlined-basic"
+                className={`${theme.root} ${styles.textfield}`}
+                label="Address"
+                variant="outlined"
+              />
+            </ThemeProvider>
+            <ThemeProvider theme={theme}>
+              <FormControl className={`${theme.root} ${styles.textfield}`}>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  className={theme.root}
+                  style={{
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                >
+                  Local Body
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Local Body"
+                  value={localbody}
+                  onChange={(e) => {
+                    setLocalbody(e.target.value);
+                  }}
+                >
+                  {getPlaceList(lsgi).map((place, index) => {
+                    return (
+                      <MenuItem value={place} key={index}>
+                        {place}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </ThemeProvider>
           </div>
-          <div className={styles.gender}>
-            <div>Gender</div>
-            <div className={styles.gender_option}>
-              {sextypes.map((sextype, index) => {
-                return (
-                  <div className={styles.gender_select} key={index}>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value={sextype}
-                      onChange={(e) => {
-                        setSex(e.target.value);
-                      }}
-                    />
-                    <div>{sextype}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
+              <TextField
+                value={place}
+                onChange={(e) => {
+                  setPlace(e.target.value);
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  },
+                }}
+                id="outlined-basic"
+                className={`${theme.root} ${styles.textfield}`}
+                label="Place"
+                variant="outlined"
+              />
+            </ThemeProvider>
             <ThemeProvider theme={theme}>
               <Autocomplete
                 multiple
-                sx={{
-                  width: 350,
-                  marginTop: "0.9rem",
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                }}
                 onChange={(event, value) => {
                   setArtEvents(value);
                 }}
@@ -209,33 +265,64 @@ function RegisterParticipant() {
                 filterSelectedOptions
                 disableCloseOnSelect
                 getOptionLabel={(option) => option}
+                className={`${theme.root} ${styles.textfield}`}
+                disablePortal
+                id="combo-box-demo"
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     label="Select Arts Events"
-                    className={theme.root}
-                    sx={{
-                      "& .MuiInputLabel-root": {
-                        color: "black",
-                      },
-                      "& label.Mui-focused": {
-                        color: "black",
+                    InputLabelProps={{
+                      style: {
+                        fontWeight: "400",
+                        fontFamily: "Montserrat",
+                        fontSize: "17px",
+                        lineHeight: "26px",
+                        color: " #622308",
                       },
                     }}
-                    variant="outlined"
                   />
                 )}
               />
             </ThemeProvider>
+          </div>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
+              <FormControl className={`${theme.root} ${styles.textfield}`}>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                >
+                  Gender
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Gender"
+                  value={sex}
+                  onChange={(e) => {
+                    setSex(e.target.value);
+                  }}
+                >
+                  {sextypes.map((sex, index) => {
+                    return (
+                      <MenuItem value={sex} key={index}>
+                        {sex}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </ThemeProvider>
             <ThemeProvider theme={theme}>
               <Autocomplete
                 multiple
-                sx={{
-                  width: 350,
-                  marginTop: "1.5rem",
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                }}
                 onChange={(event, value) => {
                   setSportsEvents(value);
                 }}
@@ -243,20 +330,22 @@ function RegisterParticipant() {
                 filterSelectedOptions
                 disableCloseOnSelect
                 getOptionLabel={(option) => option}
+                className={`${theme.root} ${styles.textfield}`}
+                disablePortal
+                id="combo-box-demo"
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     label="Select Sports Events"
-                    className={theme.root}
-                    sx={{
-                      "& .MuiInputLabel-root": {
-                        color: "black",
-                      },
-                      "& label.Mui-focused": {
-                        color: "black",
+                    InputLabelProps={{
+                      style: {
+                        fontWeight: "400",
+                        fontFamily: "Montserrat",
+                        fontSize: "17px",
+                        lineHeight: "26px",
+                        color: " #622308",
                       },
                     }}
-                    variant="outlined"
                   />
                 )}
               />
@@ -265,7 +354,6 @@ function RegisterParticipant() {
         </div>
         <div
           className={styles.register_btn}
-          type="submit"
           onClick={() => {
             if (name && address && place && lsgi && localbody && sex) {
               handleSubmit();
@@ -274,9 +362,16 @@ function RegisterParticipant() {
             }
           }}
         >
-          Register
+          Register{" "}
         </div>
-      </form>
+        <Image src={left} alt="" className={styles.image_left} />
+        <Image src={top} alt="" className={styles.image_right} />
+      </div>
+      <Image
+        src={footer}
+        alt=""
+        style={{ width: "100vw", position: "relative", bottom: "0" }}
+      />
     </>
   );
 }
