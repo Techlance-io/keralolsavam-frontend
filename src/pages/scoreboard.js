@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/Navbar/Navbar";
 
 function Scoreboard() {
   return (
-    <div>Scoreboard</div>
-  )
+    <>
+      <Navbar />
+      <div>Scoreboard</div>
+    </>
+  );
 }
 
-export default Scoreboard
+export default Scoreboard;

@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/Navbar/Navbar";
 
 function Schedule() {
   return (
-    <div>Schedule</div>
-  )
+    <>
+      <Navbar />
+      <div>Schedule</div>
+    </>
+  );
 }
 
-export default Schedule
+export default Schedule;

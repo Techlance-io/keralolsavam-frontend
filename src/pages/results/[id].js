@@ -1,10 +1,14 @@
-import React from 'react'
-import styles from '../../styles/results/Results.module.css'
+import React from "react";
+import Navbar from "../../components/Navbar/Navbar";
+import styles from "../../styles/results/Results.module.css";
 
 function EventResults() {
   return (
-    <div>EventResults</div>
-  )
+    <>
+      <Navbar />
+      <div>EventResults</div>
+    </>
+  );
 }
 
-export default EventResults
+export default EventResults;
