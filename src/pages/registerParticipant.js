@@ -26,8 +26,17 @@ function RegisterParticipant() {
   const router = useRouter();
   const lsgitypes = ["Municipality", "Corporation", "Block Panchayath"];
   const sextypes = ["Male", "Female"];
+  const ageCategories = [
+    "Male (15-20)",
+    "Male (20-40)",
+    "Female((20-40)",
+    "Female (20-40)",
+  ];
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [date, setDate] = useState("");
   const [address, setAddress] = useState("");
+  const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
   const [place, setPlace] = useState("");
   const [lsgi, setLsgi] = useState();
@@ -89,22 +98,40 @@ function RegisterParticipant() {
     placeData.forEach((item) => {
       if (item.type == lsgi) placelist.push(item.name);
     });
+    if (placelist.length == 0) placelist.push("No places available");
     return placelist;
+  }
+  function getAgeCategories(sex) {
+    let agelist = [];
+    if (sex === "Male") {
+      agelist.push(ageCategories[0]);
+      agelist.push(ageCategories[1]);
+      return agelist;
+    } else if (sex === "Female") {
+      agelist.push(ageCategories[2]);
+      agelist.push(ageCategories[3]);
+      return agelist;
+    } else {
+      agelist.push("No categories available");
+      return agelist;
+    }
   }
   let user = {
     name,
+    phone,
     address,
+    date,
     sex,
-    place,
+    age,
     lsgi,
     localbody,
+    place,
     artEvents,
     sportsEvents,
   };
-  console.log(user);
   async function handleSubmit() {
     await axios
-      .post("http://localhost:5000/api/auth/signup", user)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, user)
       .then((res) => {
         console.log(res.data);
       })
@@ -142,6 +169,141 @@ function RegisterParticipant() {
               />
             </ThemeProvider>
             <ThemeProvider theme={theme}>
+              <TextField
+                value={phone}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  },
+                }}
+                id="outlined-basic"
+                className={`${theme.root} ${styles.textfield}`}
+                label="Mobile Number"
+                variant="outlined"
+              />
+            </ThemeProvider>
+          </div>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
+              <TextField
+                value={address}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  },
+                }}
+                id="outlined-basic"
+                className={`${theme.root} ${styles.textfield}`}
+                label="Address"
+                variant="outlined"
+              />
+            </ThemeProvider>
+            <ThemeProvider theme={theme}>
+              <TextField
+                value={date}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  },
+                }}
+                id="outlined-basic"
+                className={`${theme.root} ${styles.textfield}`}
+                label="Date of Birth (DD/MM/YYYY)"
+                variant="outlined"
+              />
+            </ThemeProvider>
+          </div>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
+              <FormControl className={`${theme.root} ${styles.textfield}`}>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                >
+                  Gender
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Gender"
+                  value={sex}
+                  onChange={(e) => {
+                    setSex(e.target.value);
+                  }}
+                >
+                  {sextypes.map((sex, index) => {
+                    return (
+                      <MenuItem value={sex} key={index}>
+                        {sex}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </ThemeProvider>
+            <ThemeProvider theme={theme}>
+              <FormControl className={`${theme.root} ${styles.textfield}`}>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    fontSize: "17px",
+                    lineHeight: "26px",
+                    color: " #622308",
+                  }}
+                >
+                  Age
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  value={age}
+                  onChange={(e) => {
+                    setAge(e.target.value);
+                  }}
+                >
+                  {getAgeCategories(sex).map((age, index) => {
+                    return (
+                      <MenuItem value={age} key={index}>
+                        {age}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </ThemeProvider>
+          </div>
+          <div className={styles.rows}>
+            <ThemeProvider theme={theme}>
               <FormControl className={`${theme.root} ${styles.textfield}`}>
                 <InputLabel
                   id="demo-simple-select-label"
@@ -174,29 +336,6 @@ function RegisterParticipant() {
                   })}
                 </Select>
               </FormControl>
-            </ThemeProvider>
-          </div>
-          <div className={styles.rows}>
-            <ThemeProvider theme={theme}>
-              <TextField
-                value={address}
-                onChange={(e) => {
-                  setAddress(e.target.value);
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontWeight: "400",
-                    fontFamily: "Montserrat",
-                    fontSize: "17px",
-                    lineHeight: "26px",
-                    color: " #622308",
-                  },
-                }}
-                id="outlined-basic"
-                className={`${theme.root} ${styles.textfield}`}
-                label="Address"
-                variant="outlined"
-              />
             </ThemeProvider>
             <ThemeProvider theme={theme}>
               <FormControl className={`${theme.root} ${styles.textfield}`}>
@@ -233,6 +372,7 @@ function RegisterParticipant() {
               </FormControl>
             </ThemeProvider>
           </div>
+
           <div className={styles.rows}>
             <ThemeProvider theme={theme}>
               <TextField
@@ -286,71 +426,36 @@ function RegisterParticipant() {
               />
             </ThemeProvider>
           </div>
-          <div className={styles.rows}>
-            <ThemeProvider theme={theme}>
-              <FormControl className={`${theme.root} ${styles.textfield}`}>
-                <InputLabel
-                  id="demo-simple-select-label"
-                  style={{
-                    fontWeight: "400",
-                    fontFamily: "Montserrat",
-                    fontSize: "17px",
-                    lineHeight: "26px",
-                    color: " #622308",
+          <ThemeProvider theme={theme}>
+            <Autocomplete
+              multiple
+              onChange={(event, value) => {
+                setSportsEvents(value);
+              }}
+              options={getList(sex, false)}
+              filterSelectedOptions
+              disableCloseOnSelect
+              getOptionLabel={(option) => option}
+              className={`${theme.root} ${styles.textfield}`}
+              disablePortal
+              id="combo-box-demo"
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select Sports Events"
+                  InputLabelProps={{
+                    style: {
+                      fontWeight: "400",
+                      fontFamily: "Montserrat",
+                      fontSize: "17px",
+                      lineHeight: "26px",
+                      color: " #622308",
+                    },
                   }}
-                >
-                  Gender
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Gender"
-                  value={sex}
-                  onChange={(e) => {
-                    setSex(e.target.value);
-                  }}
-                >
-                  {sextypes.map((sex, index) => {
-                    return (
-                      <MenuItem value={sex} key={index}>
-                        {sex}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </ThemeProvider>
-            <ThemeProvider theme={theme}>
-              <Autocomplete
-                multiple
-                onChange={(event, value) => {
-                  setSportsEvents(value);
-                }}
-                options={getList(sex, false)}
-                filterSelectedOptions
-                disableCloseOnSelect
-                getOptionLabel={(option) => option}
-                className={`${theme.root} ${styles.textfield}`}
-                disablePortal
-                id="combo-box-demo"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Select Sports Events"
-                    InputLabelProps={{
-                      style: {
-                        fontWeight: "400",
-                        fontFamily: "Montserrat",
-                        fontSize: "17px",
-                        lineHeight: "26px",
-                        color: " #622308",
-                      },
-                    }}
-                  />
-                )}
-              />
-            </ThemeProvider>
-          </div>
+                />
+              )}
+            />
+          </ThemeProvider>
         </div>
         <div
           className={styles.register_btn}
