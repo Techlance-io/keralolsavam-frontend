@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Events() {
+function EventStatus() {
   return (
-    <div>Events</div>
+    <div>Event Status</div>
   )
 }
 
-export default Events
+export default EventStatus
