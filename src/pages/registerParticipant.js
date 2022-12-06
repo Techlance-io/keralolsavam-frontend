@@ -21,6 +21,9 @@ import Image from "next/image";
 import left from "../assets/png/left.png";
 import right from "../assets/png/right.png";
 import top from "../assets/png/top.png";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function RegisterParticipant() {
   const router = useRouter();
@@ -130,27 +133,29 @@ function RegisterParticipant() {
     sportsEvents,
   };
   async function handleSubmit() {
-    if (name && address && place && lsgi && localbody && sex) { 
-      console.log("date", typeof(date))
-      let expr = ""
+    if (name && address && place && lsgi && localbody && sex) {
+      console.log("date", typeof date);
+      let expr = "";
       // check regex match :
-     if(phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)){
-    await axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, user)
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
-    else {
-      alert("Please enter a valid Indian phone number")
-    }
-    }
-    else {
-     alert('Please enter all the details')
+      if (phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)) {
+        await axios
+          .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, user)
+          .then((res) => {
+            if (res.status === 200) {
+              alert("Registration Successful");
+              window.location.reload();
+            } else {
+              alert("Registration Failed");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("Please enter a valid Indian phone number");
+      }
+    } else {
+      alert("Please enter all the details");
     }
   }
   return (
@@ -227,21 +232,33 @@ function RegisterParticipant() {
               />
             </ThemeProvider>
             <ThemeProvider theme={theme}>
-              <input
-                type = "date"
-                value={date}
-                onChange={(e) => {
-                  setDate(e.target.value);
-                }}
-                
-                pattern="\d{4}-\d{2}-\d{2}"
-                name="order_date"
-                label="Order Date"
-                id="order_date"
-                className={styles.input_date}
-                placeholder="Date of Birth (DD/MM/YYYY)"
-                variant="outlined"
-              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <MobileDatePicker
+                  label="Date of Birth"
+                  inputFormat="DD/MM/YYYY"
+                  className={`${theme.root} ${styles.textfield}`}
+                  value={date}
+                  onChange={(newDate) => {
+                    setDate(new Date(newDate).toUTCString());
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      InputLabelProps={{
+                        style: {
+                          fontWeight: "400",
+                          fontFamily: "Montserrat",
+                          fontSize: "17px",
+                          lineHeight: "26px",
+                          color: " #622308",
+                        },
+                      }}
+                      id="outlined-basic"
+                      className={`${theme.root} ${styles.textfield}`}
+                      {...params}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
             </ThemeProvider>
           </div>
           <div className={styles.rows}>
@@ -470,9 +487,7 @@ function RegisterParticipant() {
         <div
           className={styles.register_btn}
           onClick={() => {
-           
-              handleSubmit();
-            
+            handleSubmit();
           }}
         >
           Register{" "}
