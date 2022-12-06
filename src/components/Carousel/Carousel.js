@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import kathakali from "../../assets/jpg/kathakali.jpg";
 import styles from "./Carousel.module.css";
 import newsData from "../../data/newsData";
+import axios from "axios";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,6 +10,15 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper";
 
 function Carousel() {
+  const [news, setNews] = useState([]);
+  async function getNews() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
+      setNews(res.data.news);
+    });
+  }
+  useEffect(() => {
+    getNews();
+  }, []);
   return (
     <>
       <div className={styles.carousel_container}>
@@ -38,7 +48,7 @@ function Carousel() {
         <div className={styles.ticker_heading}>Latest News</div>
         <div className={styles.ticker_heading_1}>News</div>
         <div className={styles.ticker}>
-          {newsData.map((news) => {
+          {news.map((news) => {
             return (
               <div className={styles.ticker_item} key={news.id}>
                 {news.title}

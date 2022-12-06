@@ -3,18 +3,31 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styles from "../../styles/admin/News.module.css";
 import Navbar from "../../components/Navbar/Navbar";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 function News() {
   const [news, setNews] = useState();
+  const [variable, setVariable] = useState();
+  const [title, setTitle] = useState("");
   async function getNews() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
       setNews(res.data.news);
     });
   }
+  async function postNews() {
+    await axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/news`, {
+        title: title,
+      })
+      .then((res) => {
+        console.log(res);
+        setTitle("");
+        setVariable(res.data);
+      });
+  }
   useEffect(() => {
     getNews();
-  }, []);
+  }, [variable]);
 
   return (
     <div>
@@ -32,13 +45,36 @@ function News() {
             Logout
           </div>
         </div>
+        <div className={styles.add}>
+          <TextField
+            id="outlined-basic"
+            label="Enter News"
+            variant="outlined"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <Button
+            variant="contained"
+            onClick={() => {
+              postNews();
+            }}
+          >
+            Add News
+          </Button>
+        </div>
         <div className={styles.news_box}>
           {news?.map((data) => (
-            <div className={styles.news}>
+            <div className={styles.news} key={data._id}>
               <div className={styles.news_heading}>{data.title}</div>
               <div className={styles.buttons}>
-                <Button variant="contained" color="primary">Edit</Button>
-                <Button variant="contained" color="error">Delete</Button>
+                <Button variant="contained" color="primary">
+                  Edit
+                </Button>
+                <Button variant="contained" color="error">
+                  Delete
+                </Button>
               </div>
             </div>
           ))}

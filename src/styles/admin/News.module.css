@@ -8,6 +8,7 @@
 
   justify-content: flex-start;
   padding-top: 8rem;
+  padding-bottom: 3rem;
   padding-left: 5rem;
   padding-right: 5rem;
   background: url("../../assets/jpg/bg.jpg") no-repeat;
@@ -49,30 +50,38 @@
     #bf3100 100%
   );
 }
-.news_box
-{
+.news_box {
   display: flex;
+  padding-left: 5rem;
+  padding-right: 5rem;
   flex-direction: column;
   flex-wrap: wrap;
-  gap:2rem
+  gap: 2rem;
 }
-.news
-{
+.news {
   display: flex;
-  min-width: 500px;
   background-color: wheat;
   padding: 2rem;
   border-radius: 20px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 5rem;
   flex-wrap: nowrap;
 }
-.buttons
-{
+.buttons {
   display: flex;
   flex-direction: row;
   gap: 2rem;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
+}
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
