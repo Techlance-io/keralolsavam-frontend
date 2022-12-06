@@ -134,6 +134,7 @@ function RegisterParticipant() {
       .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, user)
       .then((res) => {
         console.log(res.data);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

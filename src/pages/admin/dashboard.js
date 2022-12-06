@@ -9,6 +9,7 @@ import left from "../../assets/png/left.png";
 import right from "../../assets/png/right.png";
 import top from "../../assets/png/top.png";
 import Navbar from "../../components/Navbar/Navbar";
+import { Autocomplete, TextField } from "@mui/material";
 
 function AdminDashboard() {
   const router = useRouter();
@@ -24,8 +25,9 @@ function AdminDashboard() {
     <>
       <Navbar />
       <div className={styles.container}>
+     <div className={styles.header}>
+        
         <div className={styles.heading}>Admin Dashboard</div>
-        <Image src={right} alt="" className={styles.image_top} />
         <div
           className={styles.register_btn}
           onClick={() => {
@@ -34,8 +36,69 @@ function AdminDashboard() {
         >
           Logout
         </div>
-        <Image src={left} alt="" className={styles.image_left} />
-        <Image src={top} alt="" className={styles.image_right} />
+        </div>
+        
+        <div className={styles.subheading}>Permissions</div>
+        <div className={styles.rows}>
+        <div className={styles.row}>
+          <div>
+            Jagannath E Shahi
+          </div>
+          <div>
+            <Autocomplete
+              id="combo-box-demo"
+              multiple
+              options={['Test','Test1','Test2']}
+              filterSelectedOptions
+                disableCloseOnSelect
+                disablePortal
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Select Events" />}
+            />
+          </div>
+        </div>
+        <div className={styles.row}>
+          <div>
+            Jagannath E Shahi
+          </div>
+          <div>
+            <Autocomplete
+              id="combo-box-demo"
+              multiple
+              options={['Test','Test1','Test2']}
+              filterSelectedOptions
+                disableCloseOnSelect
+                disablePortal
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Select Events" />}
+            />
+          </div>
+        </div>
+        <div className={styles.row}>
+          <div>
+            Jagannath E Shahi
+          </div>
+          <div>
+            <Autocomplete
+              id="combo-box-demo"
+              multiple
+              options={['Test','Test1','Test2']}
+              filterSelectedOptions
+                disableCloseOnSelect
+                disablePortal
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} label="Select Events" />}
+            />
+          </div>
+        </div>
+        </div>
+        <div
+          className={styles.register_btn_1}
+          onClick={() => {
+          }}
+        >
+          Save
+        </div>
       </div>
       <Image
         src={footer}
