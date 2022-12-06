@@ -130,6 +130,11 @@ function RegisterParticipant() {
     sportsEvents,
   };
   async function handleSubmit() {
+    if (name && address && place && lsgi && localbody && sex) { 
+      console.log("date", typeof(date))
+      let expr = ""
+      // check regex match :
+     if(phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)){
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, user)
       .then((res) => {
@@ -139,6 +144,14 @@ function RegisterParticipant() {
       .catch((err) => {
         console.log(err);
       });
+    }
+    else {
+      alert("Please enter a valid Indian phone number")
+    }
+    }
+    else {
+     alert('Please enter all the details')
+    }
   }
   return (
     <>
@@ -214,23 +227,19 @@ function RegisterParticipant() {
               />
             </ThemeProvider>
             <ThemeProvider theme={theme}>
-              <TextField
+              <input
+                type = "date"
                 value={date}
                 onChange={(e) => {
                   setDate(e.target.value);
                 }}
-                InputLabelProps={{
-                  style: {
-                    fontWeight: "400",
-                    fontFamily: "Montserrat",
-                    fontSize: "17px",
-                    lineHeight: "26px",
-                    color: " #622308",
-                  },
-                }}
-                id="outlined-basic"
-                className={`${theme.root} ${styles.textfield}`}
-                label="Date of Birth (DD/MM/YYYY)"
+                
+                pattern="\d{4}-\d{2}-\d{2}"
+                name="order_date"
+                label="Order Date"
+                id="order_date"
+                className={styles.input_date}
+                placeholder="Date of Birth (DD/MM/YYYY)"
                 variant="outlined"
               />
             </ThemeProvider>
@@ -461,11 +470,9 @@ function RegisterParticipant() {
         <div
           className={styles.register_btn}
           onClick={() => {
-            if (name && address && place && lsgi && localbody && sex) {
+           
               handleSubmit();
-            } else {
-              alert("Please fill all the details...");
-            }
+            
           }}
         >
           Register{" "}

@@ -79,12 +79,32 @@
   right: 0;
   position: absolute;
 }
+
+
+.input_date {
+  width:500px;
+  background: none;
+  border-radius: 20px;
+  border: 2px solid #BF3100;
+  height: 55px;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+}
+.input_date::-webkit-calendar-picker-indicator {
+  width: 25px;
+  height: 25px;
+}
+
 @media (max-width:768px) {
   .content
   {
     row-gap: 2rem;
   }
   .textfield{
+    width: 85vw;
+  }
+  .input_date{
     width: 85vw;
   }
   .image_left
