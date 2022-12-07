@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import EventCard from "../../components/EventCard/EventCard";
 import Navbar from "../../components/Navbar/Navbar";
-import sportsData from "../../data/sportsData";
-import artsData from "../../data/artsData";
+import eventsData from "../../data/eventsData";
 import styles from "../../styles/events/Home.module.css";
 
 function Events() {
@@ -38,21 +37,22 @@ function Events() {
         </div>
         <div className={styles.cards}>
           {sports
-            ? sportsData.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <EventCard image={item.image} title={item.name} />
-                  </div>
-                );
+            ? eventsData.map((item, index) => {
+                if (item.isArts === false)
+                  return (
+                    <div key={index}>
+                      <EventCard image={item.image} title={item.name} />
+                    </div>
+                  );
               })
-            : artsData.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <EventCard image={item.image} title={item.name} />
-                  </div>
-                );
+            : eventsData.map((item, index) => {
+                if (item.isArts === true)
+                  return (
+                    <div key={index}>
+                      <EventCard image={item.image} title={item.name} />
+                    </div>
+                  );
               })}
-          )
         </div>
       </div>
     </>
