@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import styles from "../../styles/admin/News.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { Button, TextField } from "@mui/material";
@@ -13,11 +14,16 @@ function News() {
   const [title, setTitle] = useState("");
   const [data, setData] = useState();
   const [open, setOpen] = useState(false);
+  const {user, loading , authToken} = useContext(AuthContext);
   const handleOpen = () => {
     setOpen(true);
   };
   async function getNews() {
-    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
+    if(!authToken) return;
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`,{
+        headers: {
+          "x-auth-token": authToken,
+        }}).then((res) => {
       setNews(res.data.news);
     });
   }
@@ -34,7 +40,7 @@ function News() {
   }
   useEffect(() => {
     getNews();
-  }, [variable]);
+  }, [variable, authToken]);
 
   return (
     <div>
@@ -90,7 +96,7 @@ function News() {
         setNews={setNews}
         data={data}
         news={news}
-        
+
       />
     </div>
   );
