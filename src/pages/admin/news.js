@@ -4,11 +4,16 @@ import { useState, useEffect } from "react";
 import styles from "../../styles/admin/News.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { Button, TextField } from "@mui/material";
+import EditNewsModal from "../../components/EditNewsModal/EditNewsModal";
 
 function News() {
   const [news, setNews] = useState();
   const [variable, setVariable] = useState();
   const [title, setTitle] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
   async function getNews() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
       setNews(res.data.news);
@@ -69,7 +74,9 @@ function News() {
             <div className={styles.news} key={data._id}>
               <div className={styles.news_heading}>{data.title}</div>
               <div className={styles.buttons}>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={
+                  handleOpen
+                }>
                   Edit
                 </Button>
                 <Button variant="contained" color="error">
@@ -80,6 +87,10 @@ function News() {
           ))}
         </div>
       </div>
+      <EditNewsModal
+          open={open}
+          setOpen={setOpen}
+        />
     </div>
   );
 }
