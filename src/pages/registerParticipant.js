@@ -32,7 +32,7 @@ function RegisterParticipant() {
   const ageCategories = [
     "Male (15-20)",
     "Male (20-40)",
-    "Female((20-40)",
+    "Female (15-20)",
     "Female (20-40)",
   ];
   const [name, setName] = useState("");
