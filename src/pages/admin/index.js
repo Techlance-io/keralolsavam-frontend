@@ -4,8 +4,9 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from "firebase/auth";
+import { AuthContext } from "../../context/AuthContext";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useContext} from "react";
 import app from "../../utils/firebase";
 import styles from "../../styles/admin/Home.module.css";
 import footer from "../../assets/png/footer.png";
@@ -17,26 +18,31 @@ import Navbar from "../../components/Navbar/Navbar";
 function AdminLogin() {
   const provider = new GoogleAuthProvider();
   const router = useRouter();
-  const [signedInUser, setSignedInUser] = useState();
+  const {user, loading, error, authToken} = useContext(AuthContext);
+ 
   const auth = getAuth(app);
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        setSignedInUser(user);
-      } else {
-      }
-    });
-  });
+  // const test = async()=>{
+  //   console.log(await auth.currentUser?.getIdToken(true))
+  // }
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const uid = user.uid;
+  //       test()
+  //       setuser(user);
+  //     } else {
+  //     }
+  //   });
+  // });
 
   async function signInWithGoogle() {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result);
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        console.log(user);
+        // const token = credential.accessToken;
+        // const user = result.user;
+        // console.log(user);
         return result;
       })
       .catch((error) => {
@@ -47,7 +53,7 @@ function AdminLogin() {
         return error;
       });
   }
-  if (signedInUser) {
+  if (user) {
     router.push("/admin/dashboard");
   }
   return (
