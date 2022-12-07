@@ -1,10 +1,12 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 import styles from "./EditNewsModal.module.css";
 const style = {
   position: "absolute",
@@ -25,7 +27,19 @@ const theme = createTheme({
 });
 export default function EditNewsModal(props) {
   const handleClose = () => props.setOpen(false);
+ const [title, setTitle] = useState("");
+ const handleSubmit = (e) => {
+    e.preventDefault();
+      axios
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${props.data._id}`, {title:title})
+      .then((res) => {
+        let arr = props.news;
+        arr[props.data.index] = res.data;
+        props.setNews([...arr])
+        console.log(res.data);
+      });
 
+ }
   return (
     <div>
       <Modal
@@ -38,6 +52,7 @@ export default function EditNewsModal(props) {
           <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
+              <form onSubmit={handleSubmit}>
               <Box
                 sx={{
                   display: "flex",
@@ -55,6 +70,8 @@ export default function EditNewsModal(props) {
                     label="Name"
                     name="name"
                     autoComplete="name"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
                   />
 
                   <Button
@@ -67,6 +84,7 @@ export default function EditNewsModal(props) {
                   </Button>
                 </Box>
               </Box>
+              </form>
             </Container>
           </ThemeProvider>
         </Box>

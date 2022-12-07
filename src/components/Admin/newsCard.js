@@ -3,16 +3,19 @@ import styles from "../../styles/admin/News.module.css";
 import { Button } from "@mui/material";
 import axios from "axios";
 
-function newsCard({ data, setNews, news, index }) {
+function newsCard({ data, setNews, news, index, modalOpen, setData }) {
   const editNews = () => {
-    axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`)
-      .then((res) => {
-        let arr = news;
+    // axios
+    //   .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`)
+    //   .then((res) => {
+    //     let arr = news;
         
 
-        console.log(res);
-      });
+    //     console.log(res);
+    //   });
+    data.index = index;
+  setData(data)
+  modalOpen()
   };
 
   const deleteNews = () => {

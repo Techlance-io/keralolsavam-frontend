@@ -11,6 +11,7 @@ function News() {
   const [news, setNews] = useState();
   const [variable, setVariable] = useState();
   const [title, setTitle] = useState("");
+  const [data, setData] = useState();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -72,14 +73,25 @@ function News() {
         </div>
         <div className={styles.news_box}>
           {news?.map((data, index) => (
-           <NewsCard data={data} index={index} news={news} setNews={setNews}/>
+            <NewsCard
+              data={data}
+              index={index}
+              news={news}
+              setNews={setNews}
+              modalOpen={handleOpen}
+              setData={setData}
+            />
           ))}
         </div>
       </div>
       <EditNewsModal
-          open={open}
-          setOpen={setOpen}
-        />
+        open={open}
+        setOpen={setOpen}
+        setNews={setNews}
+        data={data}
+        news={news}
+        
+      />
     </div>
   );
 }
