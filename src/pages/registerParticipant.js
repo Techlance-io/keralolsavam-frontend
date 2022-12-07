@@ -77,7 +77,7 @@ function RegisterParticipant() {
     let list = [];
     if (sex == "Male" && !isArts) {
       sportsData.forEach((item) => {
-        if (item.gender == "Male") list.push(item.name);
+        if (!item.gender || item.gender == "Male") list.push(item.name);
       });
     } else if (sex == "Male" && isArts) {
       artsData.forEach((item) => {
@@ -85,7 +85,7 @@ function RegisterParticipant() {
       });
     } else if (sex == "Female" && !isArts) {
       sportsData.forEach((item) => {
-        if (item.gender == "Female") list.push(item.name);
+        if (!item.gender || item.gender == "Female") list.push(item.name);
       });
     } else if (sex == "Female" && isArts) {
       artsData.forEach((item) => {
