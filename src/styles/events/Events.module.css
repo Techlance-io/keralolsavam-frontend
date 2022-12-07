@@ -1,0 +1,167 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    padding-top: 8rem;
+    row-gap: 3rem;
+}
+.textfield
+{
+  width: 300px;
+}
+.header_1
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 4rem;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.header_2
+{
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+.event_name
+{
+    font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+
+/* identical to box height */
+
+color: #EE6123;
+}
+.status
+{
+    font-weight: 600;
+font-size: 25px;
+line-height: 30px;
+
+color: #8EA604;
+
+
+}
+.staff_details
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+     align-items: flex-start;
+}
+.staff_heading
+{
+    font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+
+/* identical to box height */
+
+color: #EC9F05;
+}
+.staff_details_content
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.table
+{
+    width: 100%;
+}
+.table_heading
+{
+    background: #FFCF00;
+border: 1px solid #FFEE88;
+padding: 1rem;
+font-weight: 400;
+font-size: 21px;
+line-height: 25px;
+color: #000000;
+
+
+}
+.table_body
+{
+    background: #FFFFFF;
+border: 1px solid #FFEE88;
+padding: 1rem;
+text-align: center;
+}
+.table_heading_1
+{
+    background: #FFCF00;
+border: 1px solid #FFEE88;
+padding: 1rem;
+font-weight: 400;
+font-size: 21px;
+line-height: 25px;
+color: #000000;
+
+
+}
+.table_body_1
+{
+    background: #FFFFFF;
+border: 1px solid #FFEE88;
+padding: 1rem;
+text-align: center;
+}
+
+.heading {
+    text-align: center;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+  
+    color: #ec8805;
+  }
+@media (max-width:942px) {
+    .textfield{
+      width: 70vw;
+    }
+    .container
+    {
+        justify-content: center;
+        align-items: center;
+    }
+    .header
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header_1
+    {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+    }
+    .event_name
+    {
+        text-align: center;
+    }
+    .header_2
+    {
+        align-items: center;
+        row-gap: 2rem;
+    }
+    .table_body_1
+    {
+       display: none;
+    }
+    .table_heading_1
+    {
+        display: none;
+    }
+  }
