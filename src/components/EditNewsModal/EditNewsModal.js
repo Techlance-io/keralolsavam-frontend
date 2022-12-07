@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
@@ -27,7 +27,13 @@ const theme = createTheme({
 });
 export default function EditNewsModal(props) {
   const handleClose = () => props.setOpen(false);
- const [title, setTitle] = useState("");
+ const [title, setTitle] = useState('');
+
+
+ useEffect(() => {  
+    setTitle(props.data?.title);
+  }, [props.data]);                                 
+
  const handleSubmit = (e) => {
     e.preventDefault();
       axios
