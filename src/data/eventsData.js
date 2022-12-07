@@ -8,6 +8,20 @@ const eventsData = [
     name: "വായ്പ്പാട്ട് (ക്ലാസ്സിക്കൽ-ഹിന്ദുസ്ഥാനി)",
     image: dance,
     isArts: true,
+    results: [
+      {
+        id: 1,
+        name: "Jaison Thomas",
+      },
+      {
+        id: 2,
+        name: "Jaison Dennis",
+      },
+      {
+        id: 3,
+        name: "Mayon Thomas",
+      },
+    ],
   },
   { id: 2, name: "കർണാടക സംഗീതം", image: dance, isArts: true },
   { id: 3, name: "ഭരതനാട്യം", image: dance, isArts: true },

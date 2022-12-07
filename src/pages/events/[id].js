@@ -80,7 +80,7 @@ function EventStatus() {
                     color: " #622308",
                   }}
                 >
-                  Select Event
+                  Other Events
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
