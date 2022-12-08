@@ -1,11 +1,13 @@
+import { getImageListItemBarUtilityClass } from "@mui/material";
+import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EventCard from "../../components/EventCard/EventCard";
 import Navbar from "../../components/Navbar/Navbar";
 import eventsData from "../../data/eventsData";
 import styles from "../../styles/results/Home.module.css";
 
-function Events() {
+function Results() {
   const router = useRouter();
   const [sports, setSports] = useState(true);
   const handleChangeArts = () => {
@@ -14,6 +16,10 @@ function Events() {
   const handleChangeSports = () => {
     setSports(true);
   };
+ 
+
+
+
   return (
     <>
       <Navbar />
@@ -40,7 +46,7 @@ function Events() {
         <div className={styles.cards}>
           {sports
             ? eventsData.map((item, index) => {
-                if (item.isArts === false&&item.results)
+                if (item.isarts === false && item.results)
                   return (
                     <div
                       key={index}
@@ -48,12 +54,12 @@ function Events() {
                         router.push(`/results/${item.id}`);
                       }}
                     >
-                      <EventCard image={item.image} title={item.name} />
+                      <EventCard image={()=>getImage(item.name)} title={item.name} />
                     </div>
                   );
               })
             : eventsData.map((item, index) => {
-                if (item.isArts === true&&item.results)
+                if (item.isarts === true && item.results)
                   return (
                     <div
                       key={index}
@@ -61,7 +67,7 @@ function Events() {
                         router.push(`/results/${item.id}`);
                       }}
                     >
-                      <EventCard image={item.image} title={item.name} />
+                      <EventCard image={()=>getImage(item.name)} title={item.name} />
                     </div>
                   );
               })}
@@ -71,4 +77,4 @@ function Events() {
   );
 }
 
-export default Events;
+export default Results;

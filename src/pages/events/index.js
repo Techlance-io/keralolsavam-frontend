@@ -1,19 +1,37 @@
 import { Router, useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EventCard from "../../components/EventCard/EventCard";
 import Navbar from "../../components/Navbar/Navbar";
 import eventsData from "../../data/eventsData";
 import styles from "../../styles/events/Home.module.css";
+import axios from "axios";
 
 function Events() {
   const router = useRouter();
   const [sports, setSports] = useState(true);
+  const [events,setEvents]=useState([])
   const handleChangeArts = () => {
     setSports(false);
   };
   const handleChangeSports = () => {
     setSports(true);
   };
+  const getImage = (name) => {
+  
+    // find name proeprty in events data array:
+    const event = eventsData.find((event) => event.name === name);
+    // return image property of found event:
+    return event?.image;
+  };
+  async function getEvents() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`).then((res) => {
+      setEvents(res.data);
+    });
+  }
+  useEffect(()=>{
+    getEvents();
+
+  },[])
   return (
     <>
       <Navbar />
@@ -39,29 +57,30 @@ function Events() {
         </div>
         <div className={styles.cards}>
           {sports
-            ? eventsData.map((item, index) => {
-                if (item.isArts === false)
+            ? events.map((item, index) => {
+                if (item.isarts === false)
                   return (
                     <div
                       key={index}
                       onClick={() => {
-                        router.push(`/events/${item.id}`);
+                        router.push(`/events/${item._id}`);
                       }}
                     >
-                      <EventCard image={item.image} title={item.name} />
+                      <EventCard image={getImage(item.name)} title={item.name} />
                     </div>
                   );
               })
-            : eventsData.map((item, index) => {
-                if (item.isArts === true)
+            : events.map((item, index) => {
+                if (item.isarts === true)
+                
                   return (
                     <div
                       key={index}
                       onClick={() => {
-                        router.push(`/events/${item.id}`);
+                        router.push(`/events/${item._id}`);
                       }}
                     >
-                      <EventCard image={item.image} title={item.name} />
+                      <EventCard image={getImage(item.name)} title={item.name} />
                     </div>
                   );
               })}

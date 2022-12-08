@@ -73,21 +73,21 @@ function RegisterParticipant() {
       },
     },
   });
-  function getList(sex, isArts) {
+  function getList(sex, isarts) {
     let list = [];
-    if (sex == "Male" && !isArts) {
+    if (sex == "Male" && !isarts) {
       sportsData.forEach((item) => {
         if (!item.gender || item.gender == "Male") list.push(item.name);
       });
-    } else if (sex == "Male" && isArts) {
+    } else if (sex == "Male" && isarts) {
       artsData.forEach((item) => {
         if (!item.gender || item.gender === "Male") list.push(item.name);
       });
-    } else if (sex == "Female" && !isArts) {
+    } else if (sex == "Female" && !isarts) {
       sportsData.forEach((item) => {
         if (!item.gender || item.gender == "Female") list.push(item.name);
       });
-    } else if (sex == "Female" && isArts) {
+    } else if (sex == "Female" && isarts) {
       artsData.forEach((item) => {
         if (!item.gender || item.gender === "Female") list.push(item.name);
       });
