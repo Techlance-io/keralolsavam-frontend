@@ -35,14 +35,6 @@ function Navbar() {
         </div>
         <div
           onClick={() => {
-            router.push("/schedule");
-          }}
-          className={styles.navbar_item}
-        >
-          SCHEDULE
-        </div>
-        <div
-          onClick={() => {
             router.push("/results");
           }}
           className={styles.navbar_item}
@@ -97,15 +89,6 @@ function Navbar() {
                 className={styles.navbar_item}
               >
                 EVENTS
-              </div>
-              <div
-                onClick={() => {
-                  router.push("/schedule");
-                  handleDrawerClose();
-                }}
-                className={styles.navbar_item}
-              >
-                SCHEDULE
               </div>
               <div
                 onClick={() => {
