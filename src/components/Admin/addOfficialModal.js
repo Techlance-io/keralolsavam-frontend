@@ -26,8 +26,8 @@ const theme = createTheme({
     },
   },
 });
-export default function EditNewsModal(props) {
-  const handleClose = () => props.setOpen(false);
+export default function EditNewsModal({ open, setOpen, data }) {
+  const handleClose = () => setOpen(false);
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [events, setEvents] = useState([]);
@@ -49,14 +49,40 @@ export default function EditNewsModal(props) {
       console.log(err);
     }
     }
-  useEffect(() => {
-    getList()
-  }, [props.data]);
 
+  useEffect(() => {
+    setTitle(data?.name);
+    setEmail(data?.email);
+    setSelectedEvents(data?.events);
+   
+  }, [data]);
+
+  useEffect(() => {
+    if(open && data?.email){
+      setOpen(false)
+      setOpen(true)
+      console.log(selectedEvents)
+     }
+  }, [selectedEvents, open])
   
+  useEffect(() => {
+    getList();
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(selectedEvents);
+    if(data.email){
+      let res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/officials/${data._id}`,
+        {
+          name: title,
+          email: email,
+          events: selectedEvents,
+        }
+      );
+      console.log(res.data);
+      return;
+    }
     let res = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/officials`,
       {
@@ -79,7 +105,7 @@ export default function EditNewsModal(props) {
   return (
     <div>
       <Modal
-        open={props.open}
+        open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -123,6 +149,7 @@ export default function EditNewsModal(props) {
                       onChange={(event, value) => {
                         setSelectedEvents(value);
                       }}
+                      defaultValue={selectedEvents ? selectedEvents : [{}]}
                       options={events}
                       filterSelectedOptions
                       disableCloseOnSelect
@@ -145,7 +172,7 @@ export default function EditNewsModal(props) {
                           }}
                         />
                       )}
-                    />
+                    /> 
                     <Button
                       type="submit"
                       fullWidth

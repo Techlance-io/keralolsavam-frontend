@@ -16,11 +16,15 @@ import axios from "axios";
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
   const [officials, setOfficials] = React.useState([]);
+  const [officialData, setOfficialdata] = React.useState({});
   const Getofficials = async () => {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`)
     console.log(res.data)
     setOfficials(res.data)
   }
+
+    
+
 
   React.useEffect(() => {
     Getofficials()
@@ -57,7 +61,16 @@ function AdminDashboard() {
           
         {
         officials.map((official)=>{
-          return <div>{official.name}</div>
+          return (
+            <>
+          <div>{official.name}</div>
+          <div>{official.email}</div>
+          <div>{JSON.stringify(official.events)}</div>
+          <div>
+            <Button onClick={()=>{setOfficialdata(official);setOmOpen(true)}}>Edit</Button>
+          </div>
+          </>
+          )
         }
         )
 
@@ -72,7 +85,7 @@ function AdminDashboard() {
       />
      
       
-      <AddOfficialModal open = {omOpen} setOpen={setOmOpen}/>
+      <AddOfficialModal open = {omOpen} setOpen={setOmOpen} data={officialData}/>
     </>
   );
 }
