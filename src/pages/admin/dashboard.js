@@ -52,68 +52,9 @@ function AdminDashboard() {
         </div>
         
         <div className={styles.subheading}>Permissions</div>
-        <div className={styles.rows}>
-        <div className={styles.row}>
-          <div>
-            Jagannath E Shahi
-          </div>
-          <div>
-            <Autocomplete
-              id="combo-box-demo"
-              multiple
-              options={['Test','Test1','Test2']}
-              filterSelectedOptions
-                disableCloseOnSelect
-                disablePortal
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Select Events" />}
-            />
-          </div>
-        </div>
-       
-        <div className={styles.row}>
-          <div>
-            Jagannath E Shahi
-          </div>
-          <div>
-            <Autocomplete
-              id="combo-box-demo"
-              multiple
-              options={['Test','Test1','Test2']}
-              filterSelectedOptions
-                disableCloseOnSelect
-                disablePortal
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Select Events" />}
-            />
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div>
-            Jagannath E Shahi
-          </div>
-          <div>
-            <Autocomplete
-              id="combo-box-demo"
-              multiple
-              options={['Test','Test1','Test2']}
-              filterSelectedOptions
-                disableCloseOnSelect
-                disablePortal
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Select Events" />}
-            />
-          </div>
-        </div>
-        </div>
-        <div
-          className={styles.register_btn_1}
-          onClick={() => {
-          }}
-        >
-          Save
-        </div>
-        <Button onClick={()=>{setOmOpen(true)}}>Add User</Button>
+        
+     
+          
         {
         officials.map((official)=>{
           return <div>{official.name}</div>
@@ -121,6 +62,8 @@ function AdminDashboard() {
         )
 
       }
+
+      <Button onClick={()=>{setOmOpen(true)}}>Add Official</Button>
       </div>
       <Image
         src={footer}
