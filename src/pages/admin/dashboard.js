@@ -9,9 +9,22 @@ import left from "../../assets/png/left.png";
 import right from "../../assets/png/right.png";
 import top from "../../assets/png/top.png";
 import Navbar from "../../components/Navbar/Navbar";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Button, TextField } from "@mui/material";
+import AddOfficialModal from "../../components/Admin/addOfficialModal"
+import axios from "axios";
 
 function AdminDashboard() {
+  const [omOpen, setOmOpen] = React.useState(false);
+  const [officials, setOfficials] = React.useState([]);
+  const Getofficials = async () => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`)
+    console.log(res.data)
+    setOfficials(res.data)
+  }
+
+  React.useEffect(() => {
+    Getofficials()
+  }, [])
   const router = useRouter();
   const auth = getAuth(app);
   async function signOutOfGoogle() {
@@ -57,6 +70,7 @@ function AdminDashboard() {
             />
           </div>
         </div>
+       
         <div className={styles.row}>
           <div>
             Jagannath E Shahi
@@ -99,12 +113,23 @@ function AdminDashboard() {
         >
           Save
         </div>
+        <Button onClick={()=>{setOmOpen(true)}}>Add User</Button>
+        {
+        officials.map((official)=>{
+          return <div>{official.name}</div>
+        }
+        )
+
+      }
       </div>
       <Image
         src={footer}
         alt=""
         style={{ width: "100vw", position: "relative", bottom: "0" }}
       />
+     
+      
+      <AddOfficialModal open = {omOpen} setOpen={setOmOpen}/>
     </>
   );
 }
