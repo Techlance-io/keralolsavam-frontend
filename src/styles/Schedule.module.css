@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem;
+    padding-top: 8rem;
+    row-gap: 4rem;
+  }
+  .cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+  
+  .heading {
+    text-align: center;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+  
+    color: #ec8805;
+  }
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #ebd696;
+    height: 50px;
+  }
+  .sub_heading {
+    font-weight: 600;
+    font-size: 22px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    line-height: 29px;
+    color: #000000;
+    cursor: pointer;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .sub_heading_1 {
+    font-weight: 600;
+    font-size: 22px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    line-height: 29px;
+    color: #000000;
+    background-color: #ec8805;
+  }
+  
