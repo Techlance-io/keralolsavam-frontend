@@ -42,9 +42,9 @@ function EventStatus() {
   });
   const router = useRouter();
   const { id } = router.query;
-  const [event, setEvent] = useState(eventsData[id]);
+  const [event, setEvent] = useState(eventsData[id-1]);
   function getEvent() {
-    const data = eventsData[id];
+    const data = eventsData[id-1];
     setEvent(data);
   }
   useEffect(() => {
