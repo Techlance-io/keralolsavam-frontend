@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Navbar } from "../../../components";
 import CustomTitle from "../../../utils/customTitle";
 import styles from "../../../styles/official/dashboard/Dashboard.module.css";
+import EventDetail from "../../../components/EventDetail/EventDetail";
 
 const columns = [
   { field: "name", headerName: "Name", width: 400, editable: true },
@@ -114,26 +115,26 @@ function Event() {
           </div>
         </div>
         <div className={styles.tabs_wrapper}>
-        <div className={styles.tabs}>
-          <div
-            className={status ? styles.sub_heading_1 : styles.sub_heading}
-            onClick={() => {
-              handleStatus();
-            }}
-          >
-            Status
-          </div>
-          <div
-            className={status ? styles.sub_heading : styles.sub_heading_1}
-            onClick={() => {
-              handleParticipants();
-            }}
-          >
-            Participants
+          <div className={styles.tabs}>
+            <div
+              className={status ? styles.sub_heading_1 : styles.sub_heading}
+              onClick={() => {
+                handleStatus();
+              }}
+            >
+              Status
+            </div>
+            <div
+              className={status ? styles.sub_heading : styles.sub_heading_1}
+              onClick={() => {
+                handleParticipants();
+              }}
+            >
+              Participants
+            </div>
           </div>
         </div>
-        </div>
-        <div>{status ? "" : <MyDataGrid />}</div>
+        <div>{status ? <EventDetail/> : <MyDataGrid />}</div>
       </div>
     </>
   );
