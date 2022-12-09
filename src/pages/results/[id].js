@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import styles from "../../styles/results/Results.module.css";
 import first from "../../assets/svg/first.svg";
 import second from "../../assets/svg/second.svg";
@@ -15,6 +14,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import eventsData from "../../data/eventsData";
+import { Navbar } from "../../components";
 
 function EventResults() {
   const theme = createTheme({

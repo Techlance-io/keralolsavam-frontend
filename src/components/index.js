@@ -1,3 +1,10 @@
-export {default as Navbar} from './Navbar/Navbar';
-export {default as Carousel} from './Carousel/Carousel';
-export {default as About} from './About/About';
+export { default as Navbar } from "./Navbar/Navbar";
+export { default as Carousel } from "./Carousel/Carousel";
+export { default as About } from "./About/About";
+export { default as AddOfficialModal } from "./Admin/addOfficialModal";
+export { default as NewsCard } from "./Admin/newsCard";
+export { default as EditNewsModal } from "./EditNewsModal/EditNewsModal";
+export { default as EditParticipants } from "./EditParticipants/EditParticipant";
+export { default as EventCard } from "./EventCard/EventCard";
+export { default as Hero } from "./Hero/Hero";
+export { default as Loader } from "./Loader/Loader";

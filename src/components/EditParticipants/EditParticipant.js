@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import styles from "./modal.module.css";
+import styles from "./EditParticipant.module.css";
 const style = {
   position: "absolute",
   top: "50%",
@@ -25,7 +25,7 @@ const theme = createTheme({
     },
   },
 });
-export default function EditNewsModal(props) {
+export default function EditParticipant(props) {
   const handleClose = () => props.setOpen(false);
  const [title, setTitle] = useState('');
 
@@ -86,7 +86,7 @@ export default function EditNewsModal(props) {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                    Update News
+                    Update Participant
                   </Button>
                 </Box>
               </Box>

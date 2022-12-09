@@ -7,9 +7,8 @@ import app from "../../../utils/firebase";
 import styles from "../../../styles/official/dashboard/Home.module.css";
 import footer from "../../../assets/png/footer.png";
 import Image from "next/image";
-import Navbar from "../../../components/Navbar/Navbar";
-import EventCard from "../../../components/EventCard/EventCard";
-import eventsData from "../../../data/eventsData";
+import { EventCard, Navbar } from "../../../components";
+import { eventsData } from "../../../data";
 
 function OfficialDashboard() {
   const router = useRouter();

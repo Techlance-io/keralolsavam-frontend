@@ -13,7 +13,7 @@ import Image from "next/image";
 import left from "../../assets/png/left.png";
 import right from "../../assets/png/right.png";
 import top from "../../assets/png/top.png";
-import Navbar from "../../components/Navbar/Navbar";
+import { Navbar } from "../../components";
 function OfficialLogin() {
   const provider = new GoogleAuthProvider();
   const router = useRouter();

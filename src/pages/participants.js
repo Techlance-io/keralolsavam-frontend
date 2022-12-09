@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar/Navbar";
 import { useState, useEffect } from "react";
 import styles from "../styles/Participant.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, TextField } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
+import { Navbar } from "../components";
 
-function participants() {
+function Participants() {
   const [participants, setParticipants] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -108,4 +108,4 @@ function participants() {
   );
 }
 
-export default participants;
+export default Participants;

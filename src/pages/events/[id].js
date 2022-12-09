@@ -9,8 +9,8 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import eventsData from "../../data/eventsData";
+import { Navbar } from "../../components";
+import { eventsData } from "../../data";
 import styles from "../../styles/events/Events.module.css";
 
 function EventStatus() {

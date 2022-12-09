@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar/Navbar";
+import { Navbar } from "../components";
 import styles from "../styles/Scoreboard.module.css";
 // import score1 from "../assets/svg/score1.svg";
 // import score2 from "../assets/svg/score2.svg";

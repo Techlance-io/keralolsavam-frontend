@@ -1,10 +1,9 @@
 import { Router, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import EventCard from "../../components/EventCard/EventCard";
-import Navbar from "../../components/Navbar/Navbar";
-import eventsData from "../../data/eventsData";
 import styles from "../../styles/events/Home.module.css";
 import axios from "axios";
+import { EventCard, Navbar } from "../../components";
+import { eventsData } from "../../data";
 
 function Events() {
   const router = useRouter();

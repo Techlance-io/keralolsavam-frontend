@@ -10,12 +10,10 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import artsData from "../data/artsData";
-import placeData from "../data/placeData";
-import sportsData from "../data/sportsData";
+import { Navbar } from "../components";
+import { artsData, placeData, sportsData } from "../data";
 import styles from "../styles/RegisterParticipant.module.css";
 import axios from "axios";
-import Navbar from "../components/Navbar/Navbar";
 import footer from "../assets/png/footer.png";
 import Image from "next/image";
 import left from "../assets/png/left.png";

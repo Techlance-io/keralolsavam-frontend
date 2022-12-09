@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./ScaleLoader.module.css";
+import styles from "./Loader.module.css";
 import { ScaleLoader } from "react-spinners";
 
-function ScaleLoader() {
+function Loader() {
   return (
     <div className={styles.loader_container}>
       <ScaleLoader color="#36d7b7" />
@@ -10,4 +10,4 @@ function ScaleLoader() {
   );
 }
 
-export default ScaleLoader;
+export default Loader;

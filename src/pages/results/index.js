@@ -2,9 +2,9 @@ import { getImageListItemBarUtilityClass } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { Navbar } from "../../components";
 import EventCard from "../../components/EventCard/EventCard";
-import Navbar from "../../components/Navbar/Navbar";
-import eventsData from "../../data/eventsData";
+import { eventsData } from "../../data";
 import styles from "../../styles/results/Home.module.css";
 
 function Results() {

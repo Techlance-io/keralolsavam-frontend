@@ -3,10 +3,8 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "../../styles/admin/News.module.css";
-import Navbar from "../../components/Navbar/Navbar";
 import { Button, TextField } from "@mui/material";
-import EditNewsModal from "../../components/EditNewsModal/EditNewsModal";
-import NewsCard from "../../components/Admin/newsCard";
+import { EditNewsModal, Navbar, NewsCard } from "../../components";
 
 function News() {
   const [news, setNews] = useState();

@@ -5,10 +5,9 @@ import app from "../../utils/firebase";
 import styles from "../../styles/admin/Dashboard.module.css";
 import footer from "../../assets/png/footer.png";
 import Image from "next/image";
-import Navbar from "../../components/Navbar/Navbar";
 import { Autocomplete, Button, TextField } from "@mui/material";
-import AddOfficialModal from "../../components/Admin/addOfficialModal";
 import axios from "axios";
+import { AddOfficialModal, Navbar } from "../../components";
 
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
