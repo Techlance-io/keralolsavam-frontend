@@ -1,49 +1,68 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, selectedGridRowsCountSelector } from "@mui/x-data-grid";
 import { Navbar } from "../../../components";
 import CustomTitle from "../../../utils/customTitle";
 import styles from "../../../styles/official/dashboard/Dashboard.module.css";
 import EventDetail from "../../../components/EventDetail/EventDetail";
+import {useRouter} from "next/router";
+import { AuthContext } from "../../../context/AuthContext";
+
 
 const columns = [
-  { field: "name", headerName: "Name", width: 400, editable: true },
-  { field: "age", headerName: "Age", type: "number", editable: true },
-  {
-    field: "dateCreated",
-    headerName: "Date Created",
-    type: "date",
-    width: 180,
-    editable: true,
-  },
-  {
-    field: "lastLogin",
-    headerName: "Last Login",
-    type: "dateTime",
-    width: 220,
-    editable: true,
-  },
+  { field: "participant_name", headerName: "Name", width: 400, editable: false },
+  { field: "serial_no", headerName: "sl no.", type: "number", editable: true },
+  { field: "score", headerName: "score", type: "number", editable: true },
+ 
 ];
 
-const rows = [
-  {
-    id: 1,
-    name: "hello",
-    age: 25,
-    dateCreated: new Date(),
-    lastLogin: new Date(),
-  },
-  {
-    id: 2,
-    name: "hello2",
-    age: 36,
-    dateCreated: new Date(),
-    lastLogin: new Date(),
-  },
-];
+// const rows = [
+//   {
+//     id: 1,
+//     name: "hello",
+//     age: 25,
+//     dateCreated: new Date(),
+//     lastLogin: new Date(),
+//   },
+//   {
+//     id: 2,
+//     name: "hello2",
+//     age: 36,
+//     dateCreated: new Date(),
+//     lastLogin: new Date(),
+//   },
+// ];
 
 function MyDataGrid() {
   const [data, setData] = React.useState([]);
+  const [rows, setRows] = useState([])
+  const {authToken} = useContext(AuthContext)
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  const getParticipants = async()=>{
+    if(!authToken)return;
+    console.log(id)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`,{
+      headers: {
+        "x-auth-token": authToken,
+      },
+    }).then(
+      (res)=>{
+        console.log(res.data)
+        res.data.forEach((user, index) => {
+          user.id = user._id;
+          delete user._id;
+        });
+        setRows(res.data)
+      }
+    )
+  }
+
+  useEffect(()=>{
+    getParticipants()
+  },[authToken, id])
   const gridRef = React.useRef(null);
   const onUpdate = (newData, oldData) => {
     if (JSON.stringify(newData) != JSON.stringify(oldData)) {
