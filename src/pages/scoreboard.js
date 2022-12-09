@@ -20,8 +20,8 @@ function Scoreboard() {
   const handleLocalBody = () => {
     setTabs("localbody");
   };
-  const handleDistrict = () => {
-    setTabs("district");
+  const handleLsgi = () => {
+    setTabs("lsgi");
   };
   return (
     <>
@@ -63,13 +63,13 @@ function Scoreboard() {
           <div className={styles.tabs}>
             <div
               className={
-                tabs === "district" ? styles.sub_heading_1 : styles.sub_heading
+                tabs === "lsgi" ? styles.sub_heading_1 : styles.sub_heading
               }
               onClick={() => {
-                handleDistrict();
+                handleLsgi();
               }}
             >
-              District
+              LSGI
             </div>
           </div>
         </div>
@@ -119,12 +119,12 @@ function Scoreboard() {
                 </tbody>
               </table>
             )}
-            {tabs === "district" && (
+            {tabs === "lsgi" && (
               <table className={styles.table}>
                 <thead>
                   <tr>
                     <th className={styles.table_heading_1}>SI No</th>
-                    <th className={styles.table_heading}>District</th>
+                    <th className={styles.table_heading}>LSGI</th>
                     <th className={styles.table_heading_1}>Sports</th>
                     <th className={styles.table_heading_1}>Arts</th>
                     <th className={styles.table_heading}>Total</th>

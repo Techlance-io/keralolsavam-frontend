@@ -158,7 +158,6 @@
 
 @media (max-width: 942px) {
   .container {
-    justify-content: center;
     align-items: center;
   }
   .table_body_1 {
