@@ -1,5 +1,4 @@
 .container {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +8,7 @@
   padding: 3rem;
   padding-top: 8rem;
   padding-bottom: 3rem;
-  background: url("../../assets/jpg/bg.jpg") no-repeat;
+  background: url("../../../assets/jpg/bg.jpg") no-repeat;
   background-size: cover;
 }
 .header {
@@ -47,31 +46,19 @@
     #bf3100 100%
   );
 }
-.image_left {
-  position: absolute;
-  left: 0;
-  bottom: 50px;
-}
-.image_right {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
 .cards {
   display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  width: 100%;
-}
-.image_top {
-  top: 100px;
-  right: 0;
-  position: absolute;
 }
 @media (max-width: 768px) {
-  .image_left {
-    display: none;
+  .header {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
   }
 }
