@@ -43,7 +43,7 @@ function Carousel() {
           speed={1000}
           modules={[Autoplay]}
           autoplay={{
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: false,
           }}
         >
