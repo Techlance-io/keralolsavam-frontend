@@ -1,0 +1,158 @@
+.carousel_container {
+    padding-top: 4rem;
+    display: flex;
+    justify-content: flex-start;
+    background: url('../../assets/svg/background.svg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+
+  }
+  
+  @-webkit-keyframes ticker {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+  
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  
+  @keyframes ticker {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+  
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  
+  .ticker_heading {
+    position: absolute;
+    background: red;
+    display: block;
+    left: 0;
+    top: 0;
+    height: 2.5rem;
+    padding: 11px 40px;
+    z-index: 2;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .ticker_heading_1 {
+    display: none;
+  }
+  .ticker_wrap .ticker_item:before {
+    content: "";
+    height: 11px;
+    width: 11px;
+    display: inline-block;
+    background-color: #f5bb00;
+    border-radius: 100%;
+    position: relative;
+    margin-right: 15px;
+  }
+  
+  .ticker_heading:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 11px solid red;
+    position: absolute;
+    margin-left: 40px;
+  }
+  
+  .ticker_wrap {
+    position: relative;
+    bottom: 0;
+    overflow: hidden;
+    height: 2.5rem;
+    background-color: #bf3100;
+    padding-left: 100%;
+    box-sizing: content-box;
+  }
+  
+  .ticker_wrap .ticker:hover {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -ms-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+  .ticker {
+    display: inline-block;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+  
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-name: ticker;
+    animation-name: ticker;
+    -webkit-animation-duration: 20s;
+    animation-duration: 20s;
+  }
+  .ticker_item {
+    display: inline-block;
+  
+    padding: 0 2rem;
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+  }
+  .carousel_logo {
+    width: 30%;
+    border: 1px solid #ec9f05;
+    border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    .ticker_heading {
+      display: none;
+    }
+    .ticker_heading_1 {
+      position: absolute;
+      background: red;
+      display: block;
+      left: 0;
+      top: 0;
+      height: 2.5rem;
+      padding: 11px 20px;
+      z-index: 2;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .ticker_heading_1::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 11px solid red;
+      position: absolute;
+      margin-left: 20px;
+    }
+  }
+  @media (max-width: 576px) {
+    .carousel_container {
+     justify-content: center;
+     align-items: center;
+    }
+  }
