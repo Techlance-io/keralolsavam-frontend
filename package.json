@@ -14,6 +14,7 @@
     "@mui/material": "^5.10.16",
     "@mui/x-data-grid": "^5.17.14",
     "@mui/x-date-pickers": "^5.0.9",
+    "aos": "^2.3.4",
     "axios": "^1.2.0",
     "bcrypt": "^5.1.0",
     "dayjs": "^1.11.6",
@@ -25,6 +26,7 @@
     "react-icons": "^4.7.1",
     "react-scroll": "^1.8.8",
     "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.7",
     "slick-carousel": "^1.8.1",
     "swiper": "^8.4.5"
   }

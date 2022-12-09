@@ -1,6 +1,16 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styles from "./About.module.css";
 function About() {
+  const [news, setNews] = useState([]);
+  async function getNews() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
+      setNews(res.data.news);
+    });
+  }
+  useEffect(() => {
+    getNews();
+  }, []);
   return (
     <div className={styles.about_container}>
       <div className={styles.about_left}>
@@ -30,8 +40,19 @@ function About() {
         </div>
       </div>
       <div className={styles.about_right}>
-        <div className={styles.right_heading}>Notification</div>
-        <div></div>
+        <div className={styles.right_heading}>Notifications</div>
+        <div className={styles.notifications}>
+        {news.map((news) => {
+            return (
+              <div className={styles.notification}>
+                <div className={styles.notification_dot}></div>
+              <div className={styles.ticker_item} key={news.id}>
+                {news.title}
+              </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
