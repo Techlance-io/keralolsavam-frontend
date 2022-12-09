@@ -5,12 +5,9 @@ import app from "../../utils/firebase";
 import styles from "../../styles/admin/Dashboard.module.css";
 import footer from "../../assets/png/footer.png";
 import Image from "next/image";
-import left from "../../assets/png/left.png";
-import right from "../../assets/png/right.png";
-import top from "../../assets/png/top.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { Autocomplete, Button, TextField } from "@mui/material";
-import AddOfficialModal from "../../components/Admin/addOfficialModal"
+import AddOfficialModal from "../../components/Admin/addOfficialModal";
 import axios from "axios";
 
 function AdminDashboard() {
@@ -18,17 +15,14 @@ function AdminDashboard() {
   const [officials, setOfficials] = React.useState([]);
   const [officialData, setOfficialdata] = React.useState({});
   const Getofficials = async () => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`)
-    console.log(res.data)
-    setOfficials(res.data)
-  }
-
-    
-
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`);
+    console.log(res.data);
+    setOfficials(res.data);
+  };
 
   React.useEffect(() => {
-    Getofficials()
-  }, [])
+    Getofficials();
+  }, []);
   const router = useRouter();
   const auth = getAuth(app);
   async function signOutOfGoogle() {
@@ -42,50 +36,78 @@ function AdminDashboard() {
     <>
       <Navbar />
       <div className={styles.container}>
-     <div className={styles.header}>
-        
-        <div className={styles.heading}>Admin Dashboard</div>
+        <div className={styles.header}>
+          <div className={styles.heading}>Admin Dashboard</div>
+          <div
+            className={styles.register_btn}
+            onClick={() => {
+              signOutOfGoogle();
+            }}
+          >
+            Logout
+          </div>
+        </div>
+        <div
+          className={styles.register_btn_2}
+          onClick={() => {
+            router.push("/admin/news");
+          }}
+        >
+          Add / Modify News
+        </div>
+
+        <div className={styles.subheading}>Permissions</div>
         <div
           className={styles.register_btn}
           onClick={() => {
-            signOutOfGoogle();
+            setOmOpen(true);
           }}
         >
-          Logout
+          Add Official
         </div>
+        <div className={styles.cards}>
+          {officials.map((official) => {
+            return (
+              <>
+                <div className={styles.card}>
+                  <div className={styles.official_name}>{official.name}</div>
+                  <div className={styles.official_email}>{official.email}</div>
+                  <div className={styles.flexible}></div>
+                  <div className={styles.official_alloted}>Events Alloted</div>
+
+                  {official.events.map((event) => {
+                    return (
+                      <>
+                        <div className={styles.event_name}>{event.name}</div>
+                      </>
+                    );
+                  })}
+
+                  <div>
+                    <Button
+                      onClick={() => {
+                        setOfficialdata(official);
+                        setOmOpen(true);
+                      }}
+                      variant="contained"
+                      color="secondary"
+                    >
+                      Edit
+                    </Button>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
-        
-        <div className={styles.subheading}>Permissions</div>
-        
-     
-          
-        {
-        officials.map((official)=>{
-          return (
-            <>
-          <div>{official.name}</div>
-          <div>{official.email}</div>
-          <div>{JSON.stringify(official.events)}</div>
-          <div>
-            <Button onClick={()=>{setOfficialdata(official);setOmOpen(true)}}>Edit</Button>
-          </div>
-          </>
-          )
-        }
-        )
-
-      }
-
-      <Button onClick={()=>{setOmOpen(true)}}>Add Official</Button>
       </div>
       <Image
         src={footer}
         alt=""
         style={{ width: "100vw", position: "relative", bottom: "0" }}
       />
-     
-      
-      <AddOfficialModal open = {omOpen} setOpen={setOmOpen} data={officialData}/>
+
+      <AddOfficialModal open={omOpen} setOpen={setOmOpen} data={officialData} />
     </>
   );
 }

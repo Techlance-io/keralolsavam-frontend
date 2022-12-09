@@ -8,7 +8,8 @@
   justify-content: flex-start;
   padding-top: 8rem;
   padding-left: 5rem;
-  padding-right:5rem;
+  padding-bottom: 5rem;
+  padding-right: 5rem;
   background: url("../../assets/jpg/bg.jpg") no-repeat;
   background-size: cover;
 }
@@ -26,8 +27,7 @@
   line-height: 24px;
   color: #ec8805;
 }
-.row
-{
+.row {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -36,8 +36,7 @@
   column-gap: 2rem;
   row-gap: 1rem;
 }
-.rows
-{
+.rows {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -46,8 +45,7 @@
   column-gap: 3rem;
   row-gap: 2rem;
 }
-.header
-{
+.header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -58,6 +56,26 @@
 }
 .register_btn {
   width: 211.51px;
+  height: 53.56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  background: linear-gradient(
+    170deg,
+    #8ea604 0%,
+    #f5bb00 18.76%,
+    #ec9f05 48.44%,
+    #ff4e00 73.97%,
+    #bf3100 100%
+  );
+}
+.register_btn_2 {
+  width: 231.51px;
   height: 53.56px;
   display: flex;
   justify-content: center;
@@ -96,27 +114,54 @@
     #bf3100 100%
   );
 }
-.image_left
-{
-  position: absolute;
-  left:0;
-  bottom:50px;
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+  background-color: #f5bb00;
+  border-radius: 20px;
+  padding: 1.5rem;
 }
-.image_right
-{
-  position: absolute;
-  right:0;
-  bottom: 0;
+.event_name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 29px;
+  color: red;
 }
-.image_top
-{
-  top:100px;
-  right: 0;
-  position: absolute;
+.cards {
+  display: flex;
+  vertical-align: bottom;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-direction: row;
 }
-@media (max-width:768px) {
-  .image_left
-  {
-    display: none;
+.official_name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 29px;
+  color: black;
+}
+.official_email {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 29px;
+  color: black;
+}
+.official_alloted {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 29px;
+  color: #bf3100;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
   }
 }
