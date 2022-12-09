@@ -58,7 +58,7 @@ function Participants() {
       field: "Edit",
       headerName: "",
       width: "100",
-      renderCell: (props) => <Button>Edit</Button>,
+      renderCell: (props) => <Button >Edit</Button>,
     },
   ];
 
