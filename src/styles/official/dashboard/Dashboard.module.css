@@ -1,0 +1,110 @@
+.container {
+  row-gap: 4rem;
+  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  padding: 5rem;
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+  background: url("../../../assets/jpg/bg.jpg") no-repeat;
+  background-size: cover;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.heading {
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  color: #ec8805;
+}
+.register_btn {
+  width: 211.51px;
+  height: 53.56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  background: linear-gradient(
+    170deg,
+    #8ea604 0%,
+    #f5bb00 18.76%,
+    #ec9f05 48.44%,
+    #ff4e00 73.97%,
+    #bf3100 100%
+  );
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ebd696;
+  height: 50px;
+  width: fit-content;
+}
+.tabs_wrapper
+{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+}
+.sub_heading {
+  font-weight: 600;
+  font-size: 22px;
+  width: 170px;
+  height: 50px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  line-height: 29px;
+  color: #000000;
+  cursor: pointer;
+}
+.sub_heading_1 {
+  font-weight: 600;
+  font-size: 22px;
+  width: 170px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  line-height: 29px;
+  color: #000000;
+  background-color: #ec8805;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+  }
+}

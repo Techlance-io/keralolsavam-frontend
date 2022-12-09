@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import { Navbar } from "../../../components";
 import CustomTitle from "../../../utils/customTitle";
+import styles from "../../../styles/official/dashboard/Dashboard.module.css";
 
 const columns = [
   { field: "name", headerName: "Name", width: 400, editable: true },
@@ -89,12 +90,50 @@ function MyDataGrid() {
 }
 
 function Event() {
+  const [status, setStatus] = useState(true);
+  function handleStatus() {
+    setStatus(true);
+  }
+  function handleParticipants() {
+    setStatus(false);
+  }
   return (
     <>
       <CustomTitle title="Official Dashboard" />
       <Navbar />
-      <div>
-        <MyDataGrid />
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.heading}>Official Dashboard</div>
+          <div
+            className={styles.register_btn}
+            onClick={() => {
+              signOutOfGoogle();
+            }}
+          >
+            Logout
+          </div>
+        </div>
+        <div className={styles.tabs_wrapper}>
+        <div className={styles.tabs}>
+          <div
+            className={status ? styles.sub_heading_1 : styles.sub_heading}
+            onClick={() => {
+              handleStatus();
+            }}
+          >
+            Status
+          </div>
+          <div
+            className={status ? styles.sub_heading : styles.sub_heading_1}
+            onClick={() => {
+              handleParticipants();
+            }}
+          >
+            Participants
+          </div>
+        </div>
+        </div>
+        <div>{status ? "" : <MyDataGrid />}</div>
       </div>
     </>
   );
