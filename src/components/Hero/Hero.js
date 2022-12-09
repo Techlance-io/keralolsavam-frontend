@@ -19,7 +19,7 @@ function Hero() {
   return (
     <>
       <div className={styles.carousel_container}>
-        <Image src={logo} alt="" className={styles.carousel_img}/>
+        <Image src={logo} alt="" className={styles.carousel_img} />
       </div>
       <div className={styles.ticker_wrap}>
         <div className={styles.ticker_heading}>Latest News</div>

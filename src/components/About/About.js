@@ -42,13 +42,13 @@ function About() {
       <div className={styles.about_right}>
         <div className={styles.right_heading}>Notifications</div>
         <div className={styles.notifications}>
-        {news.map((news) => {
+          {news.map((news) => {
             return (
               <div className={styles.notification}>
                 <div className={styles.notification_dot}></div>
-              <div className={styles.ticker_item} key={news.id}>
-                {news.title}
-              </div>
+                <div className={styles.ticker_item} key={news.id}>
+                  {news.title}
+                </div>
               </div>
             );
           })}

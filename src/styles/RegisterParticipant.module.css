@@ -11,8 +11,7 @@
   background: url("../assets/jpg/bg.jpg") no-repeat;
   background-size: cover;
 }
-.textfield
-{
+.textfield {
   width: 500px;
 }
 .content {
@@ -61,31 +60,27 @@
     #bf3100 100%
   );
 }
-.image_left
-{
+.image_left {
   position: absolute;
-  left:0;
-  bottom:50px;
+  left: 0;
+  bottom: 50px;
 }
-.image_right
-{
+.image_right {
   position: absolute;
-  right:0;
+  right: 0;
   bottom: 0;
 }
-.image_top
-{
-  top:100px;
+.image_top {
+  top: 100px;
   right: 0;
   position: absolute;
 }
 
-
 .input_date {
-  width:500px;
+  width: 500px;
   background: none;
   border-radius: 20px;
-  border: 2px solid #BF3100;
+  border: 2px solid #bf3100;
   height: 55px;
   padding: 10px;
   font-size: 16px;
@@ -96,26 +91,23 @@
   height: 25px;
 }
 
-@media (max-width:768px) {
-  .content
-  {
+@media (max-width: 768px) {
+  .content {
     row-gap: 2rem;
   }
-  .textfield{
+  .textfield {
     width: 85vw;
   }
-  .input_date{
+  .input_date {
     width: 85vw;
   }
-  .image_left
-  {
+  .image_left {
     display: none;
   }
-  .image_right{
+  .image_right {
     display: none;
   }
-  .image_top
-  {
+  .image_top {
     display: none;
   }
 }

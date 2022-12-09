@@ -1,21 +1,22 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   row-gap: 4rem;
   min-height: 100vh;
   justify-content: flex-start;
-  padding: 3rem;
+  padding: 5rem;
   padding-top: 8rem;
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
   background: url("../../../assets/jpg/bg.jpg") no-repeat;
   background-size: cover;
 }
 .header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -45,6 +46,13 @@
     #ff4e00 73.97%,
     #bf3100 100%
   );
+}
+.header
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .cards {
   display: flex;

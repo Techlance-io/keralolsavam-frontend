@@ -1,63 +1,60 @@
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    row-gap: 4rem;
-    min-height: 100vh;
-    padding-top: 8rem;
-    padding-bottom: 3rem;
-    background: url("../../assets/jpg/bg.jpg") no-repeat;
-    background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4rem;
+  min-height: 100vh;
+  justify-content: center;
+  padding-top: 8rem;
+  padding-bottom: 3rem;
+  background: url("../../assets/jpg/bg.jpg") no-repeat;
+  background-size: cover;
+}
+.heading {
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  color: #ec8805;
+}
+.register_btn {
+  width: 211.51px;
+  height: 53.56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  background: linear-gradient(
+    170deg,
+    #8ea604 0%,
+    #f5bb00 18.76%,
+    #ec9f05 48.44%,
+    #ff4e00 73.97%,
+    #bf3100 100%
+  );
+}
+.image_left {
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+}
+.image_right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.image_top {
+  top: 100px;
+  right: 0;
+  position: absolute;
+}
+@media (max-width: 768px) {
+  .image_left {
+    display: none;
   }
-  .heading {
-    text-align: center;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 39px;
-    color: #ec8805;
-  }
-
-  .register_btn {
-    width: 211.51px;
-    height: 53.56px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    color: white;
-    font-weight: 700;
-    font-size: 20px;
-    cursor: pointer;
-    background: linear-gradient(
-      170deg,
-      #8ea604 0%,
-      #f5bb00 18.76%,
-      #ec9f05 48.44%,
-      #ff4e00 73.97%,
-      #bf3100 100%
-    );
-  }
-  .image_left
-  {
-    position: absolute;
-    left:0;
-    bottom:50px;
-  }
-  .image_right
-  {
-    position: absolute;
-    right:0;
-    bottom: 0;
-  }
-  .image_top
-  {
-    top:100px;
-    right: 0;
-    position: absolute;
-  }
-  @media (max-width:768px) {
-    .image_left
-    {
-      display: none;
-    }
-  }
+}

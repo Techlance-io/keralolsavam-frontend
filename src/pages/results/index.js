@@ -6,6 +6,7 @@ import { Navbar } from "../../components";
 import EventCard from "../../components/EventCard/EventCard";
 import { eventsData } from "../../data";
 import styles from "../../styles/results/Home.module.css";
+import CustomTitle from "../../utils/customTitle";
 
 function Results() {
   const router = useRouter();
@@ -16,12 +17,10 @@ function Results() {
   const handleChangeSports = () => {
     setSports(true);
   };
- 
-
-
 
   return (
     <>
+      <CustomTitle title="Results" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Results</div>
@@ -54,7 +53,10 @@ function Results() {
                         router.push(`/results/${item.id}`);
                       }}
                     >
-                      <EventCard image={()=>getImage(item.name)} title={item.name} />
+                      <EventCard
+                        image={() => getImage(item.name)}
+                        title={item.name}
+                      />
                     </div>
                   );
               })
@@ -67,7 +69,10 @@ function Results() {
                         router.push(`/results/${item.id}`);
                       }}
                     >
-                      <EventCard image={()=>getImage(item.name)} title={item.name} />
+                      <EventCard
+                        image={() => getImage(item.name)}
+                        title={item.name}
+                      />
                     </div>
                   );
               })}

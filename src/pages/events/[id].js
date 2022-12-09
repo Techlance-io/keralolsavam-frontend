@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../../components";
 import { eventsData } from "../../data";
 import styles from "../../styles/events/Events.module.css";
+import CustomTitle from "../../utils/customTitle";
 
 function EventStatus() {
   const theme = createTheme({
@@ -42,9 +43,9 @@ function EventStatus() {
   });
   const router = useRouter();
   const { id } = router.query;
-  const [event, setEvent] = useState(eventsData[id-1]);
+  const [event, setEvent] = useState(eventsData[id - 1]);
   function getEvent() {
-    const data = eventsData[id-1];
+    const data = eventsData[id - 1];
     setEvent(data);
   }
   useEffect(() => {
@@ -53,6 +54,7 @@ function EventStatus() {
   console.log(event);
   return (
     <>
+      <CustomTitle title="Events" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Event Details</div>
@@ -89,11 +91,9 @@ function EventStatus() {
                   onChange={(e) => {
                     setEvent(e.target.value);
                     router.push(
-                      `/events/${
-                        eventsData.findIndex(
-                          (item) => item.name === e.target.value
-                        )
-                      }`
+                      `/events/${eventsData.findIndex(
+                        (item) => item.name === e.target.value
+                      )}`
                     );
                   }}
                 >
@@ -129,7 +129,7 @@ function EventStatus() {
             </thead>
             <tbody>
               <tr>
-                <td  className={styles.table_body}>101</td>
+                <td className={styles.table_body}>101</td>
                 <td className={styles.table_body}>Jaison Dennis</td>
                 <td className={styles.table_body_1}>Angamaly</td>
                 <td className={styles.table_body_1}>Muncipality</td>

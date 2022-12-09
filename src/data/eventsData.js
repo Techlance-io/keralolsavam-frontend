@@ -3,14 +3,13 @@ import basketballmen from "../assets/svg/basketball_men.svg";
 import basketballwomen from "../assets/svg/basketball_women.svg";
 
 const eventsData = [
-  {id:1,
-  
+  {
+    id: 1,
+
     name: "വായ്പ്പാട്ട് (ക്ലാസ്സിക്കൽ-ഹിന്ദുസ്ഥാനി)",
     image: dance,
     isarts: true,
-    results:[ "Jaison Thomas", "Jaison Dennis","Mayon Thomas",
-    
-    ],
+    results: ["Jaison Thomas", "Jaison Dennis", "Mayon Thomas"],
   },
   { id: 2, name: "കർണാടക സംഗീതം", image: dance, isarts: true },
   { id: 3, name: "ഭരതനാട്യം", image: dance, isarts: true },

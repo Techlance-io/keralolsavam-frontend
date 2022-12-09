@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navbar } from "../components";
 import styles from "../styles/Scoreboard.module.css";
+import CustomTitle from "../utils/customTitle";
 // import score1 from "../assets/svg/score1.svg";
 // import score2 from "../assets/svg/score2.svg";
 // import score3 from "../assets/svg/score3.svg";
@@ -24,6 +25,7 @@ function Scoreboard() {
   };
   return (
     <>
+      <CustomTitle title="Scoreboard" />
       <Navbar />
 
       <div className={styles.container}>

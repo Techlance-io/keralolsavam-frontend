@@ -14,7 +14,6 @@ import { Navbar } from "../components";
 import { artsData, placeData, sportsData } from "../data";
 import styles from "../styles/RegisterParticipant.module.css";
 import axios from "axios";
-import footer from "../assets/png/footer.png";
 import Image from "next/image";
 import left from "../assets/png/left.png";
 import right from "../assets/png/right.png";
@@ -22,6 +21,7 @@ import top from "../assets/png/top.png";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import CustomTitle from "../utils/customTitle";
 
 function RegisterParticipant() {
   const router = useRouter();
@@ -158,6 +158,7 @@ function RegisterParticipant() {
   }
   return (
     <>
+      <CustomTitle title="Register Participant" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Participant Registration</div>
@@ -493,11 +494,6 @@ function RegisterParticipant() {
         <Image src={left} alt="" className={styles.image_left} />
         <Image src={top} alt="" className={styles.image_right} />
       </div>
-      <Image
-        src={footer}
-        alt=""
-        style={{ width: "100vw", position: "relative", bottom: "0" }}
-      />
     </>
   );
 }

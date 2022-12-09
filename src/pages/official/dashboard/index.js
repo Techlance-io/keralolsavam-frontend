@@ -5,10 +5,10 @@ import { AuthContext } from "../../../context/AuthContext";
 import React, { useContext, useEffect } from "react";
 import app from "../../../utils/firebase";
 import styles from "../../../styles/official/dashboard/Home.module.css";
-import footer from "../../../assets/png/footer.png";
 import Image from "next/image";
 import { EventCard, Navbar } from "../../../components";
 import { eventsData } from "../../../data";
+import CustomTitle from "../../../utils/customTitle";
 
 function OfficialDashboard() {
   const router = useRouter();
@@ -51,6 +51,7 @@ function OfficialDashboard() {
   console.log(events);
   return (
     <>
+      <CustomTitle title="Official Dashboard" />
       <Navbar />
 
       <div className={styles.container}>
@@ -81,11 +82,6 @@ function OfficialDashboard() {
           })}
         </div>
       </div>
-      <Image
-        src={footer}
-        alt=""
-        style={{ width: "100vw", position: "relative", bottom: "0" }}
-      />
     </>
   );
 }

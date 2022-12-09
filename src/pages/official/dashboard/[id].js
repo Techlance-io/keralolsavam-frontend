@@ -1,57 +1,57 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
-
+import { Navbar } from "../../../components";
+import CustomTitle from "../../../utils/customTitle";
 
 const columns = [
-    { field: 'name', headerName: 'Name', width: 400, editable: true },
-    { field: 'age', headerName: 'Age', type: 'number', editable: true },
-    {
-      field: 'dateCreated',
-      headerName: 'Date Created',
-      type: 'date',
-      width: 180,
-      editable: true,
-    },
-    {
-      field: 'lastLogin',
-      headerName: 'Last Login',
-      type: 'dateTime',
-      width: 220,
-      editable: true,
-    },
-  ];
-  
-  const rows = [
-    {
-      id: 1,
-      name: "hello",
-      age: 25,
-      dateCreated: new Date(),
-      lastLogin: new Date(),
-    },
-    {
-      id: 2,
-      name: "hello2",
-      age: 36,
-      dateCreated: new Date(),
-      lastLogin: new Date(),
-    }
-  ];
+  { field: "name", headerName: "Name", width: 400, editable: true },
+  { field: "age", headerName: "Age", type: "number", editable: true },
+  {
+    field: "dateCreated",
+    headerName: "Date Created",
+    type: "date",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "lastLogin",
+    headerName: "Last Login",
+    type: "dateTime",
+    width: 220,
+    editable: true,
+  },
+];
+
+const rows = [
+  {
+    id: 1,
+    name: "hello",
+    age: 25,
+    dateCreated: new Date(),
+    lastLogin: new Date(),
+  },
+  {
+    id: 2,
+    name: "hello2",
+    age: 36,
+    dateCreated: new Date(),
+    lastLogin: new Date(),
+  },
+];
 
 function MyDataGrid() {
   const [data, setData] = React.useState([]);
   const gridRef = React.useRef(null);
-   const onUpdate = (newData, oldData) => {
-    if(JSON.stringify(newData) != JSON.stringify(oldData)){
-       setData([newData,...data])
-       console.log(newData, oldData)
+  const onUpdate = (newData, oldData) => {
+    if (JSON.stringify(newData) != JSON.stringify(oldData)) {
+      setData([newData, ...data]);
+      console.log(newData, oldData);
     }
-   
-    }
+  };
   function handleSave() {
-     // Get the updated data
-     console.log(gridRef)
+    // Get the updated data
+    console.log(gridRef);
     // const updatedData = gridRef.current.getRows();
     // console.log(updatedData);
 
@@ -68,14 +68,17 @@ function MyDataGrid() {
 
   useEffect(() => {
     console.log(data);
-    }, [data]);
+  }, [data]);
   return (
     <div>
       <DataGrid
         rows={rows}
         columns={columns}
         onProcessRowUpdateError={(params) => console.log(params)}
-        processRowUpdate={(newData, oldData) => {onUpdate(newData, oldData);return newData}}
+        processRowUpdate={(newData, oldData) => {
+          onUpdate(newData, oldData);
+          return newData;
+        }}
         autoHeight
         editMode="row"
         experimentalFeatures={{ newEditingApi: true }}
@@ -86,9 +89,15 @@ function MyDataGrid() {
 }
 
 function Event() {
-  return <div>
-    <MyDataGrid />
-  </div>
+  return (
+    <>
+      <CustomTitle title="Official Dashboard" />
+      <Navbar />
+      <div>
+        <MyDataGrid />
+      </div>
+    </>
+  );
 }
 
 export default Event;

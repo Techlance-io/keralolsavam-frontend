@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import React from "react";
 import app from "../../utils/firebase";
 import styles from "../../styles/admin/Dashboard.module.css";
-import footer from "../../assets/png/footer.png";
 import Image from "next/image";
 import { Autocomplete, Button, TextField } from "@mui/material";
 import axios from "axios";
 import { AddOfficialModal, Navbar } from "../../components";
+import CustomTitle from "../../utils/customTitle";
 
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
@@ -33,6 +33,7 @@ function AdminDashboard() {
   }
   return (
     <>
+      <CustomTitle title="Admin Dashboard" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.header}>
@@ -100,12 +101,6 @@ function AdminDashboard() {
           })}
         </div>
       </div>
-      <Image
-        src={footer}
-        alt=""
-        style={{ width: "100vw", position: "relative", bottom: "0" }}
-      />
-
       <AddOfficialModal open={omOpen} setOpen={setOmOpen} data={officialData} />
     </>
   );

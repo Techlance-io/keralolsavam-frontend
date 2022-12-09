@@ -4,11 +4,12 @@ import styles from "../../styles/events/Home.module.css";
 import axios from "axios";
 import { EventCard, Navbar } from "../../components";
 import { eventsData } from "../../data";
+import CustomTitle from "../../utils/customTitle";
 
 function Events() {
   const router = useRouter();
   const [sports, setSports] = useState(true);
-  const [events,setEvents]=useState([])
+  const [events, setEvents] = useState([]);
   const handleChangeArts = () => {
     setSports(false);
   };
@@ -16,7 +17,6 @@ function Events() {
     setSports(true);
   };
   const getImage = (name) => {
-  
     // find name proeprty in events data array:
     const event = eventsData.find((event) => event.name === name);
     // return image property of found event:
@@ -27,12 +27,12 @@ function Events() {
       setEvents(res.data);
     });
   }
-  useEffect(()=>{
+  useEffect(() => {
     getEvents();
-
-  },[])
+  }, []);
   return (
     <>
+      <CustomTitle title="Events" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Events</div>
@@ -65,13 +65,15 @@ function Events() {
                         router.push(`/events/${item._id}`);
                       }}
                     >
-                      <EventCard image={getImage(item.name)} title={item.name} />
+                      <EventCard
+                        image={getImage(item.name)}
+                        title={item.name}
+                      />
                     </div>
                   );
               })
             : events.map((item, index) => {
                 if (item.isarts === true)
-                
                   return (
                     <div
                       key={index}
@@ -79,7 +81,10 @@ function Events() {
                         router.push(`/events/${item._id}`);
                       }}
                     >
-                      <EventCard image={getImage(item.name)} title={item.name} />
+                      <EventCard
+                        image={getImage(item.name)}
+                        title={item.name}
+                      />
                     </div>
                   );
               })}

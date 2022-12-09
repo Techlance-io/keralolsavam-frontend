@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import app from "../../utils/firebase";
 import styles from "../../styles/official/Home.module.css";
-import footer from "../../assets/png/footer.png";
 import Image from "next/image";
 import left from "../../assets/png/left.png";
 import right from "../../assets/png/right.png";
 import top from "../../assets/png/top.png";
 import { Navbar } from "../../components";
+import CustomTitle from "../../utils/customTitle";
 function OfficialLogin() {
   const provider = new GoogleAuthProvider();
   const router = useRouter();
@@ -52,6 +52,7 @@ function OfficialLogin() {
   }
   return (
     <>
+      <CustomTitle title="Official Login" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Official Login</div>
@@ -67,11 +68,6 @@ function OfficialLogin() {
         <Image src={left} alt="" className={styles.image_left} />
         <Image src={top} alt="" className={styles.image_right} />
       </div>
-      <Image
-        src={footer}
-        alt=""
-        style={{ width: "100vw", position: "relative", bottom: "0" }}
-      />
     </>
   );
 }

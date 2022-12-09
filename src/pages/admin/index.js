@@ -6,20 +6,20 @@ import {
 } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { useRouter } from "next/router";
-import { useEffect, useState , useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import app from "../../utils/firebase";
 import styles from "../../styles/admin/Home.module.css";
-import footer from "../../assets/png/footer.png";
 import Image from "next/image";
 import left from "../../assets/png/left.png";
 import right from "../../assets/png/right.png";
 import top from "../../assets/png/top.png";
 import { Navbar } from "../../components";
+import CustomTitle from "../../utils/customTitle";
 function AdminLogin() {
   const provider = new GoogleAuthProvider();
   const router = useRouter();
-  const {user, loading, error, authToken} = useContext(AuthContext);
- 
+  const { user, loading, error, authToken } = useContext(AuthContext);
+
   const auth = getAuth(app);
   // const test = async()=>{
   //   console.log(await auth.currentUser?.getIdToken(true))
@@ -58,6 +58,7 @@ function AdminLogin() {
   }
   return (
     <>
+      <CustomTitle title="Admin Login" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Admin Login</div>
@@ -73,11 +74,6 @@ function AdminLogin() {
         <Image src={left} alt="" className={styles.image_left} />
         <Image src={top} alt="" className={styles.image_right} />
       </div>
-      <Image
-        src={footer}
-        alt=""
-        style={{ width: "100vw", position: "relative", bottom: "0" }}
-      />
     </>
   );
 }

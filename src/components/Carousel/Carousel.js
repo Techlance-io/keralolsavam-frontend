@@ -12,7 +12,7 @@ function Carousel() {
     <>
       <div className={styles.carousel_container}>
         <Swiper
-        slidesPerView="auto"
+          slidesPerView="auto"
           breakpoints={{
             320: {
               slidesPerView: 1,
@@ -37,7 +37,8 @@ function Carousel() {
             1280: {
               slidesPerView: 4,
               spaceBetween: 50,
-          }}}
+            },
+          }}
           loop={true}
           speed={1000}
           modules={[Autoplay]}

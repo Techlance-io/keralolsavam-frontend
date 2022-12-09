@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import eventsData from "../../data/eventsData";
 import { Navbar } from "../../components";
+import CustomTitle from "../../utils/customTitle";
 
 function EventResults() {
   const theme = createTheme({
@@ -45,9 +46,9 @@ function EventResults() {
   });
   const router = useRouter();
   const { id } = router.query;
-  const [event, setEvent] = useState(eventsData[id-1]);
+  const [event, setEvent] = useState(eventsData[id - 1]);
   function getEvent() {
-    const data = eventsData[id-1];
+    const data = eventsData[id - 1];
     setEvent(data);
   }
   useEffect(() => {
@@ -56,6 +57,7 @@ function EventResults() {
   console.log(event);
   return (
     <>
+      <CustomTitle title="Results" />
       <Navbar />
       <div className={styles.container}>
         <div className={styles.heading}>Results</div>
@@ -111,7 +113,9 @@ function EventResults() {
             <div className={styles.first_header}>
               <div className={styles.first_heading}>First</div>
               <div className={styles.first_description}>
-                <div className={styles.first_description_details}>{event?.results[0]?.name}</div>
+                <div className={styles.first_description_details}>
+                  {event?.results[0]?.name}
+                </div>
                 <div className={styles.first_description_details}>District</div>
                 <div className={styles.first_description_details}>LSGI</div>
               </div>
@@ -124,8 +128,12 @@ function EventResults() {
             <div className={styles.second_header}>
               <div className={styles.second_heading}>Second</div>
               <div className={styles.second_description}>
-                <div className={styles.second_description_details}>{event?.results[1]?.name}</div>
-                <div className={styles.second_description_details}>District</div>
+                <div className={styles.second_description_details}>
+                  {event?.results[1]?.name}
+                </div>
+                <div className={styles.second_description_details}>
+                  District
+                </div>
                 <div className={styles.second_description_details}>LSGI</div>
               </div>
             </div>
@@ -137,7 +145,9 @@ function EventResults() {
             <div className={styles.third_header}>
               <div className={styles.third_heading}>Third</div>
               <div className={styles.third_description}>
-                <div className={styles.third_description_details}>{event?.results[2]?.name}</div>
+                <div className={styles.third_description_details}>
+                  {event?.results[2]?.name}
+                </div>
                 <div className={styles.third_description_details}>District</div>
                 <div className={styles.third_description_details}>LSGI</div>
               </div>

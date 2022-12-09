@@ -107,61 +107,53 @@
   color: #000000;
   background-color: #ec8805;
 }
-.score1
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+.score1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
-.score2
-{
-    position: absolute;
-    top: 5;
-    left: 0;
-    z-index: -1;
+.score2 {
+  position: absolute;
+  top: 5;
+  left: 0;
+  z-index: -1;
 }
-.score3
-{
-    position: absolute;
-    top: 10;
-    left: 0;
-    z-index: -1;
+.score3 {
+  position: absolute;
+  top: 10;
+  left: 0;
+  z-index: -1;
 }
-.score4
-{
-    position: absolute;
-    top: 15;
-    left: 0;
-    z-index: -1;
+.score4 {
+  position: absolute;
+  top: 15;
+  left: 0;
+  z-index: -1;
 }
-.score5
-{
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: -1;
+.score5 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
 }
-.score6
-{
-    position: absolute;
-    top: 5;
-    right: 0;
-    z-index: -1;
+.score6 {
+  position: absolute;
+  top: 5;
+  right: 0;
+  z-index: -1;
 }
-.score8
-{
-    position: absolute;
-    top: 15;
-    right: 0;
-    z-index: -1;
+.score8 {
+  position: absolute;
+  top: 15;
+  right: 0;
+  z-index: -1;
 }
-.score9
-{
-    position: absolute;
-    top: 20;
-    left: 0;
-    z-index: -1;
+.score9 {
+  position: absolute;
+  top: 20;
+  left: 0;
+  z-index: -1;
 }
 
 @media (max-width: 942px) {

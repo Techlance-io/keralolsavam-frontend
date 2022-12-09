@@ -27,25 +27,25 @@ const theme = createTheme({
 });
 export default function EditParticipant(props) {
   const handleClose = () => props.setOpen(false);
- const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
 
-
- useEffect(() => {  
+  useEffect(() => {
     setTitle(props.data?.title);
-  }, [props.data]);                                 
+  }, [props.data]);
 
- const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-      axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${props.data._id}`, {title:title})
+    axios
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${props.data._id}`, {
+        title: title,
+      })
       .then((res) => {
         let arr = props.news;
         arr[props.data.index] = res.data;
-        props.setNews([...arr])
+        props.setNews([...arr]);
         console.log(res.data);
       });
-
- }
+  };
   return (
     <div>
       <Modal
@@ -59,37 +59,35 @@ export default function EditParticipant(props) {
             <Container component="main" maxWidth="xs">
               <CssBaseline />
               <form onSubmit={handleSubmit}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
                 <Box
-                  sx={{ mt: 3 }}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
                 >
-                  <TextField
-                    required
-                    fullWidth
-                    id="name"
-                    label="Name"
-                    name="name"
-                    autoComplete="name"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                  />
+                  <Box sx={{ mt: 3 }}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="name"
+                      label="Name"
+                      name="name"
+                      autoComplete="name"
+                      onChange={(e) => setTitle(e.target.value)}
+                      value={title}
+                    />
 
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Update Participant
-                  </Button>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      sx={{ mt: 3, mb: 2 }}
+                    >
+                      Update Participant
+                    </Button>
+                  </Box>
                 </Box>
-              </Box>
               </form>
             </Container>
           </ThemeProvider>
