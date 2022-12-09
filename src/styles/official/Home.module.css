@@ -2,10 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     row-gap: 4rem;
     min-height: 100vh;
-    justify-content: center;
     padding-top: 8rem;
     padding-bottom: 3rem;
     background: url("../../assets/jpg/bg.jpg") no-repeat;
@@ -18,6 +16,7 @@
     line-height: 39px;
     color: #ec8805;
   }
+
   .register_btn {
     width: 211.51px;
     height: 53.56px;
