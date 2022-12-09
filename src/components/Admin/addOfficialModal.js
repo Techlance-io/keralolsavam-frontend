@@ -16,6 +16,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
   boxShadow: 24,
+  outline:"none",
   p: 4,
 };
 const theme = createTheme({
@@ -52,7 +53,7 @@ export default function EditNewsModal({ open, setOpen, data }) {
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Select Arts Events"
+            label="Select Events"
             InputLabelProps={{
               style: {
                 fontWeight: "400",
@@ -161,7 +162,7 @@ export default function EditNewsModal({ open, setOpen, data }) {
                       onChange={(e) => setTitle(e.target.value)}
                       value={title}
                     />
-
+                    <Box sx={{ mt: 3 }} />
                     <TextField
                       required
                       fullWidth
@@ -172,6 +173,7 @@ export default function EditNewsModal({ open, setOpen, data }) {
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                     />
+                    <Box sx={{ mt: 3 }} />
                     <InputAuto />
                     <Button
                       type="submit"
