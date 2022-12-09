@@ -73,7 +73,7 @@ export default function EditNewsModal(props) {
                     required
                     fullWidth
                     id="name"
-                    label="Name"
+                    label="News"
                     name="name"
                     autoComplete="name"
                     onChange={(e) => setTitle(e.target.value)}

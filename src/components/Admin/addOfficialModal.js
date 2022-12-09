@@ -16,8 +16,9 @@ const style = {
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
   boxShadow: 24,
-  outline:"none",
-  p: 4,
+  outline: "none",
+  p: 2,
+  minWidth: "300px",
 };
 const theme = createTheme({
   typography: {
@@ -167,7 +168,7 @@ export default function EditNewsModal({ open, setOpen, data }) {
                       required
                       fullWidth
                       id="email"
-                      label="email"
+                      label="Email"
                       name="email"
                       autoComplete="email"
                       onChange={(e) => setEmail(e.target.value)}
