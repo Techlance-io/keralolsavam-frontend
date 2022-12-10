@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../../components";
 import EventCard from "../../components/EventCard/EventCard";
+import Footer from "../../components/Footer/Footer";
 import { eventsData } from "../../data";
 import styles from "../../styles/results/Home.module.css";
 import CustomTitle from "../../utils/customTitle";
@@ -92,6 +93,7 @@ function Results() {
               })}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

@@ -6,6 +6,7 @@ import styles from "../../styles/admin/News.module.css";
 import { Button, TextField } from "@mui/material";
 import { EditNewsModal, Navbar, NewsCard } from "../../components";
 import CustomTitle from "../../utils/customTitle";
+import Footer from "../../components/Footer/Footer";
 
 function News() {
   const [news, setNews] = useState();
@@ -102,6 +103,7 @@ function News() {
           news={news}
         />
       </div>
+      <Footer/>
     </>
   );
 }

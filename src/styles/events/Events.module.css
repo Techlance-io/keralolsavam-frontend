@@ -4,6 +4,7 @@
   padding: 5rem;
   padding-top: 8rem;
   row-gap: 3rem;
+  min-height: 100vh;
 }
 .img{
   width:200px;

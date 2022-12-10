@@ -8,17 +8,47 @@ import {
 } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import axios from "axios";
 import dayjs from "dayjs";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import styles from "./EventDetail.module.css";
 
 function EventDetail() {
-  const [value, setValue] = useState(dayjs("2014-08-18T21:11:54"));
-
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
-  const [radioValue, setRadioValue] = useState("Event About To Start");
+  const router = useRouter();
+  const [time, setTime] = useState(dayjs("2022-12-10T10:11:54"));
+  const [status, setStatus] = useState("Event About To Start");
+  const [winners, setWinners] = useState([]);
+  const [first, setFirst] = useState();
+  const [second, setSecond] = useState();
+  const [third, setThird] = useState();
+  const [event, setEvent] = useState();
+  const [users, setUsers] = useState([]);
+  const { id } = router.query;
+  useEffect(() => {
+    if (id) getEvent();
+  }, [id]);
+  async function getEvent() {
+    await axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
+      .then((res) => {
+        setEvent(res.data.event);
+        setUsers(res.data.users);
+      });
+  }
+  async function handleSubmit() {
+    const winners_list = [first, second, third];
+    let data = {
+      time: time.toISOString(),
+      status: status,
+      winners: winners_list,
+    };
+    await axios
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data)
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
   return (
     <div className={styles.container}>
       <div className={styles.rows}>
@@ -26,8 +56,10 @@ function EventDetail() {
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
-            value={value}
-            onChange={handleChange}
+            value={time}
+            onChange={(newValue) => {
+              setTime(newValue);
+            }}
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
@@ -40,8 +72,8 @@ function EventDetail() {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
-              value={radioValue}
-              onChange={(e) => setRadioValue(e.target.value)}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
             >
               <FormControlLabel
                 value="Event About To Start"
@@ -69,7 +101,10 @@ function EventDetail() {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={["one", "two", "three"]}
+            options={users}
+            getOptionLabel={(option) => option?.name}
+            value={first}
+            onChange={(e, newValue) => setFirst(newValue)}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="Enter Name" />
@@ -83,7 +118,10 @@ function EventDetail() {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={["one", "two", "three"]}
+            value={second}
+            onChange={(e, newValue) => setSecond(newValue)}
+            options={users}
+            getOptionLabel={(option) => option?.name}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="Enter Name" />
@@ -96,8 +134,11 @@ function EventDetail() {
         <div>
           <Autocomplete
             disablePortal
+            value={third}
+            getOptionLabel={(option) => option?.name}
+            onChange={(e, newValue) => setThird(newValue)}
             id="combo-box-demo"
-            options={["one", "two", "three"]}
+            options={users}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="Enter Name" />
@@ -105,7 +146,14 @@ function EventDetail() {
           />
         </div>
       </div>
-      <div className={styles.register_btn}>Save</div>
+      <div
+        className={styles.register_btn}
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
+        Save
+      </div>
     </div>
   );
 }

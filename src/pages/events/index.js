@@ -2,14 +2,16 @@ import { Router, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/events/Home.module.css";
 import axios from "axios";
-import { EventCard, Navbar } from "../../components";
+import { EventCard, Loader, Navbar } from "../../components";
 import { eventsData } from "../../data";
 import CustomTitle from "../../utils/customTitle";
+import Footer from "../../components/Footer/Footer";
 
 function Events() {
   const router = useRouter();
   const [sports, setSports] = useState(true);
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const handleChangeArts = () => {
     setSports(false);
   };
@@ -25,11 +27,16 @@ function Events() {
   async function getEvents() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`).then((res) => {
       setEvents(res.data);
+      setLoading(false);
     });
   }
   useEffect(() => {
     getEvents();
   }, []);
+  if (loading) 
+  return (
+    <Loader/>
+  );
   return (
     <>
       <CustomTitle title="Events" />
@@ -90,6 +97,7 @@ function Events() {
               })}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

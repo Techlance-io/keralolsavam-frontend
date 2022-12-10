@@ -8,6 +8,7 @@ import { Autocomplete, Button, TextField } from "@mui/material";
 import axios from "axios";
 import { AddOfficialModal, Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
+import Footer from "../../components/Footer/Footer";
 
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
@@ -102,6 +103,7 @@ function AdminDashboard() {
         </div>
       </div>
       <AddOfficialModal open={omOpen} setOpen={setOmOpen} data={officialData} />
+      <Footer />
     </>
   );
 }

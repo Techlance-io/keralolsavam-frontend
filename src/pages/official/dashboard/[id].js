@@ -5,14 +5,26 @@ import { Navbar } from "../../../components";
 import CustomTitle from "../../../utils/customTitle";
 import styles from "../../../styles/official/dashboard/Dashboard.module.css";
 import EventDetail from "../../../components/EventDetail/EventDetail";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { AuthContext } from "../../../context/AuthContext";
-
+import { getAuth, signOut } from "firebase/auth";
+import app from "../../../utils/firebase";
+import Footer from "../../../components/Footer/Footer";
 
 const columns = [
-  { field: "participant_name", headerName: "Name", width: 400, editable: false },
-  { field: "serial_no", headerName: "sl no.", type: "number", editable: true },
-  { field: "score", headerName: "score", type: "number", editable: true }
+  {
+    field: "participant_name",
+    headerName: "Name",
+    width: 400,
+    editable: false,
+  },
+  {
+    field: "serial_no",
+    headerName: "Chest No:",
+    type: "number",
+    editable: true,
+  },
+  { field: "score", headerName: "Score", type: "number", editable: true },
 ];
 
 // const rows = [
@@ -34,34 +46,34 @@ const columns = [
 
 function MyDataGrid() {
   const [data, setData] = React.useState([]);
-  const [rows, setRows] = useState([])
-  const {authToken} = useContext(AuthContext)
-
+  const [rows, setRows] = useState([]);
+  const { authToken } = useContext(AuthContext);
+  
   const router = useRouter();
   const { id } = router.query;
 
-  const getParticipants = async()=>{
-    if(!authToken)return;
-    console.log(id)
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`,{
-      headers: {
-        "x-auth-token": authToken,
-      },
-    }).then(
-      (res)=>{
-        console.log(res.data)
+  const getParticipants = async () => {
+    if (!authToken) return;
+    console.log(id);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`, {
+        headers: {
+          "x-auth-token": authToken,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
         res.data.forEach((user, index) => {
           user.id = user._id;
           delete user._id;
         });
-        setRows(res.data)
-      }
-    )
-  }
+        setRows(res.data);
+      });
+  };
 
-  useEffect(()=>{
-    getParticipants()
-  },[authToken, id])
+  useEffect(() => {
+    getParticipants();
+  }, [authToken, id]);
   const gridRef = React.useRef(null);
   const onUpdate = (newData, oldData) => {
     if (JSON.stringify(newData) != JSON.stringify(oldData)) {
@@ -71,17 +83,21 @@ function MyDataGrid() {
   };
   function handleSave() {
     // Get the updated data
-    
+
     // const updatedData = gridRef.current.getRows();
     // console.log(updatedData);
 
     // Send the updated data to the server using axios
     axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`, data, {
-        headers: {
-          "x-auth-token": authToken,
-        },
-      })
+      .put(
+        `${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`,
+        data,
+        {
+          headers: {
+            "x-auth-token": authToken,
+          },
+        }
+      )
       .then((response) => {
         // Handle success
         console.log(response);
@@ -114,12 +130,20 @@ function MyDataGrid() {
 }
 
 function Event() {
+  const auth = getAuth(app);
   const [status, setStatus] = useState(true);
   function handleStatus() {
     setStatus(true);
   }
   function handleParticipants() {
     setStatus(false);
+  }
+  async function signOutOfGoogle() {
+    signOut(auth)
+      .then(() => {
+        router.push("/official");
+      })
+      .catch((error) => {});
   }
   return (
     <>
@@ -157,8 +181,9 @@ function Event() {
             </div>
           </div>
         </div>
-        <div>{status ? <EventDetail/> : <MyDataGrid />}</div>
+        <div>{status ? <EventDetail /> : <MyDataGrid />}</div>
       </div>
+      <Footer/>
     </>
   );
 }

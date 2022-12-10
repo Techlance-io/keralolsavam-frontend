@@ -15,6 +15,7 @@ import right from "../../assets/png/right.png";
 import top from "../../assets/png/top.png";
 import { Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
+import Footer from "../../components/Footer/Footer";
 function AdminLogin() {
   const provider = new GoogleAuthProvider();
   const router = useRouter();
@@ -74,6 +75,7 @@ function AdminLogin() {
         <Image src={left} alt="" className={styles.image_left} />
         <Image src={top} alt="" className={styles.image_right} />
       </div>
+      <Footer/>
     </>
   );
 }

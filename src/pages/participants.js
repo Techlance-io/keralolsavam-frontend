@@ -7,6 +7,7 @@ import { Button, TextField } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { Navbar } from "../components";
 import CustomTitle from "../utils/customTitle";
+import Footer from "../components/Footer/Footer";
 
 function Participants() {
   const [participants, setParticipants] = useState([]);
@@ -18,7 +19,7 @@ function Participants() {
     setPage(p);
   };
 
-  const Footer = () => {
+  const Footer1 = () => {
     return (
       <div
         style={{
@@ -94,7 +95,7 @@ function Participants() {
                 rows={participants}
                 columns={columns}
                 components={{
-                  Footer: Footer,
+                  Footer1: Footer1,
                 }}
                 autoHeight
                 disableColumnFilter
@@ -106,6 +107,7 @@ function Participants() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

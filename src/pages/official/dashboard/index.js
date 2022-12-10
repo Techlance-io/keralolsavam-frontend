@@ -9,6 +9,7 @@ import Image from "next/image";
 import { EventCard, Navbar } from "../../../components";
 import { eventsData } from "../../../data";
 import CustomTitle from "../../../utils/customTitle";
+import Footer from "../../../components/Footer/Footer";
 
 function OfficialDashboard() {
   const router = useRouter();
@@ -82,6 +83,7 @@ function OfficialDashboard() {
           })}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

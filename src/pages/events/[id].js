@@ -10,7 +10,8 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Navbar } from "../../components";
+import { Loader, Navbar } from "../../components";
+import Footer from "../../components/Footer/Footer";
 import { eventsData } from "../../data";
 import styles from "../../styles/events/Events.module.css";
 import CustomTitle from "../../utils/customTitle";
@@ -47,6 +48,7 @@ function EventStatus() {
   const [event, setEvent] = useState("");
   const [events, setEvents] = useState([]);
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (id) getEvent();
   }, [id]);
@@ -56,6 +58,7 @@ function EventStatus() {
       .then((res) => {
         setEvent(res.data.event);
         setUsers(res.data.users);
+        setLoading(false);
       });
   }
   const getImage = (name) => {
@@ -67,11 +70,13 @@ function EventStatus() {
   async function getEvents() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`).then((res) => {
       setEvents(res.data);
+      setLoading(false);
     });
   }
   useEffect(() => {
     getEvents();
   }, []);
+  if (loading) return <Loader />;
   return (
     <>
       <CustomTitle title="Events" />
@@ -86,7 +91,11 @@ function EventStatus() {
             </div>
 
             <div>
-              <Image src={getImage(event?.name)} className={styles.img} alt="" />
+              <Image
+                src={getImage(event?.name)}
+                className={styles.img}
+                alt=""
+              />
             </div>
           </div>
           <div>
@@ -161,6 +170,7 @@ function EventStatus() {
           </table>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

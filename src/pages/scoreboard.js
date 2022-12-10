@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navbar } from "../components";
+import Footer from "../components/Footer/Footer";
 import styles from "../styles/Scoreboard.module.css";
 import CustomTitle from "../utils/customTitle";
 // import score1 from "../assets/svg/score1.svg";
@@ -144,6 +145,7 @@ function Scoreboard() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

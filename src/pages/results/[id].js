@@ -17,6 +17,7 @@ import eventsData from "../../data/eventsData";
 import { Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
 import axios from "axios";
+import Footer from "../../components/Footer/Footer";
 
 function EventResults() {
   const theme = createTheme({
@@ -191,6 +192,7 @@ function EventResults() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

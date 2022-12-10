@@ -6,16 +6,20 @@ import axios from "axios";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Image from "next/image";
+import Loader from "../Loader/Loader";
 function Hero() {
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
   async function getNews() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
       setNews(res.data.news);
+      setLoading(false);
     });
   }
   useEffect(() => {
     getNews();
   }, []);
+  if (loading) return <Loader />;
   return (
     <>
       <div className={styles.carousel_container}>
