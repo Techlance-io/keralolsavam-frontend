@@ -45,10 +45,10 @@ function EventStatus() {
   const router = useRouter();
   const { id } = router.query;
   const [event, setEvent] = useState("");
+  const [events, setEvents] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    if(id)
-    getEvent();
+    if (id) getEvent();
   }, [id]);
   async function getEvent() {
     await axios
@@ -58,9 +58,20 @@ function EventStatus() {
         setUsers(res.data.users);
       });
   }
-
-  console.log(event);
-  console.log(users);
+  const getImage = (name) => {
+    // find name proeprty in events data array:
+    const event = eventsData.find((event) => event.name === name);
+    // return image property of found event:
+    return event?.image;
+  };
+  async function getEvents() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`).then((res) => {
+      setEvents(res.data);
+    });
+  }
+  useEffect(() => {
+    getEvents();
+  }, []);
   return (
     <>
       <CustomTitle title="Events" />
@@ -71,11 +82,11 @@ function EventStatus() {
           <div className={styles.header_1}>
             <div className={styles.header_2}>
               <div className={styles.event_name}>{event?.name}</div>
-              <div className={styles.status}>Completed</div>
+              <div className={styles.status}>{event?.status}</div>
             </div>
 
             <div>
-              <Image src={event?.image} alt="" />
+              <Image src={getImage(event?.name)} alt="" />
             </div>
           </div>
           <div>
@@ -96,17 +107,17 @@ function EventStatus() {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  label="Gender"
+                  label="Other Events"
                   onChange={(e) => {
                     setEvent(e.target.value);
                     router.push(
-                      `/events/${eventsData.findIndex(
-                        (item) => item.name === e.target.value
-                      )}`
+                      `/events/${
+                        events.find((item) => item.name === e.target.value)._id
+                      }`
                     );
                   }}
                 >
-                  {eventsData.map((events, index) => {
+                  {events.map((events, index) => {
                     return (
                       <MenuItem value={events.name} key={index}>
                         {events.name}
@@ -137,12 +148,16 @@ function EventStatus() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className={styles.table_body}>101</td>
-                <td className={styles.table_body}>Jaison Dennis</td>
-                <td className={styles.table_body_1}>Angamaly</td>
-                <td className={styles.table_body_1}>Muncipality</td>
-              </tr>
+              {users.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <td className={styles.table_body}>{user?.chestNo}</td>
+                    <td className={styles.table_body}>{user?.name}</td>
+                    <td className={styles.table_body_1}>{user?.place}</td>
+                    <td className={styles.table_body_1}>{user?.lsgi}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
