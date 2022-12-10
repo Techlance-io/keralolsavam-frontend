@@ -40,7 +40,8 @@ function EventDetail() {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
-              defaultValue={radioValue}
+              value={radioValue}
+              onChange={(e) => setRadioValue(e.target.value)}
             >
               <FormControlLabel
                 value="Event About To Start"
