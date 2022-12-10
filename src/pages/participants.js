@@ -8,17 +8,22 @@ import Pagination from "@mui/material/Pagination";
 import { Navbar } from "../components";
 import CustomTitle from "../utils/customTitle";
 import Footer from "../components/Footer/Footer";
+import EditParticipant from "../components/EditParticipants/EditParticipant";
 
 function Participants() {
   const [participants, setParticipants] = useState([]);
+  const [participant, setParticipant] = useState({});
+  const [open, setOpen] = useState(false);
+
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pagination = 10;
-
+  const pagination = 100;
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handlePageChange = (event, p) => {
     setPage(p);
   };
-
   const Footer1 = () => {
     return (
       <div
@@ -59,7 +64,16 @@ function Participants() {
       field: "Edit",
       headerName: "",
       width: "100",
-      renderCell: (props) => <Button >Edit</Button>,
+      renderCell: (props) => (
+        <Button
+          onClick={() => {
+            setParticipant(props.row);
+            setOpen(true);
+          }}
+        >
+          Edit
+        </Button>
+      ),
     },
   ];
 
@@ -107,7 +121,13 @@ function Participants() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <EditParticipant
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        participant={participant}
+      />
+      <Footer />
     </>
   );
 }

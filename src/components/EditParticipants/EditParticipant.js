@@ -41,9 +41,17 @@ const theme = createTheme({
 export default function EditParticipant(props) {
   const handleClose = () => props.setOpen(false);
 
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [date, setDate] = useState("");
+  const [address, setAddress] = useState("");
+  const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
-  const [lsgi, setLsgi] = useState("");
+  const [place, setPlace] = useState("");
+  const [lsgi, setLsgi] = useState();
+  const [artEvents, setArtEvents] = useState([]);
+  const [sportsEvents, setSportsEvents] = useState([]);
+  const [localbody, setLocalbody] = useState("");
   const sextypes = ["Male", "Female"];
   const lsgitypes = ["Municipality", "Corporation", "Block Panchayath"];
   const ageCategories = [
@@ -98,24 +106,76 @@ export default function EditParticipant(props) {
     if (placelist.length == 0) placelist.push("No places available");
     return placelist;
   }
-
-  useEffect(() => {
-    setTitle(props.data?.title);
-  }, [props.data]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${props.data._id}`, {
-        title: title,
-      })
-      .then((res) => {
-        let arr = props.news;
-        arr[props.data.index] = res.data;
-        props.setNews([...arr]);
-        console.log(res.data);
-      });
+  let user = {
+    name,
+    phone,
+    address,
+    date,
+    sex,
+    age,
+    lsgi,
+    localbody,
+    place,
+    artEvents,
+    sportsEvents,
   };
+  async function handleSubmit() {
+    // console.log("user", user);
+    if (name && address && place && lsgi && localbody && sex) {
+      console.log("date", typeof date);
+      let expr = "";
+      // check regex match :
+      if (phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)) {
+        await axios
+          .put(
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/updateUser/${props.participant._id}`,
+            user
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              alert("Registration Updated");
+              // window.location.reload();
+            } else {
+              alert("Registration Failed");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("Please enter a valid Indian phone number");
+      }
+    } else {
+      alert("Please enter all the details");
+    }
+  }
+  useEffect(() => {
+    setName(props.participant?.name);
+    setPhone(props.participant?.phone);
+    setDate(props.participant?.date);
+    setAddress(props.participant?.address);
+    setAge(props.participant?.age);
+    setSex(props.participant?.sex);
+    setPlace(props.participant?.place);
+    setLsgi(props.participant?.lsgi);
+    setArtEvents(props.participant?.artEvents);
+    setSportsEvents(props.participant?.sportsEvents);
+    setLocalbody(props.participant?.localbody);
+  }, [props.participant]);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${props.data._id}`, {
+  //       title: title,
+  //     })
+  //     .then((res) => {
+  //       let arr = props.news;
+  //       arr[props.data.index] = res.data;
+  //       props.setNews([...arr]);
+  //       console.log(res.data);
+  //     });
+  // };
   return (
     <Modal
       open={props.open}
@@ -128,7 +188,7 @@ export default function EditParticipant(props) {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
@@ -137,6 +197,8 @@ export default function EditParticipant(props) {
                   required
                   fullWidth
                   id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   label="Name"
                   name="name"
                   autoComplete="name"
@@ -146,6 +208,8 @@ export default function EditParticipant(props) {
                 <TextField
                   required
                   fullWidth
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   id="phone"
                   label="Mobile Number"
                   name="phone"
@@ -156,6 +220,8 @@ export default function EditParticipant(props) {
                 <TextField
                   required
                   fullWidth
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   name="address"
                   label="Address"
                   id="address"
@@ -166,6 +232,10 @@ export default function EditParticipant(props) {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     label="Date of Birth"
+                    value={date}
+                    onChange={(newValue) => {
+                      setDate(newValue);
+                    }}
                     inputFormat="DD/MM/YYYY"
                     renderInput={(params) => (
                       <TextField fullWidth id="outlined-basic" {...params} />
@@ -180,6 +250,10 @@ export default function EditParticipant(props) {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     label="Gender"
+                    value={sex}
+                    onChange={(e) => {
+                      setSex(e.target.value);
+                    }}
                   >
                     {sextypes.map((sex, index) => {
                       return (
@@ -198,6 +272,10 @@ export default function EditParticipant(props) {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     label="Age"
+                    value={age}
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                    }}
                   >
                     {getAgeCategories(sex).map((age, index) => {
                       return (
@@ -216,6 +294,10 @@ export default function EditParticipant(props) {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     label="LSGI"
+                    value={lsgi}
+                    onChange={(e) => {
+                      setLsgi(e.target.value);
+                    }}
                   >
                     {lsgitypes.map((lsgitype, index) => {
                       return (
@@ -236,6 +318,10 @@ export default function EditParticipant(props) {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     label="Local Body"
+                    value={localbody}
+                    onChange={(e) => {
+                      setLocalbody(e.target.value);
+                    }}
                   >
                     {getPlaceList(lsgi).map((place, index) => {
                       return (
@@ -248,11 +334,21 @@ export default function EditParticipant(props) {
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <TextField fullWidth label="Place" variant="outlined" />
+                <TextField
+                  fullWidth
+                  label="Place"
+                  value={place}
+                  onChange={(e) => setPlace(e.target.value)}
+                  variant="outlined"
+                />
               </Grid>
               <Grid item xs={12}>
                 <Autocomplete
                   multiple
+                  value={artEvents}
+                  onChange={(event, newValue) => {
+                    setArtEvents(newValue);
+                  }}
                   options={getList(sex, true)}
                   filterSelectedOptions
                   disableCloseOnSelect
@@ -267,6 +363,10 @@ export default function EditParticipant(props) {
               <Grid item xs={12}>
                 <Autocomplete
                   multiple
+                  value={sportsEvents}
+                  onChange={(event, newValue) => {
+                    setSportsEvents(newValue);
+                  }}
                   options={getList(sex, false)}
                   filterSelectedOptions
                   disableCloseOnSelect
@@ -282,6 +382,9 @@ export default function EditParticipant(props) {
             </Grid>
             <Button
               type="submit"
+              onClick={() => {
+                handleSubmit();
+              }}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
