@@ -18,6 +18,7 @@ function EventDetail() {
   const handleChange = (newValue) => {
     setValue(newValue);
   };
+  const [radioValue, setRadioValue] = useState("Event About To Start");
   return (
     <div className={styles.container}>
       <div className={styles.rows}>
@@ -39,19 +40,20 @@ function EventDetail() {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
+              value={radioValue}
             >
               <FormControlLabel
-                value="About To Start"
+                value="Event About To Start"
                 control={<Radio />}
                 label="Event About To Start"
               />
               <FormControlLabel
-                value="Started"
+                value="Event Started"
                 control={<Radio />}
                 label="Event Started"
               />
               <FormControlLabel
-                value="Over"
+                value="Event Over"
                 control={<Radio />}
                 label="Event Over"
               />
