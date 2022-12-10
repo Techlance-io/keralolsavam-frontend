@@ -136,7 +136,7 @@ function Participants() {
           </div>
         </div>
       </div>
-     <Modal />
+     <Modal participant={participant}/>
       <Footer />
     </>
   );

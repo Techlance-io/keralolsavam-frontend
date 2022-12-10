@@ -119,8 +119,10 @@ export default function EditParticipant(props) {
     artEvents,
     sportsEvents,
   };
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault()
     // console.log("user", user);
+    console.log(props.participant)
     if (name && address && place && lsgi && localbody && sex) {
       console.log("date", typeof date);
       let expr = "";
@@ -128,13 +130,13 @@ export default function EditParticipant(props) {
       if (phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)) {
         await axios
           .put(
-            `${process.env.NEXT_PUBLIC_API_URL}/auth/updateUser/${props.participant._id}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/updateUser/${props.participant.id}`,
             user
           )
           .then((res) => {
             if (res.status === 200) {
               alert("Registration Updated");
-              // window.location.reload();
+             
             } else {
               alert("Registration Failed");
             }
@@ -183,14 +185,10 @@ export default function EditParticipant(props) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
+      <form onSubmit={handleSubmit}>
       <Box sx={style}>
         <ThemeProvider theme={theme}>
-          <Box
-            component="form"
-            noValidate
-            // onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+         
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -382,18 +380,17 @@ export default function EditParticipant(props) {
             </Grid>
             <Button
               type="submit"
-              onClick={() => {
-                handleSubmit();
-              }}
+              
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Update Details
             </Button>
-          </Box>
+          
         </ThemeProvider>
       </Box>
+      </form>
     </Modal>
   );
 }
