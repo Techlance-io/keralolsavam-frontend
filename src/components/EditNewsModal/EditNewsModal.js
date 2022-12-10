@@ -44,6 +44,7 @@ export default function EditNewsModal(props) {
         arr[props.data.index] = res.data;
         props.setNews([...arr]);
         console.log(res.data);
+        handleClose();
       });
   };
   return (
