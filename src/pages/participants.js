@@ -21,6 +21,21 @@ function Participants() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+  const Modal = ()=>{
+    
+    return(
+      <EditParticipant
+      open={open}
+      setOpen={setOpen}
+      handleClose={handleClose}
+      participant={participant}
+    />
+    )
+  }
+    
+
   const handlePageChange = (event, p) => {
     setPage(p);
   };
@@ -121,12 +136,7 @@ function Participants() {
           </div>
         </div>
       </div>
-      <EditParticipant
-        open={open}
-        setOpen={setOpen}
-        handleClose={handleClose}
-        participant={participant}
-      />
+     <Modal />
       <Footer />
     </>
   );
