@@ -73,6 +73,11 @@ function EventStatus() {
       setLoading(false);
     });
   }
+  function getTime(time1) {
+    const date = new Date(time1);
+    const time = date.toLocaleString();
+    return time;
+  }
   useEffect(() => {
     getEvents();
   }, []);
@@ -87,7 +92,17 @@ function EventStatus() {
           <div className={styles.header_1}>
             <div className={styles.header_2}>
               <div className={styles.event_name}>{event?.name}</div>
-              <div className={styles.status}>{event?.status}</div>
+              {event?.status === "Event About To Start" && (
+                <div className={styles.status}>
+                  Starts At : {getTime(event?.time)}
+                </div>
+              )}
+              {event?.status === "Event Started" && (
+                <div className={styles.status_1}>Event is LIVE</div>
+              )}
+              {event?.status === "Event Over" && (
+                <div className={styles.status}>{event?.status}</div>
+              )}
             </div>
 
             <div>

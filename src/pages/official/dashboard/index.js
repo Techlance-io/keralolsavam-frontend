@@ -72,7 +72,7 @@ function OfficialDashboard() {
         <Image src={top} alt="" className={styles.image_right} /> */}
 
         <div className={styles.cards}>
-          {events.map((event) => {
+          {events?.map((event) => {
             return (
               <div
                 onClick={() => router.push(`/official/dashboard/${event._id}`)}
