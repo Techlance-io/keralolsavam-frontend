@@ -28,7 +28,7 @@ const theme = createTheme({
     },
   },
 });
-export default function EditNewsModal({ open, setOpen, data }) {
+export default function EditNewsModal({ open, setOpen, data,setVariable }) {
   const handleClose = () => setOpen(false);
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
@@ -114,6 +114,10 @@ export default function EditNewsModal({ open, setOpen, data }) {
         }
       );
       console.log(res.data);
+      setOpen(false);
+
+
+      setVariable(res.data);
       return;
     }
     let res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/officials`, {
@@ -122,7 +126,9 @@ export default function EditNewsModal({ open, setOpen, data }) {
       events: selectedEvents,
     });
     console.log(res.data);
+    setOpen(false);
 
+    setVariable(res.data);
     // axios
     // .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${props.data._id}`, {title:title})
     // .then((res) => {

@@ -13,6 +13,7 @@ import Footer from "../../components/Footer/Footer";
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
   const [officials, setOfficials] = React.useState([]);
+  const [variable,setVariable]=React.useState();
   const [officialData, setOfficialdata] = React.useState({});
   const Getofficials = async () => {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`);
@@ -22,7 +23,7 @@ function AdminDashboard() {
 
   React.useEffect(() => {
     Getofficials();
-  }, []);
+  }, [variable]);
   const router = useRouter();
   const auth = getAuth(app);
   async function signOutOfGoogle() {
@@ -102,7 +103,7 @@ function AdminDashboard() {
           })}
         </div>
       </div>
-      <AddOfficialModal open={omOpen} setOpen={setOmOpen} data={officialData} />
+      <AddOfficialModal open={omOpen} setOpen={setOmOpen} data={officialData} setVariable={setVariable}/>
       <Footer />
     </>
   );
