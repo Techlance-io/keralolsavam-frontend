@@ -84,7 +84,7 @@ function EventResults() {
           <div className={styles.image_wrapper}>
             <Image
               src={getImage(event?.name)}
-              className={styles.image}
+              className={styles.img}
               alt=""
             />
           </div>

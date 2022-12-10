@@ -5,6 +5,11 @@
   padding-top: 8rem;
   row-gap: 3rem;
 }
+.img{
+  width:200px;
+  height: 150px;
+  object-fit: contain;
+}
 .textfield {
   width: 300px;
 }

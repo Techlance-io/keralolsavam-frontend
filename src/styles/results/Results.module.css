@@ -8,6 +8,11 @@
   padding-top: 8rem;
   justify-content: center;
 }
+.img{
+  width:200px;
+  height: 150px;
+  object-fit: contain;
+}
 .header {
   display: flex;
   width: 100%;

@@ -86,7 +86,7 @@ function EventStatus() {
             </div>
 
             <div>
-              <Image src={getImage(event?.name)} alt="" />
+              <Image src={getImage(event?.name)} className={styles.img} alt="" />
             </div>
           </div>
           <div>
