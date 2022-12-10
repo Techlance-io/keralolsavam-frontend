@@ -60,7 +60,13 @@ function Results() {
         <div className={styles.cards}>
           {sports
             ? events.map((item, index) => {
-                if (item.isarts === false && item.winners.length > 0)
+                if (
+                  item.isarts === false &&
+                  item.winners.length > 0 &&
+                  (item.winners[0] !== null ||
+                    item.winners[1] !== null ||
+                    item.winners[2] !== null)
+                )
                   return (
                     <div
                       key={index}
@@ -76,7 +82,13 @@ function Results() {
                   );
               })
             : events.map((item, index) => {
-                if (item.isarts === true && item.winners.length > 0)
+                if (
+                  item.isarts === true &&
+                  item.winners.length > 0 &&
+                  (item.winners[0] !== null ||
+                    item.winners[1] !== null ||
+                    item.winners[2] !== null)
+                )
                   return (
                     <div
                       key={index}

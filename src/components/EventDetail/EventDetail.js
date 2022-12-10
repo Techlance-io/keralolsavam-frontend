@@ -34,6 +34,7 @@ function EventDetail() {
       .then((res) => {
         setEvent(res.data.event);
         setUsers(res.data.users);
+
       });
   }
   async function handleSubmit() {
@@ -47,6 +48,7 @@ function EventDetail() {
       .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data)
       .then((res) => {
         console.log(res.data);
+        alert("Event Updated Successfully");
       });
   }
   return (
