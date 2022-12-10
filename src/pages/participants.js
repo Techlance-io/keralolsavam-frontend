@@ -74,7 +74,7 @@ function Participants() {
         return new Date(params.value).toLocaleDateString();
       },
     },
-    { field: "artEvents", headerName: "Events", width: 300 },
+    { field: "events", headerName: "Events", width: 300 },
     {
       field: "Edit",
       headerName: "",
@@ -103,6 +103,12 @@ function Participants() {
           user.sl = index + 1 + (page - 1) * pagination;
           delete user._id;
         });
+        const dataArray = res.data.users;
+        const newdata = dataArray.map((data) => {
+          data.events = [...data.artEvents, ...data.sportsEvents];
+          return data;
+        })
+
         setParticipants(res.data.users);
         setTotalPages(res.data.pages);
         console.log(res.data.pages);
