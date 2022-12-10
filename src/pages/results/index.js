@@ -69,7 +69,7 @@ function Results() {
                       }}
                     >
                       <EventCard
-                        image={() => getImage(item.name)}
+                        image={getImage(item.name)}
                         title={item.name}
                       />
                     </div>
@@ -85,7 +85,7 @@ function Results() {
                       }}
                     >
                       <EventCard
-                        image={() => getImage(item.name)}
+                        image={getImage(item.name)}
                         title={item.name}
                       />
                     </div>
