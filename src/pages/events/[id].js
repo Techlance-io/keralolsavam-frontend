@@ -132,9 +132,8 @@ function EventStatus() {
         <div className={styles.staff_details}>
           <div className={styles.staff_heading}>Staff Incharges</div>
           <div className={styles.staff_details_content}>
-            <div>Name : Jaison Dennis</div>
-            <div>Designation : Event Head</div>
-            <div>Contact : 9188500270</div>
+            <div>Name : {event?.official?.name}</div>
+            <div>Contact : {event?.official?.email}</div>
           </div>
         </div>
         <div className={styles.table_container}>
