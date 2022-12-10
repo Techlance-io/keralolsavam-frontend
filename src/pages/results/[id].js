@@ -16,6 +16,7 @@ import {
 import eventsData from "../../data/eventsData";
 import { Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
+import axios from "axios";
 
 function EventResults() {
   const theme = createTheme({
@@ -46,14 +47,32 @@ function EventResults() {
   });
   const router = useRouter();
   const { id } = router.query;
-  const [event, setEvent] = useState(eventsData[id - 1]);
-  function getEvent() {
-    const data = eventsData[id - 1];
-    setEvent(data);
-  }
+  const [event, setEvent] = useState();
+  const [events, setEvents] = useState([]);
   useEffect(() => {
-    getEvent();
+    if (id) getEvent();
   }, [id]);
+  async function getEvent() {
+    await axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
+      .then((res) => {
+        setEvent(res.data.event);
+      });
+  }
+  async function getEvents() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`).then((res) => {
+      setEvents(res.data);
+    });
+  }
+  const getImage = (name) => {
+    // find name proeprty in events data array:
+    const event = eventsData.find((event) => event.name === name);
+    // return image property of found event:
+    return event?.image;
+  };
+  useEffect(() => {
+    getEvents();
+  }, []);
   console.log(event);
   return (
     <>
@@ -63,7 +82,11 @@ function EventResults() {
         <div className={styles.heading}>Results</div>
         <div className={styles.header}>
           <div className={styles.image_wrapper}>
-            <Image src={event?.image} className={styles.image} alt="" />
+            <Image
+              src={getImage(event?.name)}
+              className={styles.image}
+              alt=""
+            />
           </div>
 
           <div className={styles.event_name}>{event?.name}</div>
@@ -85,18 +108,18 @@ function EventResults() {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  label="Gender"
+                  label="Other Events"
                   onChange={(e) => {
                     setEvent(e.target.value);
                     router.push(
-                      `/results/${eventsData.findIndex(
-                        (item) => item.name === e.target.value
-                      )}`
+                      `/results/${
+                        events.find((item) => item.name === e.target.value)._id
+                      }`
                     );
                   }}
                 >
-                  {eventsData.forEach((events, index) => {
-                    if (events?.results)
+                  {events.forEach((events, index) => {
+                    if (events?.winners.length > 0)
                       return (
                         <MenuItem value={events.name} key={index}>
                           {events.name}
@@ -114,10 +137,14 @@ function EventResults() {
               <div className={styles.first_heading}>First</div>
               <div className={styles.first_description}>
                 <div className={styles.first_description_details}>
-                  {event?.results[0]?.name}
+                  {event?.winners[0]?.name}
                 </div>
-                <div className={styles.first_description_details}>District</div>
-                <div className={styles.first_description_details}>LSGI</div>
+                <div className={styles.first_description_details}>
+                  {event?.winners[0]?.lsgi}
+                </div>
+                <div className={styles.first_description_details}>
+                  {event?.winners[0]?.localbody}
+                </div>
               </div>
             </div>
             <div className={styles.first_image_wrapper}>
@@ -129,12 +156,14 @@ function EventResults() {
               <div className={styles.second_heading}>Second</div>
               <div className={styles.second_description}>
                 <div className={styles.second_description_details}>
-                  {event?.results[1]?.name}
+                  {event?.winners[1]?.name}
                 </div>
                 <div className={styles.second_description_details}>
-                  District
+                  {event?.winners[1]?.lsgi}
                 </div>
-                <div className={styles.second_description_details}>LSGI</div>
+                <div className={styles.second_description_details}>
+                  {event?.winners[1]?.localbody}
+                </div>
               </div>
             </div>
             <div className={styles.second_image_wrapper}>
@@ -146,10 +175,14 @@ function EventResults() {
               <div className={styles.third_heading}>Third</div>
               <div className={styles.third_description}>
                 <div className={styles.third_description_details}>
-                  {event?.results[2]?.name}
+                  {event?.winners[2]?.name}
                 </div>
-                <div className={styles.third_description_details}>District</div>
-                <div className={styles.third_description_details}>LSGI</div>
+                <div className={styles.third_description_details}>
+                  {event?.winners[2]?.lsgi}
+                </div>
+                <div className={styles.third_description_details}>
+                  {event?.winners[2]?.localbody}
+                </div>
               </div>
             </div>
             <div className={styles.third_image_wrapper}>
