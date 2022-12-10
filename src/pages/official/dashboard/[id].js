@@ -12,8 +12,7 @@ import { AuthContext } from "../../../context/AuthContext";
 const columns = [
   { field: "participant_name", headerName: "Name", width: 400, editable: false },
   { field: "serial_no", headerName: "sl no.", type: "number", editable: true },
-  { field: "score", headerName: "score", type: "number", editable: true },
- 
+  { field: "score", headerName: "score", type: "number", editable: true }
 ];
 
 // const rows = [
@@ -72,15 +71,20 @@ function MyDataGrid() {
   };
   function handleSave() {
     // Get the updated data
-    console.log(gridRef);
+    
     // const updatedData = gridRef.current.getRows();
     // console.log(updatedData);
 
     // Send the updated data to the server using axios
     axios
-      .post("/api/save-data", data)
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`, data, {
+        headers: {
+          "x-auth-token": authToken,
+        },
+      })
       .then((response) => {
         // Handle success
+        console.log(response);
       })
       .catch((error) => {
         // Handle error
