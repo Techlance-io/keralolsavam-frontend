@@ -14,27 +14,23 @@ function Participants() {
   const [participants, setParticipants] = useState([]);
   const [participant, setParticipant] = useState({});
   const [open, setOpen] = useState(false);
-
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pagination = 100;
+  const pagination = 1000;
   const handleClose = () => {
     setOpen(false);
   };
 
-
-  const Modal = ()=>{
-    
-    return(
+  const Modal = () => {
+    return (
       <EditParticipant
-      open={open}
-      setOpen={setOpen}
-      handleClose={handleClose}
-      participant={participant}
-    />
-    )
-  }
-    
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        participant={participant}
+      />
+    );
+  };
 
   const handlePageChange = (event, p) => {
     setPage(p);
@@ -107,7 +103,7 @@ function Participants() {
         const newdata = dataArray.map((data) => {
           data.events = [...data.artEvents, ...data.sportsEvents];
           return data;
-        })
+        });
 
         setParticipants(res.data.users);
         setTotalPages(res.data.pages);
@@ -142,7 +138,7 @@ function Participants() {
           </div>
         </div>
       </div>
-     <Modal participant={participant}/>
+      <Modal participant={participant} />
       <Footer />
     </>
   );

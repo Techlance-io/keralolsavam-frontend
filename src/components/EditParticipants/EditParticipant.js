@@ -39,7 +39,9 @@ const theme = createTheme({
   },
 });
 export default function EditParticipant(props) {
-  const handleClose = () => props.setOpen(false);
+  const handleClose = () => {
+    props.setOpen(false);
+  };
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -120,9 +122,9 @@ export default function EditParticipant(props) {
     sportsEvents,
   };
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     // console.log("user", user);
-    console.log(props.participant)
+    console.log(props.participant);
     if (name && address && place && lsgi && localbody && sex) {
       console.log("date", typeof date);
       let expr = "";
@@ -136,7 +138,7 @@ export default function EditParticipant(props) {
           .then((res) => {
             if (res.status === 200) {
               alert("Registration Updated");
-             
+              props.setOpen(false);
             } else {
               alert("Registration Failed");
             }
@@ -186,9 +188,8 @@ export default function EditParticipant(props) {
       aria-describedby="modal-modal-description"
     >
       <form onSubmit={handleSubmit}>
-      <Box sx={style}>
-        <ThemeProvider theme={theme}>
-         
+        <Box sx={style}>
+          <ThemeProvider theme={theme}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -380,16 +381,14 @@ export default function EditParticipant(props) {
             </Grid>
             <Button
               type="submit"
-              
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Update Details
             </Button>
-          
-        </ThemeProvider>
-      </Box>
+          </ThemeProvider>
+        </Box>
       </form>
     </Modal>
   );
