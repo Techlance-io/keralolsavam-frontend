@@ -8,11 +8,12 @@ import {
 } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import React from "react";
+import dayjs from "dayjs";
+import React, { useState } from "react";
 import styles from "./EventDetail.module.css";
 
 function EventDetail() {
-  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
+  const [value, setValue] = useState(dayjs("2014-08-18T21:11:54"));
 
   const handleChange = (newValue) => {
     setValue(newValue);
