@@ -46,7 +46,11 @@ function EventStatus() {
   const { id } = router.query;
   const [event, setEvent] = useState("");
   const [users, setUsers] = useState([]);
-  async function getEvent(id) {
+  useEffect(() => {
+    if(id)
+    getEvent();
+  }, [id]);
+  async function getEvent() {
     await axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
       .then((res) => {
@@ -54,9 +58,7 @@ function EventStatus() {
         setUsers(res.data.users);
       });
   }
-  useEffect(() => {
-    getEvent(id);
-  }, [id]);
+
   console.log(event);
   console.log(users);
   return (
