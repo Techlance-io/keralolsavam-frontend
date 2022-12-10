@@ -93,7 +93,7 @@ function Results() {
               })}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
