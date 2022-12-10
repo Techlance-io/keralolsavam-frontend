@@ -1,4 +1,5 @@
 import {
+  Autocomplete,
   FormControl,
   FormControlLabel,
   Radio,
@@ -11,13 +12,22 @@ import React from "react";
 import styles from "./EventDetail.module.css";
 
 function EventDetail() {
+  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.rows}>
         <div className={styles.sub_heading}>Date And Time</div>
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker renderInput={(params) => <TextField {...params} />} />
+          <DateTimePicker
+            value={value}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
         </LocalizationProvider>
       </div>
       <div className={styles.rows}>
@@ -52,19 +62,43 @@ function EventDetail() {
       <div className={styles.rows}>
         <div className={styles.sub_heading}>1st</div>
         <div>
-          <TextField label="Enter Name"/>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={["one", "two", "three"]}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Enter Name" />
+            )}
+          />
         </div>
       </div>
       <div className={styles.rows}>
         <div className={styles.sub_heading}>2nd</div>
         <div>
-          <TextField label="Enter Name"/>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={["one", "two", "three"]}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Enter Name" />
+            )}
+          />
         </div>
       </div>
       <div className={styles.rows}>
         <div className={styles.sub_heading}>3rd</div>
         <div>
-          <TextField label="Enter Name" />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={["one", "two", "three"]}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Enter Name" />
+            )}
+          />
         </div>
       </div>
       <div className={styles.register_btn}>Save</div>
