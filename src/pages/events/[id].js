@@ -6,6 +6,7 @@ import {
   Select,
   ThemeProvider,
 } from "@mui/material";
+import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -43,15 +44,21 @@ function EventStatus() {
   });
   const router = useRouter();
   const { id } = router.query;
-  const [event, setEvent] = useState(eventsData[id - 1]);
-  function getEvent() {
-    const data = eventsData[id - 1];
-    setEvent(data);
+  const [event, setEvent] = useState("");
+  const [users, setUsers] = useState([]);
+  async function getEvent(id) {
+    await axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
+      .then((res) => {
+        setEvent(res.data.event);
+        setUsers(res.data.users);
+      });
   }
   useEffect(() => {
-    getEvent();
+    getEvent(id);
   }, [id]);
   console.log(event);
+  console.log(users);
   return (
     <>
       <CustomTitle title="Events" />
