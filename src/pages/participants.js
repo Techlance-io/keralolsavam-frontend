@@ -56,7 +56,7 @@ function Participants() {
   };
 
   let columns = [
-    { field: "sl", headerName: "sl no.", width: 70 },
+    { field: "sl", headerName: "SI No:", width: 70 },
     { field: "name", headerName: "Name", width: 200 },
     { field: "sex", headerName: "Gender", width: 150 },
     { field: "phone", headerName: "Phone", width: 200 },
