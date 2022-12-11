@@ -9,8 +9,6 @@
   padding: 5rem;
   padding-top: 8rem;
   padding-bottom: 5rem;
-  background: url("../../../assets/jpg/bg.jpg") no-repeat;
-  background-size: cover;
 }
 .header {
   display: flex;
