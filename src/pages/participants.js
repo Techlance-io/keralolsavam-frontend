@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "../styles/Participant.module.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { Loader, Navbar } from "../components";
 import CustomTitle from "../utils/customTitle";
@@ -120,7 +120,13 @@ function Participants() {
         <div className={styles.heading} style={{ marginBottom: "7px" }}>
           Participants
         </div>
+        <div className={styles.heading_1}>
+        <Typography variant="h6" gutterBottom color="error">
+            * Reload The Page After Editing Each Participant.
+          </Typography>
+        </div>
         <div className={styles.content}>
+         
           <div style={{ display: "flex", height: "100%", flexGrow: 1 }}>
             <div style={{ flexGrow: 1 }}>
               <DataGrid

@@ -21,6 +21,15 @@
 
   color: #ec8805;
 }
+.heading_1 {
+  text-align: center;
+  font-weight: 600;
+  padding-top: 2rem;
+  font-size: 32px;
+  line-height: 39px;
+
+  color: #ec8805;
+}
 .rows {
   display: flex;
 
