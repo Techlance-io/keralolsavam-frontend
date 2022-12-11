@@ -22,3 +22,11 @@ Backend : https://keralolsavam-backend-production.up.railway.app/
 
 ### Set 4
 Backend (in Testing) : https://keralolsavam-backend.mec.ac.in/
+
+## Repositories
+
+Frontend : https://github.com/jaison080/keralolsavam-frontend
+
+Backend : https://github.com/jaison080/keralolsavam-backend
+
+Railway Backend : https://github.com/jaison080/keralolsavam-backend-test
