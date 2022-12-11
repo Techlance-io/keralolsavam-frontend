@@ -145,7 +145,7 @@ function Scoreboard() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
