@@ -10,7 +10,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../../utils/firebase";
 import Footer from "../../../components/Footer/Footer";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { ClipLoader } from "react-spinners";
 
 const columns = [
@@ -119,28 +119,35 @@ function MyDataGrid() {
 
   return (
     <div>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        onProcessRowUpdateError={(params) => console.log(params)}
-        processRowUpdate={(newData, oldData) => {
-          onUpdate(newData, oldData);
-          return newData;
-        }}
-        autoHeight
-        editMode="row"
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-      <div onClick={handleSave} className={styles.register_btn_1}>{
-      (loading) ? (<ClipLoader color="#ffffff" />) : ("Save")
-      }</div>
+      <div className={styles.heading_1}>
+        <Typography variant="h6" gutterBottom color="error">
+          * Edit the required details and then press Enter or Click(Tap) on another row and the press the Save Button to save the changes.
+        </Typography>
+      </div>
+      <div>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          onProcessRowUpdateError={(params) => console.log(params)}
+          processRowUpdate={(newData, oldData) => {
+            onUpdate(newData, oldData);
+            return newData;
+          }}
+          autoHeight
+          editMode="row"
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+        <div onClick={handleSave} className={styles.register_btn_1}>
+          {loading ? <ClipLoader color="#ffffff" /> : "Save"}
+        </div>
+      </div>
     </div>
   );
 }
 
 function Event() {
   const auth = getAuth(app);
-  const router=useRouter();
+  const router = useRouter();
   const [status, setStatus] = useState(true);
   function handleStatus() {
     setStatus(true);
