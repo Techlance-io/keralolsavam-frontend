@@ -4,7 +4,8 @@ import AuthProvider from "../context/AuthContext";
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <div className="main_container"> <Component {...pageProps} /></div>
+     
     </AuthProvider>
   );
 }
