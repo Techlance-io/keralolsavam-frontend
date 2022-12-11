@@ -11,8 +11,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScaleLoader } from "react-spinners";
+import { AuthContext } from "../../context/AuthContext";
 import styles from "./EventDetail.module.css";
 
 function EventDetail() {
@@ -25,6 +26,7 @@ function EventDetail() {
   const [second, setSecond] = useState();
   const [third, setThird] = useState();
   const [event, setEvent] = useState();
+  const {authToken}=useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const { id } = router.query;
   useEffect(() => {
@@ -52,7 +54,10 @@ function EventDetail() {
       winners: winners_list,
     };
     await axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data)
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data,{
+        headers: {
+          "x-auth-token": authToken,
+      }})
       .then((res) => {
         console.log(res.data);
         alert("Event Updated Successfully");

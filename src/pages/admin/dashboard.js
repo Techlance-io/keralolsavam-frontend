@@ -9,15 +9,22 @@ import axios from "axios";
 import { AddOfficialModal, Loader, Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
 import Footer from "../../components/Footer/Footer";
+import { AuthContext } from "../../context/AuthContext";
 
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
   const [officials, setOfficials] = React.useState([]);
   const [variable, setVariable] = React.useState();
   const [officialData, setOfficialdata] = React.useState({});
+  const {authToken} = React.useContext(AuthContext);
   const [loader, setLoader] = React.useState(true);
   const Getofficials = async () => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`);
+    if (!authToken) return;
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`,{
+      headers: {
+        "x-auth-token": authToken,
+      },
+    });
     console.log(res.data);
     setOfficials(res.data);
     setLoader(false);
@@ -25,7 +32,7 @@ function AdminDashboard() {
 
   React.useEffect(() => {
     Getofficials();
-  }, [variable]);
+  }, [variable,authToken]);
   const router = useRouter();
   const auth = getAuth(app);
   async function signOutOfGoogle() {
