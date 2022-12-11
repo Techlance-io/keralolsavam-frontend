@@ -18,6 +18,8 @@ function Scoreboard() {
   const [tabs, setTabs] = useState("user");
   const [loading, setLoading] = useState(true);
   const [score, setScore] = useState([]);
+  const [localBodyScore, setLocalBodyScore] = useState([]);
+  const [lsgiScore, setLsgiScore] = useState([]);
   const handleUser = () => {
     setTabs("user");
   };
@@ -34,8 +36,22 @@ function Scoreboard() {
       setLoading(false);
     });
   }
+  async function getLocalBodyScore() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score/localbody`).then((res) => {
+      console.log(res.data);
+      setLocalBodyScore(res.data);
+    });
+  }
+  async function getLsgiScore() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score/lsgi`).then((res) => {
+      console.log(res.data);
+      setLsgiScore(res.data);
+    });
+  }
   useEffect(() => {
     getScore();
+    getLocalBodyScore();
+    getLsgiScore();
   }, []);
 
   if (loading) {
@@ -131,13 +147,19 @@ function Scoreboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className={styles.table_body_1}>101</td>
-                    <td className={styles.table_body}>Jaison Dennis</td>
-                    <td className={styles.table_body_1}>Angamaly</td>
-                    <td className={styles.table_body_1}>Muncipality</td>
-                    <td className={styles.table_body}>80</td>
-                  </tr>
+                  {
+                    localBodyScore.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td className={styles.table_body_1}>{index + 1}</td>
+                          <td className={styles.table_body}>{item.name}</td>
+                          <td className={styles.table_body_1}>{item.sports}</td>
+                          <td className={styles.table_body_1}>{item.arts}</td>
+                          <td className={styles.table_body}>{item.total}</td>
+                        </tr>
+                      );
+                    })
+                  }
                 </tbody>
               </table>
             )}
@@ -153,13 +175,19 @@ function Scoreboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className={styles.table_body_1}>101</td>
-                    <td className={styles.table_body}>Jaison Dennis</td>
-                    <td className={styles.table_body_1}>Angamaly</td>
-                    <td className={styles.table_body_1}>Muncipality</td>
-                    <td className={styles.table_body}>80</td>
-                  </tr>
+                  {
+                    lsgiScore.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td className={styles.table_body_1}>{index + 1}</td>
+                          <td className={styles.table_body}>{item.name}</td>
+                          <td className={styles.table_body_1}>{item.sports_score}</td>
+                          <td className={styles.table_body_1}>{item.arts_score}</td>
+                          <td className={styles.table_body}>{item.total_score}</td>
+                        </tr>
+                      );
+                    })
+                  }
                 </tbody>
               </table>
             )}
