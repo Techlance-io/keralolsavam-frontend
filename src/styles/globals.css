@@ -5,9 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
-}
-.main_container {
-  background: url("../assets/jpg/bg.jpg") no-repeat;
+  background: url("https://i.postimg.cc/K8FYjKfh/bg.jpg") no-repeat;
   background-size: cover;
 }
 body::-webkit-scrollbar {
