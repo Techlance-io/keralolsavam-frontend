@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Navbar } from "../components";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Loader, Navbar } from "../components";
 import Footer from "../components/Footer/Footer";
 import styles from "../styles/Scoreboard.module.css";
 import CustomTitle from "../utils/customTitle";
@@ -15,6 +16,8 @@ import CustomTitle from "../utils/customTitle";
 
 function Scoreboard() {
   const [tabs, setTabs] = useState("user");
+  const [loading, setLoading] = useState(true);
+  const [score, setScore] = useState([]);
   const handleUser = () => {
     setTabs("user");
   };
@@ -24,6 +27,20 @@ function Scoreboard() {
   const handleLsgi = () => {
     setTabs("lsgi");
   };
+  async function getScore() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score`).then((res) => {
+      console.log(res.data);
+      setScore(res.data);
+      setLoading(false);
+    });
+  }
+  useEffect(() => {
+    getScore();
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
       <CustomTitle title="Scoreboard" />
@@ -88,13 +105,17 @@ function Scoreboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className={styles.table_body_1}>101</td>
-                    <td className={styles.table_body}>Jaison Dennis</td>
-                    <td className={styles.table_body_1}>Angamaly</td>
-                    <td className={styles.table_body_1}>Muncipality</td>
-                    <td className={styles.table_body}>80</td>
-                  </tr>
+                  {score.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td className={styles.table_body_1}>{index + 1}</td>
+                        <td className={styles.table_body}>{item.player.participant_name}</td>
+                        <td className={styles.table_body_1}>{item.sports_Score}</td>
+                        <td className={styles.table_body_1}>{item.arts_score}</td>
+                        <td className={styles.table_body}>{item.total}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             )}
