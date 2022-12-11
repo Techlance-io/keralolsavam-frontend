@@ -66,6 +66,11 @@
   .about_right {
     min-width: 85vw;
   }
+  .about_container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
 }
 .notification_dot {
   height: 11px;
