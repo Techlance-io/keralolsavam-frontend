@@ -12,6 +12,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { ScaleLoader } from "react-spinners";
 import styles from "./EventDetail.module.css";
 
 function EventDetail() {
@@ -19,6 +20,7 @@ function EventDetail() {
   const [time, setTime] = useState(dayjs("2022-12-10T10:11:54"));
   const [status, setStatus] = useState("Event About To Start");
   const [winners, setWinners] = useState([]);
+  const [loader, setLoader] = useState(true);
   const [first, setFirst] = useState();
   const [second, setSecond] = useState();
   const [third, setThird] = useState();
@@ -34,7 +36,12 @@ function EventDetail() {
       .then((res) => {
         setEvent(res.data.event);
         setUsers(res.data.users);
-
+        setTime(dayjs(res.data.event.time));
+        setStatus(res.data.event.status);
+        setFirst(res.data.event.winners[0]);
+        setSecond(res.data.event.winners[1]);
+        setThird(res.data.event.winners[2]);
+        setLoader(false);
       });
   }
   async function handleSubmit() {
@@ -49,8 +56,15 @@ function EventDetail() {
       .then((res) => {
         console.log(res.data);
         alert("Event Updated Successfully");
+        window.location.reload();
       });
   }
+  if (loader)
+    return (
+      <div className={styles.container}>
+        <ScaleLoader color="#622308" />
+      </div>
+    );
   return (
     <div className={styles.container}>
       <div className={styles.rows}>
@@ -105,7 +119,7 @@ function EventDetail() {
             id="combo-box-demo"
             options={users}
             getOptionLabel={(option) => option?.name}
-            value={first}
+            value={first || { name: "" }}
             onChange={(e, newValue) => setFirst(newValue)}
             sx={{ width: 300 }}
             renderInput={(params) => (
@@ -120,7 +134,7 @@ function EventDetail() {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            value={second}
+            value={second || { name: "" }}
             onChange={(e, newValue) => setSecond(newValue)}
             options={users}
             getOptionLabel={(option) => option?.name}
@@ -136,7 +150,7 @@ function EventDetail() {
         <div>
           <Autocomplete
             disablePortal
-            value={third}
+            value={third || { name: "" }}
             getOptionLabel={(option) => option?.name}
             onChange={(e, newValue) => setThird(newValue)}
             id="combo-box-demo"
