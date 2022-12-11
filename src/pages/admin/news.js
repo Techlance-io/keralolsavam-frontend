@@ -9,8 +9,10 @@ import CustomTitle from "../../utils/customTitle";
 import Footer from "../../components/Footer/Footer";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../utils/firebase";
+import { useRouter } from "next/router";
 
 function News() {
+  const router=useRouter();
   const [news, setNews] = useState();
   const [variable, setVariable] = useState();
   const [title, setTitle] = useState("");

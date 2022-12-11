@@ -11,8 +11,10 @@ import Footer from "../../components/Footer/Footer";
 import EditNotificationsModal from "../../components/EditNotificationsModal/EditNotificationsModal";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../utils/firebase";
+import { useRouter } from "next/router";
 
 function Notifications() {
+  const router=useRouter();
   const auth=getAuth(app)
   const [notifications, setNotifications] = useState();
   const [variable, setVariable] = useState();

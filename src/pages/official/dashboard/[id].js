@@ -133,6 +133,7 @@ function MyDataGrid() {
 
 function Event() {
   const auth = getAuth(app);
+  const router=useRouter();
   const [status, setStatus] = useState(true);
   function handleStatus() {
     setStatus(true);
