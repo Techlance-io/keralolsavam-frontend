@@ -33,52 +33,80 @@ import swimming from "../assets/png/swimming.png";
 import swimminggirls from "../assets/png/swimminggirls.png";
 import tugofwar from "../assets/png/tugofwar.png";
 import volleyball from "../assets/png/volleyball.png";
+import bharatanatyam from "../assets/png/bharatanatyam.png";
+import deshabhaktiganam from "../assets/png/deshabhaktiganam.png";
+import flute from "../assets/png/flute.png";
+import guitar from "../assets/png/guitar.png";
+import harmonium from "../assets/png/harmonium.png";
+import karnataka from "../assets/png/karnataka.png";
+import kathak from "../assets/png/kathak.png";
+import kavithaalapanam from "../assets/png/kavithaalapanam.png";
+import kuchipudi from "../assets/png/kuchipudi.png";
+import lalithasong from "../assets/png/lalithasong.png";
+import lalithasongmen from "../assets/png/lalithasongmen.png";
+import manipuri from "../assets/png/manipuri.png";
+import mapilapaatu from "../assets/png/mapilapaatu.png";
+import mridangam from "../assets/png/mridangam.png";
+import nadodidance from "../assets/png/naadodidance.png";
+import nadodipaatu from "../assets/png/nadodipaatu.png";
+import odissi from "../assets/png/odissi.png";
+import prasangam from "../assets/png/prasangam.png";
+import samgaganam from "../assets/png/samgaganam.png";
+import sithar from "../assets/png/sithar.jpeg";
+import tabla from "../assets/png/tabla.png";
+import vayapattu from "../assets/png/vayapattu.png";
+import veena from "../assets/png/veena.png";
 
 const eventsData = [
   {
     id: 1,
 
     name: "വായ്പ്പാട്ട് (ക്ലാസ്സിക്കൽ-ഹിന്ദുസ്ഥാനി)",
-    image: music,
+    image: vayapattu,
     isarts: true,
     results: ["Jaison Thomas", "Jaison Dennis", "Mayon Thomas"],
   },
-  { id: 2, name: "കർണാടക സംഗീതം", image: music, isarts: true },
-  { id: 3, name: "ഭരതനാട്യം", image: dance1, isarts: true },
-  { id: 4, name: "കുച്ചുപ്പുടി", image: dance2, isarts: true },
-  { id: 5, name: "മണിപ്പൂരി", image: dance3, isarts: true },
-  { id: 6, name: "കഥക്", image: dance1, isarts: true },
-  { id: 7, name: "ഒഡീസ്സി", image: dance2, isarts: true },
-  { id: 8, name: "സിത്താർ", image: music, isarts: true },
-  { id: 9, name: "ഫ്ലൂട്ട്", image: music, isarts: true },
-  { id: 10, name: "വീണ", image: music, isarts: true },
-  { id: 11, name: "തബല", image: music, isarts: true },
-  { id: 12, name: "മൃദംഗം", image: music, isarts: true },
-  { id: 13, name: "ഹാർമോണിയം(ലൈറ്റ്)", image: music, isarts: true },
-  { id: 14, name: "ഗിത്താർ", image: dance, music: true },
-  { id: 15, name: "നാടോടിപ്പാട്ട്", image: music, isarts: true },
-  { id: 16, name: "നാടോടി നൃത്തം", image: dance3, isarts: true },
-  { id: 17, name: "ഏകാങ്ക നാടകം(ഹിന്ദി/ഇംഗ്ലീഷ്)", image: dance3, isarts: true },
-  { id: 18, name: "പ്രസംഗം(ഹിന്ദി/ഇംഗ്ലീഷ്)", image: dance3, isarts: true },
+  { id: 2, name: "കർണാടക സംഗീതം", image: karnataka, isarts: true },
+  { id: 3, name: "ഭരതനാട്യം", image: bharatanatyam, isarts: true },
+  { id: 4, name: "കുച്ചുപ്പുടി", image: kuchipudi, isarts: true },
+  { id: 5, name: "മണിപ്പൂരി", image: manipuri, isarts: true },
+  { id: 6, name: "കഥക്", image: kathak, isarts: true },
+  { id: 7, name: "ഒഡീസ്സി", image: odissi, isarts: true },
+  { id: 8, name: "സിത്താർ", image: sithar, isarts: true },
+  { id: 9, name: "ഫ്ലൂട്ട്", image: flute, isarts: true },
+  { id: 10, name: "വീണ", image: veena, isarts: true },
+  { id: 11, name: "തബല", image: tabla, isarts: true },
+  { id: 12, name: "മൃദംഗം", image: mridangam, isarts: true },
+  { id: 13, name: "ഹാർമോണിയം(ലൈറ്റ്)", image: harmonium, isarts: true },
+  { id: 14, name: "ഗിത്താർ", image: guitar, music: true },
+  { id: 15, name: "നാടോടിപ്പാട്ട്", image: nadodipaatu, isarts: true },
+  { id: 16, name: "നാടോടി നൃത്തം", image: nadodidance, isarts: true },
+  {
+    id: 17,
+    name: "ഏകാങ്ക നാടകം(ഹിന്ദി/ഇംഗ്ലീഷ്)",
+    image: dance3,
+    isarts: true,
+  },
+  { id: 18, name: "പ്രസംഗം(ഹിന്ദി/ഇംഗ്ലീഷ്)", image: prasangam, isarts: true },
   {
     id: 19,
     name: "ലളിത ഗാനം(വനിത)",
     gender: "Female",
-    image: music,
+    image: lalithasong,
     isarts: true,
   },
   {
     id: 20,
     name: "ലളിത ഗാനം(പുരുഷൻ)",
     gender: "Male",
-    image: music,
+    image: lalithasongmen,
     isarts: true,
   },
-  { id: 21, name: "മാപ്പിളപ്പാട്ട്", image: music, isarts: true },
-  { id: 22, name: "കവിതാലാപനം", image: music, isarts: true },
-  { id: 23, name: "സംഘഗാനം", image: music, isarts: true },
-  { id: 24, name: "ദേശഭക്തിഗാനം", image: music, isarts: true },
-  { id: 25, name: "നാടോടി നൃത്തം(സിംഗിൾ)", image: dance1, isarts: true },
+  { id: 21, name: "മാപ്പിളപ്പാട്ട്", image: mapilapaatu, isarts: true },
+  { id: 22, name: "കവിതാലാപനം", image: kavithaalapanam, isarts: true },
+  { id: 23, name: "സംഘഗാനം", image: samgaganam, isarts: true },
+  { id: 24, name: "ദേശഭക്തിഗാനം", image: deshabhaktiganam, isarts: true },
+  { id: 25, name: "നാടോടി നൃത്തം(സിംഗിൾ)", image: nadodidance, isarts: true },
   { id: 26, name: "കേരള നടനം", image: dance3, isarts: true },
   { id: 27, name: "കഥകളി(ഒരു വേഷം മാത്രം)", image: dance, isarts: true },
   { id: 28, name: "ഓട്ടൻ തുള്ളൽ", image: dance2, isarts: true },
