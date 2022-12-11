@@ -1,15 +1,16 @@
 import axios from "axios";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./About.module.css";
 function About() {
   const [news, setNews] = useState([]);
-  async function getNews() {
-    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
-      setNews(res.data.news);
+  async function getNotifications() {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/notifications`).then((res) => {
+      setNews(res.data);
     });
   }
   useEffect(() => {
-    getNews();
+    getNotifications();
   }, []);
   return (
     <div className={styles.about_container}>
@@ -46,9 +47,9 @@ function About() {
             return (
               <div className={styles.notification}>
                 <div className={styles.notification_dot}></div>
-                <div className={styles.ticker_item} key={news.id}>
+                <Link href={news.link} passHref={true} target="_blank"><div className={styles.ticker_item} key={news.id}>
                   {news.title}
-                </div>
+                </div></Link>
               </div>
             );
           })}

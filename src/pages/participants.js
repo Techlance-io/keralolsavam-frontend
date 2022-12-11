@@ -5,7 +5,7 @@ import styles from "../styles/Participant.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, TextField } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
-import { Navbar } from "../components";
+import { Loader, Navbar } from "../components";
 import CustomTitle from "../utils/customTitle";
 import Footer from "../components/Footer/Footer";
 import EditParticipant from "../components/EditParticipants/EditParticipant";
@@ -107,6 +107,7 @@ function Participants() {
 
         setParticipants(res.data.users);
         setTotalPages(res.data.pages);
+
         console.log(res.data.pages);
         console.log(res.data.users);
       });

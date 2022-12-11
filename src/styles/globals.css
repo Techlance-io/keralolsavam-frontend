@@ -5,6 +5,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Montserrat", sans-serif;
+  background: url("../assets/jpg/bg.jpg") no-repeat;
+  background-size: cover;
 }
 
 a {

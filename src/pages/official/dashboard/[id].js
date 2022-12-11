@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { DataGrid, selectedGridRowsCountSelector } from "@mui/x-data-grid";
-import { Navbar } from "../../../components";
+import { Loader, Navbar } from "../../../components";
 import CustomTitle from "../../../utils/customTitle";
 import styles from "../../../styles/official/dashboard/Dashboard.module.css";
 import EventDetail from "../../../components/EventDetail/EventDetail";
@@ -48,7 +48,7 @@ function MyDataGrid() {
   const [data, setData] = React.useState([]);
   const [rows, setRows] = useState([]);
   const { authToken } = useContext(AuthContext);
-  
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -74,6 +74,7 @@ function MyDataGrid() {
   useEffect(() => {
     getParticipants();
   }, [authToken, id]);
+
   const gridRef = React.useRef(null);
   const onUpdate = (newData, oldData) => {
     if (JSON.stringify(newData) != JSON.stringify(oldData)) {
@@ -110,6 +111,7 @@ function MyDataGrid() {
   useEffect(() => {
     console.log(data);
   }, [data]);
+
   return (
     <div>
       <DataGrid
@@ -183,7 +185,7 @@ function Event() {
         </div>
         <div>{status ? <EventDetail /> : <MyDataGrid />}</div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

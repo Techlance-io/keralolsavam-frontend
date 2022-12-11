@@ -31,7 +31,7 @@ function newsCard({ data, setNews, news, index, modalOpen, setData }) {
   console.log(index);
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card_1}>
       <div className={styles.title}>{data.title}</div>
       <div className={styles.buttons}>
         <Button variant="contained" color="secondary" onClick={editNews}>

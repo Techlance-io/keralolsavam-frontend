@@ -2,7 +2,7 @@ import { getImageListItemBarUtilityClass } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Navbar } from "../../components";
+import { Loader, Navbar } from "../../components";
 import EventCard from "../../components/EventCard/EventCard";
 import Footer from "../../components/Footer/Footer";
 import { eventsData } from "../../data";
@@ -13,6 +13,7 @@ function Results() {
   const router = useRouter();
   const [sports, setSports] = useState(true);
   const [events, setEvents] = useState([]);
+  const [loader, setLoader] = useState(true);
   const handleChangeArts = () => {
     setSports(false);
   };
@@ -28,11 +29,13 @@ function Results() {
   async function getEvents() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`).then((res) => {
       setEvents(res.data);
+      setLoader(false);
     });
   }
   useEffect(() => {
     getEvents();
   }, []);
+  if (loader) return <Loader />;
   return (
     <>
       <CustomTitle title="Results" />

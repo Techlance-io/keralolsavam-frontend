@@ -6,19 +6,21 @@ import styles from "../../styles/admin/Dashboard.module.css";
 import Image from "next/image";
 import { Autocomplete, Button, TextField } from "@mui/material";
 import axios from "axios";
-import { AddOfficialModal, Navbar } from "../../components";
+import { AddOfficialModal, Loader, Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
 import Footer from "../../components/Footer/Footer";
 
 function AdminDashboard() {
   const [omOpen, setOmOpen] = React.useState(false);
   const [officials, setOfficials] = React.useState([]);
-  const [variable,setVariable]=React.useState();
+  const [variable, setVariable] = React.useState();
   const [officialData, setOfficialdata] = React.useState({});
+  const [loader, setLoader] = React.useState(true);
   const Getofficials = async () => {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/officials`);
     console.log(res.data);
     setOfficials(res.data);
+    setLoader(false);
   };
 
   React.useEffect(() => {
@@ -33,6 +35,7 @@ function AdminDashboard() {
       })
       .catch((error) => {});
   }
+  if (loader) return <Loader />;
   return (
     <>
       <CustomTitle title="Admin Dashboard" />
@@ -57,6 +60,14 @@ function AdminDashboard() {
         >
           Add / Modify News
         </div>
+        <div
+          className={styles.register_btn_3}
+          onClick={() => {
+            router.push("/admin/notifications");
+          }}
+        >
+          Add / Modify Notifications
+        </div>
 
         <div className={styles.subheading}>Permissions</div>
         <div
@@ -68,42 +79,47 @@ function AdminDashboard() {
           Add Official
         </div>
         <div className={styles.cards}>
-          {officials.map((official) => {
+          {officials.map((official, index) => {
             return (
-              <>
-                <div className={styles.card}>
-                  <div className={styles.official_name}>{official.name}</div>
-                  <div className={styles.official_email}>{official.email}</div>
-                  <div className={styles.flexible}></div>
-                  <div className={styles.official_alloted}>Events Alloted</div>
+              <div className={styles.card} key={index}>
+                <div className={styles.official_name}>{official.name}</div>
+                <div className={styles.official_email}>{official.email}</div>
+                <div className={styles.flexible}></div>
+                <div className={styles.official_alloted}>Events Alloted</div>
 
-                  {official.events.map((event) => {
-                    return (
-                      <>
-                        <div className={styles.event_name}>{event.name}</div>
-                      </>
-                    );
-                  })}
+                {official.events.map((event, index1) => {
+                  return (
+                    <>
+                      <div key={index1} className={styles.event_name}>
+                        {event.name}
+                      </div>
+                    </>
+                  );
+                })}
 
-                  <div>
-                    <Button
-                      onClick={() => {
-                        setOfficialdata(official);
-                        setOmOpen(true);
-                      }}
-                      variant="contained"
-                      color="secondary"
-                    >
-                      Edit
-                    </Button>
-                  </div>
+                <div>
+                  <Button
+                    onClick={() => {
+                      setOfficialdata(official);
+                      setOmOpen(true);
+                    }}
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Edit
+                  </Button>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
       </div>
-      <AddOfficialModal open={omOpen} setOpen={setOmOpen} data={officialData} setVariable={setVariable}/>
+      <AddOfficialModal
+        open={omOpen}
+        setOpen={setOmOpen}
+        data={officialData}
+        setVariable={setVariable}
+      />
       <Footer />
     </>
   );

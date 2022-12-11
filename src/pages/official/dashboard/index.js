@@ -6,7 +6,7 @@ import React, { useContext, useEffect } from "react";
 import app from "../../../utils/firebase";
 import styles from "../../../styles/official/dashboard/Home.module.css";
 import Image from "next/image";
-import { EventCard, Navbar } from "../../../components";
+import { EventCard, Loader, Navbar } from "../../../components";
 import { eventsData } from "../../../data";
 import CustomTitle from "../../../utils/customTitle";
 import Footer from "../../../components/Footer/Footer";
@@ -16,6 +16,7 @@ function OfficialDashboard() {
   const auth = getAuth(app);
   const [events, setEvents] = React.useState([]);
   const [user, setUser] = React.useState(null);
+  const [loader, setLoader] = React.useState(true);
   const { authToken } = useContext(AuthContext);
   const getImage = (name) => {
     // find name proeprty in events data array:
@@ -44,12 +45,14 @@ function OfficialDashboard() {
     console.log(response.data);
     setUser(response.data);
     setEvents(response.data.events);
+    setLoader(false);
   };
 
   useEffect(() => {
     getEvent();
   }, [authToken]);
   console.log(events);
+  if (loader) return <Loader />;
   return (
     <>
       <CustomTitle title="Official Dashboard" />
@@ -83,7 +86,7 @@ function OfficialDashboard() {
           })}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

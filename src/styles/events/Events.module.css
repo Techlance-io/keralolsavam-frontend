@@ -80,6 +80,7 @@
 }
 .table {
   width: 100%;
+  border-collapse: collapse;
 }
 .table_heading {
   background: #ffcf00;
@@ -91,8 +92,7 @@
   color: #000000;
 }
 .table_body {
-  background: #ffffff;
-  border: 1px solid #ffee88;
+  border: 2px solid #ffd900;
   padding: 1rem;
   text-align: center;
 }
@@ -106,8 +106,8 @@
   color: #000000;
 }
 .table_body_1 {
-  background: #ffffff;
-  border: 1px solid #ffee88;
+  border: 2px solid #ffd900;
+
   padding: 1rem;
   text-align: center;
 }
