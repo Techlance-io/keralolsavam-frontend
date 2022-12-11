@@ -124,9 +124,9 @@ export default function EditParticipant(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     // console.log("user", user);
-    console.log(props.participant);
+    //console.log(props.participant);
     if (name && address && place && lsgi && localbody && sex) {
-      console.log("date", typeof date);
+      //console.log("date", typeof date);
       let expr = "";
       // check regex match :
       if (phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)) {
@@ -144,7 +144,7 @@ export default function EditParticipant(props) {
             }
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
           });
       } else {
         alert("Please enter a valid Indian phone number");

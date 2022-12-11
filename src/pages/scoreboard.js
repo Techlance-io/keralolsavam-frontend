@@ -31,20 +31,20 @@ function Scoreboard() {
   };
   async function getScore() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score`).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setScore(res.data);
       setLoading(false);
     });
   }
   async function getLocalBodyScore() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score/localbody`).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setLocalBodyScore(res.data);
     });
   }
   async function getLsgiScore() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score/lsgi`).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setLsgiScore(res.data);
     });
   }

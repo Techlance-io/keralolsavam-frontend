@@ -57,7 +57,7 @@ function MyDataGrid() {
 
   const getParticipants = async () => {
     if (!authToken) return;
-    console.log(id);
+    //console.log(id);
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/officer/participants/${id}`, {
         headers: {
@@ -65,7 +65,7 @@ function MyDataGrid() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         res.data.forEach((user, index) => {
           user.id = user._id;
           delete user._id;
@@ -82,7 +82,7 @@ function MyDataGrid() {
   const onUpdate = (newData, oldData) => {
     if (JSON.stringify(newData) != JSON.stringify(oldData)) {
       setData([newData, ...data]);
-      console.log(newData, oldData);
+      //console.log(newData, oldData);
     }
   };
   function handleSave() {
@@ -105,7 +105,7 @@ function MyDataGrid() {
       )
       .then((response) => {
         // Handle success
-        console.log(response);
+        //console.log(response);
         setLoading(false);
       })
       .catch((error) => {
@@ -114,7 +114,7 @@ function MyDataGrid() {
   }
 
   useEffect(() => {
-    console.log(data);
+    //console.log(data);
   }, [data]);
 
   return (
@@ -128,7 +128,7 @@ function MyDataGrid() {
         <DataGrid
           rows={rows}
           columns={columns}
-          onProcessRowUpdateError={(params) => console.log(params)}
+          // onProcessRowUpdateError={(params) => console.log(params)}
           processRowUpdate={(newData, oldData) => {
             onUpdate(newData, oldData);
             return newData;

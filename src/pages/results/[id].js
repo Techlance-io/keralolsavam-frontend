@@ -74,7 +74,7 @@ function EventResults() {
   useEffect(() => {
     getEvents();
   }, []);
-  console.log(event);
+  //console.log(event);
   return (
     <>
       <CustomTitle title="Results" />

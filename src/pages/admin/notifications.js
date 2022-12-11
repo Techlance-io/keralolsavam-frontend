@@ -38,7 +38,7 @@ function Notifications() {
       .then((res) => {
         setNotifications(res.data);
         setLoader(false);
-        console.log(res);
+        //console.log(res);
       });
   }
   async function postNotifications() {
@@ -48,7 +48,7 @@ function Notifications() {
         link: link,
       })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         setTitle("");
         setLink("");
         setVariable(res.data);

@@ -42,7 +42,7 @@ function OfficialDashboard() {
         },
       }
     );
-    console.log(response.data);
+    //console.log(response.data);
     setUser(response.data);
     setEvents(response.data.events);
     setLoader(false);
@@ -51,7 +51,7 @@ function OfficialDashboard() {
   useEffect(() => {
     getEvent();
   }, [authToken]);
-  console.log(events);
+  //console.log(events);
   if (loader) return <Loader />;
   return (
     <>

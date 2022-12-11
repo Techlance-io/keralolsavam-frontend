@@ -43,7 +43,7 @@ export default function EditNewsModal(props) {
         let arr = props.news;
         arr[props.data.index] = res.data;
         props.setNews([...arr]);
-        console.log(res.data);
+        //console.log(res.data);
         handleClose();
       });
   };

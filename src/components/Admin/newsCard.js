@@ -21,14 +21,14 @@ function newsCard({ data, setNews, news, index, modalOpen, setData }) {
     axios
       .delete(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`)
       .then((res) => {
-        console.log(index);
+        //console.log(index);
         let arr = news;
         arr.splice(index, 1);
-        console.log(arr, news);
+        //console.log(arr, news);
         setNews([...arr]);
       });
   };
-  console.log(index);
+  //console.log(index);
 
   return (
     <div className={styles.card_1}>

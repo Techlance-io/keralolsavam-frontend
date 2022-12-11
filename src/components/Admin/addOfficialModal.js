@@ -73,14 +73,14 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
   const getList = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/events`);
-      console.log(res.data);
+      //console.log(res.data);
       let arr = res.data;
       setEvents(res.data);
       // store name property of events array to another string array:
       let strArr = arr.map((item) => item.name);
       setEventStr(strArr);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -94,7 +94,7 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
     if (open && data?.email) {
       setOpen(false);
       setOpen(true);
-      console.log(selectedEvents);
+      //console.log(selectedEvents);
     }
   }, [selectedEvents, open]);
 
@@ -103,7 +103,7 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedEvents);
+    //console.log(selectedEvents);
     if (data.email) {
       let res = await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/officials/${data._id}`,
@@ -113,7 +113,7 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
           events: selectedEvents,
         }
       );
-      console.log(res.data);
+      //console.log(res.data);
       setOpen(false);
 
 
@@ -125,7 +125,7 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
       email: email,
       events: selectedEvents,
     });
-    console.log(res.data);
+    //console.log(res.data);
     setOpen(false);
 
     setVariable(res.data);

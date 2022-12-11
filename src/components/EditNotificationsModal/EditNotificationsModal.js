@@ -36,7 +36,7 @@ export default function EditNotificationsModal(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(props.data._id);
+    //console.log(props.data._id);
     axios
       .put(
         `${process.env.NEXT_PUBLIC_API_URL}/notifications/${props.data._id}`,
@@ -49,7 +49,7 @@ export default function EditNotificationsModal(props) {
         let arr = props.notifications;
         arr[props.data.index] = res.data;
         props.setNotifications([...arr]);
-        console.log(res.data);
+        //console.log(res.data);
         handleClose();
       });
   };

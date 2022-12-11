@@ -25,7 +25,7 @@ function AdminDashboard() {
         "x-auth-token": authToken,
       },
     });
-    console.log(res.data);
+    //console.log(res.data);
     setOfficials(res.data);
     setLoader(false);
   };

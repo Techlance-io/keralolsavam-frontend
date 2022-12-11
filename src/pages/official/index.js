@@ -33,11 +33,11 @@ function OfficialLogin() {
   async function signInWithGoogle() {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
+        //console.log(user);
         return result;
       })
       .catch((error) => {

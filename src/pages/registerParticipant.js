@@ -133,7 +133,7 @@ function RegisterParticipant() {
   };
   async function handleSubmit() {
     if (name && address && place && lsgi && localbody && sex) {
-      console.log("date", typeof date);
+      //console.log("date", typeof date);
       let expr = "";
       // check regex match :
       if (phone.match(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/)) {
@@ -148,7 +148,7 @@ function RegisterParticipant() {
             }
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
           });
       } else {
         alert("Please enter a valid Indian phone number");

@@ -108,8 +108,8 @@ function Participants() {
         setParticipants(res.data.users);
         setTotalPages(res.data.pages);
 
-        console.log(res.data.pages);
-        console.log(res.data.users);
+        //console.log(res.data.pages);
+        //console.log(res.data.users);
       });
   }, [page]);
   return (

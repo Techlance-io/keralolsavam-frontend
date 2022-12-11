@@ -50,7 +50,7 @@ function News() {
         title: title,
       })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         setTitle("");
         setVariable(res.data);
       });

@@ -59,7 +59,7 @@ function EventDetail() {
           "x-auth-token": authToken,
       }})
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         alert("Event Updated Successfully");
         window.location.reload();
       });

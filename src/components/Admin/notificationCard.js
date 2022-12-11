@@ -29,10 +29,10 @@ function notificationCard({
     axios
       .delete(`${process.env.NEXT_PUBLIC_API_URL}/notifications/${data._id}`)
       .then((res) => {
-        console.log(index);
+        //console.log(index);
         let arr = notifications;
         arr.splice(index, 1);
-        console.log(arr, notifications);
+        //console.log(arr, notifications);
         setNotifications([...arr]);
       });
   };
