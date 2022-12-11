@@ -10,6 +10,8 @@ import { AuthContext } from "../../../context/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
 import app from "../../../utils/firebase";
 import Footer from "../../../components/Footer/Footer";
+import { CircularProgress } from "@mui/material";
+import { ClipLoader } from "react-spinners";
 
 const columns = [
   {
@@ -46,6 +48,7 @@ const columns = [
 
 function MyDataGrid() {
   const [data, setData] = React.useState([]);
+  const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState([]);
   const { authToken } = useContext(AuthContext);
 
@@ -83,6 +86,7 @@ function MyDataGrid() {
     }
   };
   function handleSave() {
+    setLoading(true);
     // Get the updated data
 
     // const updatedData = gridRef.current.getRows();
@@ -102,6 +106,7 @@ function MyDataGrid() {
       .then((response) => {
         // Handle success
         console.log(response);
+        setLoading(false);
       })
       .catch((error) => {
         // Handle error
@@ -126,7 +131,9 @@ function MyDataGrid() {
         editMode="row"
         experimentalFeatures={{ newEditingApi: true }}
       />
-      <button onClick={handleSave}>Save</button>
+      <div onClick={handleSave} className={styles.register_btn_1}>{
+      (loading) ? (<ClipLoader color="#ffffff" />) : ("Save")
+      }</div>
     </div>
   );
 }
