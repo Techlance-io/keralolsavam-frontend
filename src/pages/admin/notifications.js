@@ -46,6 +46,10 @@ function Notifications() {
       .post(`${process.env.NEXT_PUBLIC_API_URL}/notifications`, {
         title: title,
         link: link,
+      },{
+        headers: {
+          "x-auth-token": authToken,
+        },
       })
       .then((res) => {
         //console.log(res);

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./official.module.css";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
 function newsCard({ data, setNews, news, index, modalOpen, setData }) {
+  const {authToken}=useContext(AuthContext);
   const editNews = () => {
     // axios
     //   .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`)
@@ -19,7 +21,12 @@ function newsCard({ data, setNews, news, index, modalOpen, setData }) {
 
   const deleteNews = () => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`)
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`,
+      {
+        headers: {
+          "x-auth-token": authToken,
+        },
+      })
       .then((res) => {
         //console.log(index);
         let arr = news;

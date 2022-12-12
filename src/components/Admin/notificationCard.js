@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./official.module.css";
 import { Button } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
+import { AuthContext } from "../../context/AuthContext";
 
 function notificationCard({
   data,
@@ -12,6 +13,7 @@ function notificationCard({
   modalOpen,
   setData,
 }) {
+  const {authToken}=useContext(AuthContext);
   const editNotifications = () => {
     // axios
     //   .put(`${process.env.NEXT_PUBLIC_API_URL}/news/${data._id}`)
@@ -27,7 +29,13 @@ function notificationCard({
 
   const deleteNotifications = () => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_API_URL}/notifications/${data._id}`)
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/notifications/${data._id}`,
+      {
+        headers: {
+          "x-auth-token": authToken,
+          },
+          }
+          )
       .then((res) => {
         //console.log(index);
         let arr = notifications;

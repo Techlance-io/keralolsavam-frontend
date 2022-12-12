@@ -48,7 +48,12 @@ function News() {
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/news`, {
         title: title,
-      })
+      },
+      {
+        headers: {
+          "x-auth-token": authToken,
+          },
+          })
       .then((res) => {
         //console.log(res);
         setTitle("");
