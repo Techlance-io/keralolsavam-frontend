@@ -73,7 +73,14 @@ function OfficialDashboard() {
         </div>
         {/* <Image src={left} alt="" className={styles.image_left} />
         <Image src={top} alt="" className={styles.image_right} /> */}
-
+        <div
+          className={styles.register_btn_2}
+          onClick={() => {
+            router.push("/official/news");
+          }}
+        >
+          Add / Modify News
+        </div>
         <div className={styles.cards}>
           {events?.map((event) => {
             return (

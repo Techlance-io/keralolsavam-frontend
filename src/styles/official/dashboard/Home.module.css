@@ -18,6 +18,26 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.register_btn_2 {
+  width: 231.51px;
+  height: 53.56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  background: linear-gradient(
+    170deg,
+    #8ea604 0%,
+    #f5bb00 18.76%,
+    #ec9f05 48.44%,
+    #ff4e00 73.97%,
+    #bf3100 100%
+  );
+}
 .heading {
   text-align: center;
   font-weight: 600;
