@@ -49,6 +49,14 @@ function Navbar() {
         >
           SCOREBOARD
         </div>
+        <div
+          onClick={() => {
+            router.push("/login");
+          }}
+          className={styles.register_btn}
+        >
+          Login
+        </div>
       </div>
       <div className={styles.nav__mob}>
         <div className={styles.nav__mob_container}>
@@ -108,6 +116,15 @@ function Navbar() {
               >
                 SCOREBOARD
               </div>
+              <div
+          onClick={() => {
+            router.push("/login");
+            handleDrawerClose();
+          }}
+          className={styles.register_btn}
+        >
+          Login
+        </div>
             </div>
           </div>
         </div>

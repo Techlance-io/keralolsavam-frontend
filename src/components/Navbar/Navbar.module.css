@@ -10,6 +10,26 @@
   z-index: 100;
   align-items: center;
 }
+.register_btn {
+  width: 93.51px;
+  height: 43.56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  background: linear-gradient(
+    170deg,
+    #8ea604 0%,
+    #f5bb00 18.76%,
+    #ec9f05 48.44%,
+    #ff4e00 73.97%,
+    #bf3100 100%
+  );
+}
 .navbar_item {
   font-weight: 700;
   font-size: 16px;
