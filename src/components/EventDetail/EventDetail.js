@@ -30,11 +30,15 @@ function EventDetail() {
   const [users, setUsers] = useState([]);
   const { id } = router.query;
   useEffect(() => {
-    if (id) getEvent();
-  }, [id]);
+    if (id&& authToken) getEvent();
+  }, [id, authToken]);
   async function getEvent() {
     await axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`,{
+        headers: {
+          "x-auth-token": authToken,
+      }
+      })
       .then((res) => {
         setEvent(res.data.event);
         setUsers(res.data.users);
@@ -46,7 +50,10 @@ function EventDetail() {
         setLoader(false);
       });
   }
+
+
   async function handleSubmit() {
+
     const winners_list = [first, second, third];
     let data = {
       time: time.toISOString(),
