@@ -71,21 +71,21 @@ function Participants() {
       },
     },
     { field: "events", headerName: "Events", width: 300 },
-    {
-      field: "Edit",
-      headerName: "",
-      width: "100",
-      renderCell: (props) => (
-        <Button
-          onClick={() => {
-            setParticipant(props.row);
-            setOpen(true);
-          }}
-        >
-          Edit
-        </Button>
-      ),
-    },
+    // {
+    //   field: "Edit",
+    //   headerName: "",
+    //   width: "100",
+    //   renderCell: (props) => (
+    //     <Button
+    //       onClick={() => {
+    //         setParticipant(props.row);
+    //         setOpen(true);
+    //       }}
+    //     >
+    //       Edit
+    //     </Button>
+    //   ),
+    // },
   ];
 
   useEffect(() => {
