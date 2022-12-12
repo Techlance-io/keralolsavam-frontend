@@ -78,7 +78,7 @@ export default function EditNotificationsModal(props) {
                       required
                       fullWidth
                       id="name"
-                      label="News"
+                      label="Title"
                       name="name"
                       autoComplete="name"
                       onChange={(e) => setTitle(e.target.value)}
@@ -89,7 +89,7 @@ export default function EditNotificationsModal(props) {
                       required
                       fullWidth
                       id="name"
-                      label="News"
+                      label="Link"
                       name="name"
                       autoComplete="name"
                       onChange={(e) => setLink(e.target.value)}
