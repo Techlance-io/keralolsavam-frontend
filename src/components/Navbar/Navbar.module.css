@@ -3,7 +3,7 @@
   background-color: #622308;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 1.5rem;
+  padding: 1rem;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%;
@@ -12,7 +12,7 @@
 }
 .register_btn {
   width: 93.51px;
-  height: 43.56px;
+  height: 38.56px;
   display: flex;
   justify-content: center;
   align-items: center;

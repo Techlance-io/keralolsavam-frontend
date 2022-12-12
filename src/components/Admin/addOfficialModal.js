@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Autocomplete from "@mui/material/Autocomplete";
 import axios from "axios";
 import styles from "./official.module.css";
+import {AuthContext} from "../../context/AuthContext";
 const style = {
   position: "absolute",
   top: "50%",
@@ -32,6 +33,7 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
   const handleClose = () => setOpen(false);
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
+  const {authToken} = useContext(AuthContext);
   const [events, setEvents] = useState([]);
   const [eventStr, setEventStr] = useState("");
   const [selectedEvents, setSelectedEvents] = useState([]);
@@ -111,6 +113,11 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
           name: title,
           email: email,
           events: selectedEvents,
+        },
+        {
+          headers: {
+            "x-auth-token": authToken,
+          },
         }
       );
       //console.log(res.data);
@@ -124,6 +131,11 @@ export default function EditNewsModal({ open, setOpen, data,setVariable }) {
       name: title,
       email: email,
       events: selectedEvents,
+    },
+    {
+      headers: {
+        "x-auth-token": authToken,
+      },
     });
     //console.log(res.data);
     setOpen(false);
