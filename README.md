@@ -6,22 +6,22 @@
 
 Frontend : https://keralolsavam-frontend.vercel.app
 
-Backend : https://keralolsavam-backend-test-production.up.railway.app/
+Backend : https://keralolsavam-backend.mec.ac.in/
 
 ### Set 2
 
 Frontend : https://keralolsavam.vercel.app
 
-Backend : https://keralolsavam-backend-production.up.railway.app/
+Backend : https://keralolsavam-backend.mec.ac.in/
 
 ### Set 3
 
 Frontend : https://keralolsavam.netlify.app
 
-Backend : https://keralolsavam-backend-production.up.railway.app/
+Backend : https://keralolsavam-backend.mec.ac.in/
 
 ### Set 4
-Backend (in Testing) : https://keralolsavam-backend.mec.ac.in/
+Backend (in Testing) : https://keralolsavam-backend-test-production.up.railway.app/
 
 ## Repositories
 
