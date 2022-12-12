@@ -24,6 +24,8 @@ import { artsData, placeData, sportsData } from "../../data";
 const style = {
   position: "absolute",
   top: "50%",
+  height:"80vh",
+  overflow: "auto",
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
@@ -50,7 +52,7 @@ export default function EditParticipant(props) {
   const [age, setAge] = useState("");
   const [sex, setSex] = useState("");
   const [place, setPlace] = useState("");
-  const [lsgi, setLsgi] = useState();
+  const [lsgi, setLsgi] = useState("");
   const [artEvents, setArtEvents] = useState([]);
   const [sportsEvents, setSportsEvents] = useState([]);
   const [localbody, setLocalbody] = useState("");
