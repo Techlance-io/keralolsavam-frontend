@@ -14,7 +14,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import eventsData from "../../data/eventsData";
-import { Navbar } from "../../components";
+import { Loader, Navbar } from "../../components";
 import CustomTitle from "../../utils/customTitle";
 import axios from "axios";
 import Footer from "../../components/Footer/Footer";
@@ -50,6 +50,7 @@ function EventResults() {
   const { id } = router.query;
   const [event, setEvent] = useState();
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (id) getEvent();
   }, [id]);
@@ -58,6 +59,7 @@ function EventResults() {
       .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
       .then((res) => {
         setEvent(res.data.event);
+        setLoading(false);
       });
   }
   async function getEvents() {
@@ -75,6 +77,7 @@ function EventResults() {
     getEvents();
   }, []);
   //console.log(event);
+  if (loading) return <Loader />;
   return (
     <>
       <CustomTitle title="Results" />
@@ -83,11 +86,7 @@ function EventResults() {
         <div className={styles.heading}>Results</div>
         <div className={styles.header}>
           <div className={styles.image_wrapper}>
-            <Image
-              src={getImage(event?.name)}
-              className={styles.img}
-              alt=""
-            />
+            <Image src={getImage(event?.name)} className={styles.img} alt="" />
           </div>
 
           <div className={styles.event_name}>{event?.name}</div>
@@ -192,7 +191,7 @@ function EventResults() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
