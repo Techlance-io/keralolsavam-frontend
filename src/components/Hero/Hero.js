@@ -11,13 +11,20 @@ function Hero() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   async function getNews() {
+ 
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
       setNews(res.data.news);
+      console.log(res.data.news)
       setLoading(false);
     });
   }
+
+  setTimeout(() => {
+    getNews();
+  }, 60000);
   useEffect(() => {
     getNews();
+
   }, []);
   if (loading) return <Loader />;
   return (
