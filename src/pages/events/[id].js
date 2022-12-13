@@ -153,13 +153,13 @@ function EventStatus() {
             </ThemeProvider>
           </div>
         </div>
-        <div className={styles.staff_details}>
+        {/* <div className={styles.staff_details}>
           <div className={styles.staff_heading}>Staff Incharges</div>
           <div className={styles.staff_details_content}>
             <div>Name : {event?.official?.name}</div>
             <div>Contact : {event?.official?.email}</div>
           </div>
-        </div>
+        </div> */}
         <div className={styles.table_container}>
           <table className={styles.table}>
             <thead>
