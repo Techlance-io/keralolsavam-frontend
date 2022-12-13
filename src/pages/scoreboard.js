@@ -32,20 +32,20 @@ function Scoreboard() {
   async function getScore() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score`).then((res) => {
       //console.log(res.data);
-      setScore(res.data);
+      setScore(sortingUser(res.data));
       setLoading(false);
     });
   }
   async function getLocalBodyScore() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score/localbody`).then((res) => {
       //console.log(res.data);
-      setLocalBodyScore(res.data);
+      setLocalBodyScore(sortingLocalBody(res.data));
     });
   }
   async function getLsgiScore() {
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/score/lsgi`).then((res) => {
       //console.log(res.data);
-      setLsgiScore(res.data);
+      setLsgiScore(sortingLSGI(res.data));
     });
   }
   useEffect(() => {
@@ -53,7 +53,24 @@ function Scoreboard() {
     getLocalBodyScore();
     getLsgiScore();
   }, []);
-
+function sortingUser(scoredata1)
+{
+  scoredata1.sort((a, b) => b.total - a.total);
+  console.log(scoredata1);
+  return scoredata1;
+}
+function sortingLocalBody(scoredata2)
+{
+  scoredata2.sort((a, b) => b.total - a.total);
+  console.log(scoredata2);
+  return scoredata2;
+}
+function sortingLSGI(scoredata3)
+{
+  scoredata3.sort((a, b) => b.total_score - a.total_score);
+  console.log(scoredata3);
+  return scoredata3;
+}
   if (loading) {
     return <Loader />;
   }
