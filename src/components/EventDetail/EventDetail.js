@@ -41,7 +41,7 @@ function EventDetail() {
       })
       .then((res) => {
         setEvent(res.data.event);
-        console.log(res.data.event)
+        //console.log(res.data.event)
         setUsers(res.data.users);
         setTime(dayjs(res.data.event.time));
         setStatus(res.data.event.status);
