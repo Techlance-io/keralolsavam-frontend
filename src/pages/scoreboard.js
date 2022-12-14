@@ -56,19 +56,19 @@ function Scoreboard() {
 function sortingUser(scoredata1)
 {
   scoredata1.sort((a, b) => b.total - a.total);
-  console.log(scoredata1);
+  //console.log(scoredata1);
   return scoredata1;
 }
 function sortingLocalBody(scoredata2)
 {
   scoredata2.sort((a, b) => b.total - a.total);
-  console.log(scoredata2);
+  //console.log(scoredata2);
   return scoredata2;
 }
 function sortingLSGI(scoredata3)
 {
   scoredata3.sort((a, b) => b.total_score - a.total_score);
-  console.log(scoredata3);
+  //console.log(scoredata3);
   return scoredata3;
 }
   if (loading) {

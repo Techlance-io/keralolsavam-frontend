@@ -52,7 +52,7 @@ function EventStatus() {
   useEffect(() => {
     if (id) getEvent();
   }, [id]);
-  console.log(users);
+  //console.log(users);
   async function getEvent() {
     await axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)

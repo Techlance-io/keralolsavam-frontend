@@ -44,7 +44,7 @@ function notificationCard({
         setNotifications([...arr]);
       });
   };
-  console.log(index);
+  //console.log(index);
 
   return (
     <div className={styles.card_1}>
