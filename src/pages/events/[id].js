@@ -52,6 +52,7 @@ function EventStatus() {
   useEffect(() => {
     if (id) getEvent();
   }, [id]);
+  console.log(users);
   async function getEvent() {
     await axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
@@ -174,9 +175,9 @@ function EventStatus() {
               {users.map((user, index) => {
                 return (
                   <tr key={index}>
-                    <td className={styles.table_body}>{user?.chestNo}</td>
-                    <td className={styles.table_body}>{user?.name}</td>
-                    <td className={styles.table_body_1}>{user?.place}</td>
+                    <td className={styles.table_body}>{user?.serial_no}</td>
+                    <td className={styles.table_body}>{user?.participant_name}</td>
+                    <td className={styles.table_body_1}>{user?.localbody}</td>
                     <td className={styles.table_body_1}>{user?.lsgi}</td>
                   </tr>
                 );
