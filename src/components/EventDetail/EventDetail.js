@@ -41,12 +41,13 @@ function EventDetail() {
       })
       .then((res) => {
         setEvent(res.data.event);
+        console.log(res.data.event)
         setUsers(res.data.users);
         setTime(dayjs(res.data.event.time));
         setStatus(res.data.event.status);
-        setFirst(res.data.event.winners[0]);
-        setSecond(res.data.event.winners[1]);
-        setThird(res.data.event.winners[2]);
+        setFirst(res.data.event.winners[2]);
+        setSecond(res.data.event.winners[0]);
+        setThird(res.data.event.winners[1]);
         setLoader(false);
       });
   }
