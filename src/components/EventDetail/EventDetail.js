@@ -45,9 +45,9 @@ function EventDetail() {
         setUsers(res.data.users);
         setTime(dayjs(res.data.event.time));
         setStatus(res.data.event.status);
-        setFirst(res.data.event.winners[2]);
-        setSecond(res.data.event.winners[0]);
-        setThird(res.data.event.winners[1]);
+        setFirst(res.data.event.winners[0]);
+        setSecond(res.data.event.winners[1]);
+        setThird(res.data.event.winners[2]);
         setLoader(false);
       });
   }
