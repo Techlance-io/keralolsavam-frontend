@@ -14,7 +14,7 @@ function Hero() {
  
     await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/news`).then((res) => {
       setNews(res.data.news);
-      console.log(res.data.news)
+      //console.log(res.data.news)
       setLoading(false);
     });
   }
