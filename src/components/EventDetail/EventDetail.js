@@ -72,6 +72,7 @@ function EventDetail() {
         window.location.reload();
       });
   }
+  console.log(users)
   if (loader)
     return (
       <div className={styles.container}>
@@ -131,7 +132,7 @@ function EventDetail() {
             disablePortal
             id="combo-box-demo"
             options={users}
-            getOptionLabel={(option) => option?.name}
+            getOptionLabel={(option) => option?.participant_name}
             value={first || { name: "" }}
             onChange={(e, newValue) => setFirst(newValue)}
             sx={{ width: 300 }}
@@ -150,7 +151,7 @@ function EventDetail() {
             value={second || { name: "" }}
             onChange={(e, newValue) => setSecond(newValue)}
             options={users}
-            getOptionLabel={(option) => option?.name}
+            getOptionLabel={(option) =>option?.participant_name}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="Enter Name" />
@@ -164,7 +165,7 @@ function EventDetail() {
           <Autocomplete
             disablePortal
             value={third || { name: "" }}
-            getOptionLabel={(option) => option?.name}
+            getOptionLabel={(option) => option?.participant_name}
             onChange={(e, newValue) => setThird(newValue)}
             id="combo-box-demo"
             options={users}
