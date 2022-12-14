@@ -21,28 +21,34 @@ function EventDetail() {
   const [time, setTime] = useState(dayjs("2022-12-10T10:11:54"));
   const [status, setStatus] = useState("Event About To Start");
   const [winners, setWinners] = useState([]);
+  let extra = { participant_name: "No Winner" };
+  
   const [loader, setLoader] = useState(true);
   const [first, setFirst] = useState();
   const [second, setSecond] = useState();
   const [third, setThird] = useState();
   const [event, setEvent] = useState();
-  const {authToken}=useContext(AuthContext);
+  const { authToken } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  
   const { id } = router.query;
   useEffect(() => {
-    if (id&& authToken) getEvent();
+    if (id && authToken) {
+      getEvent();
+    }
   }, [id, authToken]);
   async function getEvent() {
     await axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`,{
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, {
         headers: {
           "x-auth-token": authToken,
-      }
+        },
       })
       .then((res) => {
         setEvent(res.data.event);
         //console.log(res.data.event)
-        setUsers(res.data.users);
+        let users1=[extra,...res.data.users]
+        setUsers(users1);
         setTime(dayjs(res.data.event.time));
         setStatus(res.data.event.status);
         setFirst(res.data.event.winners[0]);
@@ -52,9 +58,7 @@ function EventDetail() {
       });
   }
 
-
   async function handleSubmit() {
-
     const winners_list = [first, second, third];
     let data = {
       time: time.toISOString(),
@@ -62,17 +66,17 @@ function EventDetail() {
       winners: winners_list,
     };
     await axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data,{
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data, {
         headers: {
           "x-auth-token": authToken,
-      }})
+        },
+      })
       .then((res) => {
         //console.log(res.data);
         alert("Event Updated Successfully");
         window.location.reload();
       });
   }
-  console.log(users)
   if (loader)
     return (
       <div className={styles.container}>
@@ -133,7 +137,7 @@ function EventDetail() {
             id="combo-box-demo"
             options={users}
             getOptionLabel={(option) => option?.participant_name}
-            value={first || { name: "" }}
+            value={first || { participant_name: "" }}
             onChange={(e, newValue) => setFirst(newValue)}
             sx={{ width: 300 }}
             renderInput={(params) => (
@@ -148,10 +152,10 @@ function EventDetail() {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            value={second || { name: "" }}
+            value={second || { participant_name: "" }}
             onChange={(e, newValue) => setSecond(newValue)}
             options={users}
-            getOptionLabel={(option) =>option?.participant_name}
+            getOptionLabel={(option) => option?.participant_name}
             sx={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="Enter Name" />
@@ -164,7 +168,7 @@ function EventDetail() {
         <div>
           <Autocomplete
             disablePortal
-            value={third || { name: "" }}
+            value={third || { participant_name: "" }}
             getOptionLabel={(option) => option?.participant_name}
             onChange={(e, newValue) => setThird(newValue)}
             id="combo-box-demo"
