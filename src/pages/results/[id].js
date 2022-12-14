@@ -118,7 +118,7 @@ function EventResults() {
                     );
                   }}
                 >
-                  {events.forEach((events, index) => {
+                  {events.map((events, index) => {
                     if (events?.winners.length > 0)
                       return (
                         <MenuItem value={events.name} key={index}>
