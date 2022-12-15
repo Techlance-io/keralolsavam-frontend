@@ -133,14 +133,14 @@ function EventResults() {
           </div>
         </div>
         <div className={styles.prizes_container}>
-          {(event?.winners[0]?.name === "No Winner" ||
-            event?.winners[0]?.name == null|| event?.winners[0]?.name==="")  ?(""):(
+          {(event?.winners[0]?.participant_name === "No Winner" ||
+            event?.winners[0]?.participant_name == null|| event?.winners[0]?.participant_name==="")  ?(""):(
             <div className={styles.first_container}>
               <div className={styles.first_header}>
                 <div className={styles.first_heading}>First</div>
                 <div className={styles.first_description}>
                   <div className={styles.first_description_details}>
-                    {event?.winners[0]?.name}
+                    {event?.winners[0]?.participant_name}
                   </div>
                   <div className={styles.first_description_details}>
                     {event?.winners[0]?.lsgi}

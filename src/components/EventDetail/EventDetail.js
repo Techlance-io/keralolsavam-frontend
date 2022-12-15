@@ -65,6 +65,7 @@ function EventDetail() {
       status: status,
       winners: winners_list,
     };
+    console.log(data);
     await axios
       .put(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`, data, {
         headers: {
@@ -74,7 +75,6 @@ function EventDetail() {
       .then((res) => {
         //console.log(res.data);
         alert("Event Updated Successfully");
-        window.location.reload();
       });
   }
   if (loader)
