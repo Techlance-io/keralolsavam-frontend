@@ -59,7 +59,7 @@ function EventResults() {
       .get(`${process.env.NEXT_PUBLIC_API_URL}/events/${id}`)
       .then((res) => {
         setEvent(res.data.event);
-        
+
         setLoading(false);
       });
   }
@@ -112,11 +112,15 @@ function EventResults() {
                   label="Other Events"
                   onChange={(e) => {
                     setEvent(e.target.value);
-                    router.push(
-                      `/results/${
-                        events.find((item) => item.name === e.target.value)._id
-                      }`
-                    );
+                    setLoading(true);
+                    router
+                      .push(
+                        `/results/${
+                          events.find((item) => item.name === e.target.value)
+                            ._id
+                        }`
+                      )
+                      .then(() => window.location.reload());
                   }}
                 >
                   {events.map((events, index) => {
@@ -133,8 +137,11 @@ function EventResults() {
           </div>
         </div>
         <div className={styles.prizes_container}>
-          {(event?.winners[0]?.participant_name === "No Winner" ||
-            event?.winners[0]?.participant_name == null|| event?.winners[0]?.participant_name==="")  ?(""):(
+          {event?.winners[0]?.participant_name === "No Winner" ||
+          event?.winners[0]?.participant_name == null ||
+          event?.winners[0]?.participant_name === "" ? (
+            ""
+          ) : (
             <div className={styles.first_container}>
               <div className={styles.first_header}>
                 <div className={styles.first_heading}>First</div>
@@ -155,8 +162,11 @@ function EventResults() {
               </div>
             </div>
           )}
-          {(event?.winners[1]?.participant_name === "No Winner" ||
-            event?.winners[1]?.participant_name == null||event?.winners[1]?.participant_name==="") ?(""): (
+          {event?.winners[1]?.participant_name === "No Winner" ||
+          event?.winners[1]?.participant_name == null ||
+          event?.winners[1]?.participant_name === "" ? (
+            ""
+          ) : (
             <div className={styles.second_container}>
               <div className={styles.second_header}>
                 <div className={styles.second_heading}>Second</div>
@@ -177,8 +187,11 @@ function EventResults() {
               </div>
             </div>
           )}
-          {(event?.winners[2]?.participant_name === "No Winner" ||
-            event?.winners[2]?.participant_name == null||event?.winners[2]?.participant_name==="")  ?(""): (
+          {event?.winners[2]?.participant_name === "No Winner" ||
+          event?.winners[2]?.participant_name == null ||
+          event?.winners[2]?.participant_name === "" ? (
+            ""
+          ) : (
             <div className={styles.third_container}>
               <div className={styles.third_header}>
                 <div className={styles.third_heading}>Third</div>
