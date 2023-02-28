@@ -20,13 +20,8 @@ Frontend : https://keralolsavam.netlify.app
 
 Backend : http://keralolsavam-backend.mec.ac.in/
 
-### Set 4
-Backend (in Testing) : https://keralolsavam-backend-test-production-a4a7.up.railway.app/
-
 ## Repositories
 
 Frontend : https://github.com/jaison080/keralolsavam-frontend
 
 Backend : https://github.com/jaison080/keralolsavam-backend
-
-Railway Backend : https://github.com/jaison080/keralolsavam-backend-test
